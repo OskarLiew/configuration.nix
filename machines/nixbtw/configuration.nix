@@ -8,12 +8,21 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+        <nixos-hardware/lenovo/thinkpad/x280>
+
+      # Users
       ../../users/oskar.nix
+
+      # Modules
+      ../../modules/localization.nix
+      ../../modules/environment.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  nix.settings.experimental-features = [ "nix-command" ];
 
   networking.hostName = "nixbtw"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -28,25 +37,6 @@
   # Enable garbage collection
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
-
-  # Set your time zone.
-  time.timeZone = "Europe/Stockholm";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "sv_SE.UTF-8";
-    LC_IDENTIFICATION = "sv_SE.UTF-8";
-    LC_MEASUREMENT = "sv_SE.UTF-8";
-    LC_MONETARY = "sv_SE.UTF-8";
-    LC_NAME = "sv_SE.UTF-8";
-    LC_NUMERIC = "sv_SE.UTF-8";
-    LC_PAPER = "sv_SE.UTF-8";
-    LC_TELEPHONE = "sv_SE.UTF-8";
-    LC_TIME = "sv_SE.UTF-8";
-  };
-
 
   services.xserver.displayManager = {
     sddm.enable = true;
@@ -81,7 +71,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  services.upower.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput = {
@@ -90,7 +79,7 @@
     touchpad = {
       naturalScrolling = true;
       accelProfile = "flat";
-      accelSpeed = "0.5";
+      accelSpeed = "0.7";
     };
   };
 
@@ -100,18 +89,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  environment.sessionVariables = rec {
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_STATE_HOME = "$HOME/.local/state";
-    # Not officially in the spec
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [
-      "${XDG_BIN_HOME}"
-    ];
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -129,16 +106,6 @@
 
   # Enable shells
   programs.zsh.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

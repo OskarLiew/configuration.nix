@@ -6,7 +6,7 @@ My NixOS configuration files
 
 ```sh
 git clone https://github.com/OskarLiew/configuration.nix
-sudo nixos-rebuild switch -I path/to/repo/machines/<machine>/configuration.nix
+sudo nixos-rebuild switch -I nixos-config=path/to/repo/machines/<machine>/configuration.nix
 ```
 
 Replace `<machine>` with the machine configuration you want to use

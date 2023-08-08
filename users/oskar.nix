@@ -15,7 +15,7 @@
       enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks
-	luadbi-mysql
+	    luadbi-mysql
       ];
     };
   };
@@ -40,6 +40,7 @@
       # TUI apps
       neovim
       lazygit
+      neofetch
       # Apps
       kitty
       rofi
