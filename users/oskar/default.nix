@@ -1,30 +1,14 @@
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ <home-manager/nixos> ];
- 
+  imports = [ <home-manager/nixos> "./awesome.nix" ];
   # GUI
-
-  services.xserver = {
-    enable = true;
-
-    displayManager.defaultSession = "none+awesome";
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-	    luadbi-mysql
-      ];
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.oskar = {
     isNormalUser = true;
     description = "Oskar Liew";
-    extraGroups = [ "networkmanager" "wheel" "oskar"];
+    extraGroups = [ "networkmanager" "wheel" "oskar" ];
     shell = pkgs.zsh;
   };
 
@@ -46,12 +30,10 @@
       rofi
       # Programming
       python312
+      poetry
+      cargo
+      rustc
     ];
     home.stateVersion = "23.05";
-  };
-
-  services.picom = {
-    enable = true;
-    vSync = true;
   };
 }

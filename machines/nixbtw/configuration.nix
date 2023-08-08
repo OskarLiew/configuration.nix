@@ -5,18 +5,17 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-        <nixos-hardware/lenovo/thinkpad/x280>
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    <nixos-hardware/lenovo/thinkpad/x280>
 
-      # Users
-      ../../users/oskar.nix
+    # Users
+    ../../users/oskar
 
-      # Modules
-      ../../modules/localization.nix
-      ../../modules/environment.nix
-    ];
+    # Modules
+    ../../modules/localization.nix
+    ../../modules/environment.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -38,9 +37,7 @@
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
 
-  services.xserver.displayManager = {
-    sddm.enable = true;
-  };
+  services.xserver.displayManager = { sddm.enable = true; };
 
   # Configure keymap in X11
   services.xserver = {
@@ -83,9 +80,8 @@
     };
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
-  ];
+  fonts.fonts = with pkgs;
+    [ (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; }) ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
