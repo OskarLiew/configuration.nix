@@ -7,7 +7,6 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <nixos-hardware/lenovo/thinkpad/x280>
 
     # Users
     ../../users/oskar
@@ -21,7 +20,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixbtw"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -97,6 +96,7 @@
     lua
     gcc
     gnumake
+    cmake
     firefox
   ];
 

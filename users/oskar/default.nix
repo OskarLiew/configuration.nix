@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 {
-  imports = [ <home-manager/nixos> "./awesome.nix" ];
+  imports = [ ./awesome.nix ];
   # GUI
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
