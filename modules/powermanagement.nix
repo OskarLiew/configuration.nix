@@ -1,4 +1,5 @@
-{
+{ pkgs, ... }: {
+  environment.systemPackages = with pkgs; [ acpi ];
   services = {
     thermald.enable = true;
     tlp = {
