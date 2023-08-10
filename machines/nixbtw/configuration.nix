@@ -97,7 +97,7 @@
     gcc
     gnumake
     cmake
-    firefox
+    chromium
   ];
 
   # Enable shells

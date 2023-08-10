@@ -1,18 +1,19 @@
 { config, pkgs, home-manager, ... }:
-
-{
+let user = "oskar";
+in {
   imports = [ ./awesome.nix ];
   # GUI
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.oskar = {
+  users.users.${user} = {
     isNormalUser = true;
     description = "Oskar Liew";
-    extraGroups = [ "networkmanager" "wheel" "oskar" ];
+    extraGroups = [ "networkmanager" "wheel" "${user}" ];
     shell = pkgs.zsh;
   };
 
-  home-manager.users.oskar = { pkgs, ... }: {
+  home-manager.users.${user} = { pkgs, ... }: {
+    nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
       # Shell
       pure-prompt
@@ -26,14 +27,42 @@
       lazygit
       neofetch
       # Apps
-      kitty
       rofi
+      obsidian
       # Programming
       python312
       poetry
       cargo
       rustc
     ];
+
+    programs = {
+        firefox.enable = true;
+        kitty = {
+            enable = true;
+            theme = "One Dark";
+        };
+    };
+
     home.stateVersion = "23.05";
   };
+
+  # Services
+
+  services = {
+    syncthing = {
+      enable = true;
+      inherit user;
+      dataDir = "/home/${user}/docs"; # Default folder for new synced folders
+      configDir =
+        "/home/${user}/.config/syncthing"; # Folder for Syncthing's settings and keys
+      folders = {
+          "Default Folder" = {
+              id = "default";
+              path = "/home/${user}/docs/sync";
+          };
+      };
+    };
+  };
+
 }
