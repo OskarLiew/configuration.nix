@@ -100,15 +100,32 @@
     chromium
   ];
 
-  # Enable shells
-  programs.zsh.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
+
+  # Power management
+  services = {
+      thermald.enable = true;
+      tlp = {
+          enable = true;
+          settings = {
+              CPU_SCALING_GOVERNOR_ON_AC = "performance";
+              CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+              CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+              CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+              CPU_MIN_PERF_ON_AC = 0;
+              CPU_MAX_PERF_ON_AC = 100;
+              CPU_MIN_PERF_ON_BAT = 0;
+              CPU_MAX_PERF_ON_BAT = 40;
+          };
+      };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

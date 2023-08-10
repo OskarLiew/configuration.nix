@@ -4,6 +4,8 @@ in {
   imports = [ ./awesome.nix ];
   # GUI
 
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
@@ -26,6 +28,7 @@ in {
       neovim
       lazygit
       neofetch
+      ranger
       # Apps
       rofi
       obsidian
@@ -37,11 +40,16 @@ in {
     ];
 
     programs = {
-        firefox.enable = true;
-        kitty = {
-            enable = true;
-            theme = "One Dark";
-        };
+      firefox.enable = true;
+      kitty = {
+        enable = true;
+        theme = "One Dark";
+      };
+      git = {
+        enable = true;
+        userName = "Oskar Liew";
+        userEmail = "oskar@liew.se";
+      };
     };
 
     home.stateVersion = "23.05";
@@ -57,10 +65,10 @@ in {
       configDir =
         "/home/${user}/.config/syncthing"; # Folder for Syncthing's settings and keys
       folders = {
-          "Default Folder" = {
-              id = "default";
-              path = "/home/${user}/docs/sync";
-          };
+        "Default Folder" = {
+          id = "default";
+          path = "/home/${user}/docs/sync";
+        };
       };
     };
   };
