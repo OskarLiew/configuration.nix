@@ -14,6 +14,9 @@
     # Modules
     ../../modules/localization.nix
     ../../modules/environment.nix
+    ../../modules/bluetooth.nix
+    ../../modules/sound.nix
+    ../../modules/powermanagement.nix
   ];
 
   # Bootloader.
@@ -36,6 +39,9 @@
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
 
+# Enable CUPS to print documents.
+  services.printing.enable = true;
+
   services.xserver.displayManager = { sddm.enable = true; };
 
   # Configure keymap in X11
@@ -47,26 +53,6 @@
 
   # Configure console keymap
   console.keyMap = "sv-latin1";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput = {
@@ -109,26 +95,6 @@
 
   # Virtualization
   virtualisation.docker.enable = true;
-
-  # Power management
-  services = {
-    thermald.enable = true;
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 40;
-      };
-    };
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
