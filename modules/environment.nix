@@ -11,4 +11,17 @@
     PATH = [ "${XDG_BIN_HOME}" ];
   };
 
+  environment.systemPackages = with pkgs; [
+    vim
+    tmux
+    git
+    wget
+    python38
+    lua
+    gcc
+    gnumake
+    cmake
+    chromium
+  ];
+
 }
