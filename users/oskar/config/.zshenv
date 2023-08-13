@@ -1,19 +1,12 @@
-# Set overall config path
-export XDG_CONFIG_HOME="$HOME/.config"
-
 # Set ZSH config path
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Set default editors
-export EDITOR="nano"
-export VISUAL="nano"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Set ZSH environment variables
-export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
-export HISTSIZE=10000                   # Maximum events for internal history
-export SAVEHIST=10000                   # Maximum events in history file
 export HISTDUP="erase"
-
 
 # Color output
 export LESS='-R --use-color -Dd+r$Du+b$'

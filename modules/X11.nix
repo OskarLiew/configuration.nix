@@ -19,4 +19,5 @@
 
   services.xserver.displayManager = { sddm.enable = true; };
 
+  hardware.acpilight.enable = true;
 }

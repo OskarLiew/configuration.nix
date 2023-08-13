@@ -1,21 +1,14 @@
-
-{ config, pkgs, callPackage, ... }: 
+{ config, pkgs, callPackage, ... }:
 
 {
-  imports = [
-    ../../../modules/X11.nix
-  ];
+  imports = [ ../../../modules/X11.nix ];
 
   services.xserver = {
     enable = true;
 
-    desktopManager = {
-      xterm.enable = false;
-    };
-   
-    displayManager = {
-        defaultSession = "none+i3";
-    };
+    desktopManager = { xterm.enable = false; };
+
+    displayManager = { defaultSession = "none+i3"; };
 
     windowManager.i3 = {
       enable = true;
@@ -25,8 +18,8 @@
         betterlockscreen
         picom
         rofi
-     ];
-     configFile = ./config;
+      ];
+      configFile = ./config;
     };
   };
 

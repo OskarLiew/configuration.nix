@@ -2,11 +2,12 @@
 
 autoload -Uz compinit promptinit select-word-style
 
-_comp_options+=(globdots) # With hidden files
-compinit
+mkdir -p $XDG_CACHE_HOME/zsh
+compinit -d $XDG_CACHE_HOME/zsh/.zcompdump
 promptinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+_comp_options+=(globdots) # With hidden files
 select-word-style bash
 
 ### Theme
@@ -93,8 +94,7 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 
 ### Aliases
 
-source $XDG_CONFIG_HOME/aliases
-
+source $XDG_CONFIG_HOME/aliases/aliases
 
 ### Plugins
 
@@ -132,3 +132,4 @@ if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
 elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
     ssh-add
 fi
+
