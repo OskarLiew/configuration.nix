@@ -26,7 +26,7 @@
         picom
         rofi
      ];
-     extraConfig = builtins.readFile ./config;
+     configFile = ./config;
     };
   };
 

@@ -103,9 +103,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-bindsym $mod+Shift+x exec ~/.config/i3/rofi/config/powermenu.sh
-bindsym $mod+Tab exec ~/.config/i3/rofi/config/windowselector.sh
-bindsym $mod+p exec ~/.config/i3/rofi/config/applauncher.sh
+bindsym $mod+Shift+x exec ~/.config/rofi/config/powermenu.sh
+bindsym $mod+Tab exec ~/.config/rofi/config/windowselector.sh
+bindsym $mod+p exec ~/.config/rofi/config/applauncher.sh
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

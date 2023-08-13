@@ -56,6 +56,17 @@ in {
     };
 
     home.stateVersion = "23.05";
+
+    home.file = {
+        ".config/zsh".source = ./config/zsh;
+        ".zshenv".source = ./config/.zshenv;
+        ".config/tmux".source = ./config/tmux;
+        ".local/bin/tat".source = ./config/tmux/tat;
+        ".config/nvim".source = ./config/nvim;
+        ".config/picom".source = ./config/picom;
+        ".config/rofi".source = ./config/rofi;
+        ".config/aliases".source = ./config/aliases;
+    };
   };
 
   # Services
@@ -75,5 +86,5 @@ in {
       };
     };
   };
-
 }
+
