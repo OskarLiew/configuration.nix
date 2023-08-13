@@ -21,7 +21,12 @@
     gcc
     gnumake
     cmake
+    pciutils
     chromium
+    pulseaudio
+    acpilight
+    playerctl
+    procps
   ];
 
 }

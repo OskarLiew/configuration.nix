@@ -1,7 +1,7 @@
 { config, pkgs, home-manager, ... }:
 let user = "oskar";
 in {
-  imports = [ ./i3wm.nix ];
+  imports = [ ./i3 ];
   # GUI
 
   programs.zsh.enable = true;
@@ -30,8 +30,8 @@ in {
       neofetch
       ranger
       # Apps
-      rofi
       obsidian
+      arandr
       # Programming
       python312
       poetry
@@ -44,6 +44,9 @@ in {
       kitty = {
         enable = true;
         theme = "One Dark";
+        settings = {
+          confirm_os_window_close = 2;
+        };
       };
       git = {
         enable = true;

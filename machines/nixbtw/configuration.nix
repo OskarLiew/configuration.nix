@@ -52,28 +52,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  services.xserver.displayManager = { sddm.enable = true; };
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "se,us";
-    xkbVariant = "";
-    xkbOptions = "grp:rctrl_rshift_toggle";
-  };
-
   # Configure console keymap
   console.keyMap = "sv-latin1";
-
-  # Enable touchpad support
-  services.xserver.libinput = {
-    enable = true;
-
-    touchpad = {
-      naturalScrolling = true;
-      accelProfile = "flat";
-      accelSpeed = "0.7";
-    };
-  };
 
   fonts.fonts = with pkgs;
     [ (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; }) ];
