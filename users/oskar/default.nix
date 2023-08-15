@@ -1,7 +1,7 @@
 { config, pkgs, home-manager, ... }:
 let user = "oskar";
 in {
-  imports = [ ./i3 ];
+  imports = [ ./awesome.nix ];
 
   programs.zsh = {
     enable = true;

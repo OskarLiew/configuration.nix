@@ -17,5 +17,6 @@
         CPU_MAX_PERF_ON_BAT = 70;
       };
     };
+    upower.enable = true;
   };
 }

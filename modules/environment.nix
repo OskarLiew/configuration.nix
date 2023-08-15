@@ -27,6 +27,10 @@
     acpilight
     playerctl
     procps
+    upower
+    wirelesstools
+    iw
+    unzip
   ];
 
 }

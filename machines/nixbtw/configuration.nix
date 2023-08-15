@@ -41,6 +41,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.usePredictableInterfaceNames = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
