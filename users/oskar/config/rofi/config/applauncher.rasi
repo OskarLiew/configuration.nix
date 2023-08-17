@@ -139,7 +139,7 @@ scrollbar {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     25px;
+    spacing:                     10px;
     margin:                      0px;
     padding:                     25px 15px;
     border:                      0px solid;
@@ -161,7 +161,7 @@ element selected.normal {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        96px;
+    size:                        92px;
     cursor:                      inherit;
 }
 element-text {
