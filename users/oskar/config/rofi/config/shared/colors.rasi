@@ -15,4 +15,4 @@
 
 /* Import color-scheme from `colors` directory */
 
-@import "~/.config/i3/rofi/colors/catppuccin2.rasi"
+@import "../../colors/catppuccin2.rasi"
