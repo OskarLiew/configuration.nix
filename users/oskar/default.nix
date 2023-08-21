@@ -26,9 +26,11 @@ in {
       bat
       fzf
       ripgrep
+      tree
       # TUI apps
       neovim
       lazygit
+      lazydocker
       neofetch
       ranger
       # Apps
@@ -39,6 +41,7 @@ in {
       poetry
       cargo
       rustc
+      nodejs_20
     ];
 
     programs = {
