@@ -1,7 +1,7 @@
 { config, pkgs, home-manager, ... }:
 let user = "oskar";
 in {
-  imports = [ ./awesome.nix ];
+  imports = [ ./awesome ];
 
   programs.zsh = {
     enable = true;
@@ -27,6 +27,7 @@ in {
       fzf
       ripgrep
       tree
+      parallel
       # TUI apps
       neovim
       lazygit
@@ -36,6 +37,7 @@ in {
       # Apps
       obsidian
       arandr
+      inkscape
       # Programming
       python312
       poetry
@@ -69,6 +71,7 @@ in {
       ".config/picom".source = ./config/picom;
       ".config/rofi".source = ./config/rofi;
       ".config/aliases".source = ./config/aliases;
+      ".config/awesome".source = ./awesome/awesomerc;
     };
 
   };

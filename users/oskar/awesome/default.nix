@@ -19,7 +19,7 @@
   });
 in {
   imports = [
-    ../../modules/X11.nix
+    ../../../modules/X11.nix
   ];
 
   services.xserver = {
