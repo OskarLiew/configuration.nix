@@ -12,10 +12,10 @@
     LC_MEASUREMENT = "sv_SE.UTF-8";
     LC_MONETARY = "sv_SE.UTF-8";
     LC_NAME = "sv_SE.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";  # Prefer . instead of ,
+    LC_NUMERIC = "en_US.UTF-8"; # Prefer . instead of ,
     LC_PAPER = "sv_SE.UTF-8";
     LC_TELEPHONE = "sv_SE.UTF-8";
-    LC_TIME = "en_US.UTF-8";  # Use english for time
+    LC_TIME = "en_US.UTF-8"; # Use english for time
   };
 
 }

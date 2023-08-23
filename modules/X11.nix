@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   # Configure keymap in X11
   services.xserver = {
     layout = "se,us";
@@ -17,7 +17,15 @@
     };
   };
 
-  services.xserver.displayManager = { sddm.enable = true; };
+  environment.systemPackages = with pkgs; [
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
+  ];
+
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    theme = "${import ../packages/sddm-theme.nix { inherit pkgs; }}";
+  };
 
   hardware.acpilight.enable = true;
 }
