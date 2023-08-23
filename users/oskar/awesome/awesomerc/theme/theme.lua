@@ -85,6 +85,11 @@ theme.edge_radius = dpi(18)
 --theme.taglist_bg_focus = "#ff0000"
 theme.tooltip_bg = theme.bg_popup
 theme.tooltip_fg = theme.fg_normal
+theme.hotkeys_bg = theme.bg_popup
+theme.hotkeys_modifiers_fg = theme.fg_focus
+theme.menu_bg_normal = theme.bg_popup
+theme.menu_bg_focus = theme.bg_focus
+theme.menu_fg_focus = theme.fg_normal
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
