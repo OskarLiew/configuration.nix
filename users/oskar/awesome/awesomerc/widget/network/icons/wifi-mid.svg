@@ -37,7 +37,7 @@
      stroke-width="4"
      stroke-linecap="round"
      stroke-linejoin="round"
-     stroke="rgb(93.333334%, 93.333334%, 93.333334%)"
+     stroke="#D3C6AA"
      stroke-opacity="1"
      stroke-miterlimit="4"
      d="M 38 25.798828 C 30.267578 18.067383 17.732422 18.067383 10 25.798828 "
@@ -48,7 +48,7 @@
      stroke-width="4"
      stroke-linecap="round"
      stroke-linejoin="round"
-     stroke="rgb(93.333334%, 93.333334%, 93.333334%)"
+     stroke="#D3C6AA"
      stroke-opacity="1"
      stroke-miterlimit="4"
      d="M 32 32.313477 C 27.582031 27.895508 20.417969 27.895508 16 32.313477 "
@@ -56,7 +56,7 @@
      id="path3104" />
   <path
      fill-rule="evenodd"
-     fill="rgb(93.333334%, 93.333334%, 93.333334%)"
+     fill="#D3C6AA"
      fill-opacity="1"
      d="M 96 160 C 101.523438 160 106 155.523438 106 150 C 106 144.476562 101.523438 140 96 140 C 90.476562 140 86 144.476562 86 150 C 86 155.523438 90.476562 160 96 160 Z M 96 160 "
      id="path3106" />

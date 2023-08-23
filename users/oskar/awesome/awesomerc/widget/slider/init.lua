@@ -24,13 +24,14 @@ local function slider(args)
 		visible = false,
 		ontop = true,
 		opacity = 0.75,
+        bg = beautiful.bg_popup,
 	})
 
 	local bar = wibox.widget({
 		widget = wibox.widget.progressbar,
 		shape = gears.shape.rounded_rect,
-		color = beautiful.hud_slider_fg,
-		background_color = beautiful.hud_slider_bg,
+		color = beautiful.fg_focus,
+		background_color = beautiful.bg_focus,
 		max_value = args.max_value or 100,
 		value = 0,
 	})

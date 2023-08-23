@@ -20,6 +20,8 @@ in {
   };
 
   home-manager.users.${user} = { pkgs, ... }: {
+    imports = [ ./theme.nix ];
+
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
       # Shell
@@ -38,19 +40,23 @@ in {
       obsidian
       arandr
       inkscape
+      gnome.nautilus
+      vscode
       # Programming
       python312
       poetry
       cargo
       rustc
       nodejs_20
+      # Misc
+      dconf
     ];
 
     programs = {
       firefox.enable = true;
       kitty = {
         enable = true;
-        theme = "One Dark";
+        theme = "Everforest Dark Hard";
         settings = { confirm_os_window_close = 2; };
       };
       git = {
@@ -73,6 +79,7 @@ in {
       ".config/aliases".source = ./config/aliases;
       ".config/awesome".source = ./awesome/awesomerc;
     };
+
 
   };
 

@@ -20,22 +20,55 @@ theme.font = "sans 10"
 theme.bg_opacity = "CC"
 theme.fg_opacity = "CC"
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
+-- Everforest colours
+theme.bg_dim = "#1E2326"
+theme.bg0 = "#272E33"
+theme.bg1 = "#2E383C"
+theme.bg2 = "#374145"
+theme.bg3 = "#414B50"
+theme.bg4 = "#495156"
+theme.bg5 = "#4F5B58"
+
+theme.bg_red = "#4C3743"
+theme.bg_visual = "#493B40"
+theme.bg_yellow = "#45443C"
+theme.bg_green = "#3C4841"
+theme.bg_blue = "#384B55"
+
+theme.red = "#E67E80"
+theme.orange = "#E69875"
+theme.yellow = "#DBBC7F"
+theme.green = "#A7C080"
+theme.blue = "#7FBBB3"
+theme.aqua = "#83C092"
+theme.purple = "#D699B6"
+
+theme.fg = "#D3C6AA"
+theme.statusline1 = theme.green
+theme.statusline2 = theme.fg
+theme.statusline3 = theme.red
+theme.gray0 = "#7A8478"
+theme.gray1 = "#859289"
+theme.gray2 = "#9DA9A0"
+
+-- Apply colors
+theme.bg_normal = theme.bg0
+theme.bg_focus = theme.bg_blue
+theme.bg_urgent = theme.bg_red
+theme.bg_popup = theme.bg1
+theme.bg_minimize = theme.bg3
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal = theme.fg
+theme.fg_focus = theme.blue 
+theme.fg_urgent = theme.red 
+theme.fg_minimize = theme.gray1 
 
 theme.useless_gap = dpi(6)
 theme.border_width = dpi(0)
-theme.border_color_normal = "#000000"
-theme.border_color_active = "#535d6c"
-theme.border_color_marked = "#91231c"
+theme.border_color_normal = theme.bg_dim
+theme.border_color_active = theme.bg_blue
+theme.border_color_marked = theme.bg_visual
 
 theme.edge_radius = dpi(18)
 
@@ -50,6 +83,8 @@ theme.edge_radius = dpi(18)
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.tooltip_bg = theme.bg_popup
+theme.tooltip_fg = theme.fg_normal
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -64,6 +99,9 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_
 theme.notification_shape = function(cr, width, height)
 	return gears.shape.rounded_rect(cr, width, height, theme.edge_radius)
 end
+theme.notification_bg = theme.bg_popup
+theme.notification_fg = theme.fg_normal
+theme.notification_border_color = theme.bg_popup
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -135,9 +173,12 @@ theme.icon_theme = nil
 rnotification.connect_signal("request::rules", function()
 	rnotification.append_rule({
 		rule = { urgency = "critical" },
-		properties = { bg = "#ff0000", fg = "#ffffff" },
+		properties = { bg = theme.bg_urgent, fg = theme.fg_normal },
 	})
 end)
+
+-- Change color of layoutbox
+theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 
 return theme
 
