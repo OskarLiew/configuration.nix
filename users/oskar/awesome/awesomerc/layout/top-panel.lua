@@ -32,7 +32,7 @@ local top_panel = function(s)
 	})
 
 	panel:struts({
-		top = panel_height,
+		top = panel.height + panel.y,
 	})
 
 	-- Initialize widgets
@@ -65,7 +65,7 @@ local top_panel = function(s)
 	local center = textclock
 	local right = {
 		layout = wibox.layout.fixed.horizontal,
-        spacing = dpi(1),
+		spacing = dpi(1),
 		{
 			s.systray,
 			margins = dpi(5),

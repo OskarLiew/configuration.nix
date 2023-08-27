@@ -212,4 +212,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "e", function()
 		awful.spawn(apps.default.web_browser)
 	end, { description = "open firefox", group = "launcher" }),
+	-- Sidebar
+	awful.key({ modkey }, "d", function()
+		s = awful.screen.focused()
+		s.sidebar.visible = not s.sidebar.visible
+	end, { description = "open firefox", group = "launcher" }),
 })

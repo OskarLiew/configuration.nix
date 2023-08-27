@@ -21,11 +21,11 @@ local keyboard_imagebox = wibox.widget({
 	nil,
 	expand = "none",
 	layout = wibox.layout.align.vertical,
-    widget = clickable_container,
+	widget = clickable_container,
 })
 
 keyboard_imagebox:buttons(gears.table.join(awful.button({}, 1, nil, function()
-    widget.keyboardlayout():next_layout()
+	widget.keyboardlayout():next_layout()
 end)))
 
 local keyboard_widget = wibox.widget({

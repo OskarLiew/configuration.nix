@@ -6,9 +6,11 @@ require("layout.titlebar")
 require("layout.mymainmenu")
 
 local top_panel = require("layout.top-panel")
+local sidebar = require("layout.sidebar")
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.top_panel = top_panel(s)
+	s.sidebar = sidebar(s)
 end)
 
 -- {{{ Rules

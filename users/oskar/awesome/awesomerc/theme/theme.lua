@@ -53,16 +53,16 @@ theme.gray2 = "#9DA9A0"
 
 -- Apply colors
 theme.bg_normal = theme.bg0
-theme.bg_focus = theme.bg_blue
+theme.bg_focus = theme.bg_green
 theme.bg_urgent = theme.bg_red
 theme.bg_popup = theme.bg1
 theme.bg_minimize = theme.bg3
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = theme.fg
-theme.fg_focus = theme.blue 
-theme.fg_urgent = theme.red 
-theme.fg_minimize = theme.gray1 
+theme.fg_focus = theme.green
+theme.fg_urgent = theme.red
+theme.fg_minimize = theme.gray1
 
 theme.useless_gap = dpi(6)
 theme.border_width = dpi(0)

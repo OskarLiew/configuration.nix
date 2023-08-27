@@ -24,7 +24,7 @@ local function slider(args)
 		visible = false,
 		ontop = true,
 		opacity = 0.75,
-        bg = beautiful.bg_popup,
+		bg = beautiful.bg_popup,
 	})
 
 	local bar = wibox.widget({

@@ -66,15 +66,15 @@ run_cmd() {
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
+			if [[ "$DESKTOP_SESSION" == *'openbox' ]]; then
 				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
+			elif [[ "$DESKTOP_SESSION" == *'bspwm' ]]; then
 				bspc quit
-			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
+			elif [[ "$DESKTOP_SESSION" == *'i3' ]]; then
 				i3-msg exit
-			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
+			elif [[ "$DESKTOP_SESSION" == *'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-			elif [[ "$DESKTOP_SESSION" == 'awesome' ]]; then
+			elif [[ "$DESKTOP_SESSION" == *'awesome' ]]; then
 				pkill awesome
 			fi
 		fi
@@ -94,7 +94,6 @@ case ${chosen} in
         ;;
     $lock)
         betterlockscreen -l & betterlockscreen -u ~/pics/wallpapers/
-
         ;;
     $suspend)
 		run_cmd --suspend

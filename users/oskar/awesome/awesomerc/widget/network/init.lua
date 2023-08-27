@@ -93,9 +93,7 @@ local function return_button(wireless_interface)
 	end
 
 	local function update_network()
-		local cmd = "iwconfig "
-			.. wireless_interface
-			.. [[ | awk '/Link Quality=/ {print $2}' | tr -d 'Quality=']]
+		local cmd = "iwconfig " .. wireless_interface .. [[ | awk '/Link Quality=/ {print $2}' | tr -d 'Quality=']]
 		awful.spawn.easy_async_with_shell(cmd, function(stdout)
 			stdout = stdout:gsub("\n", "")
 			local numer, denom = stdout:match("([^,]+)/([^,]+)")
@@ -129,8 +127,8 @@ local function return_button(wireless_interface)
 			connected_tmp = true
 			update_network()
 		else
-            network_widget.spacing = dpi(0)
-            network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. "wifi-disconnected.svg"))
+			network_widget.spacing = dpi(0)
+			network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. "wifi-disconnected.svg"))
 		end
 
 		if connected and not connected_tmp then

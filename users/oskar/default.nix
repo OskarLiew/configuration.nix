@@ -40,6 +40,7 @@ in {
       obsidian
       arandr
       inkscape
+      gimp
       gnome.nautilus
       vscode
       # Programming
@@ -84,7 +85,6 @@ in {
   };
 
   # Services
-
   services = {
     syncthing = {
       enable = true;
