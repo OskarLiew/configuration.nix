@@ -30,6 +30,7 @@ in {
       ripgrep
       tree
       parallel
+      tldr
       # TUI apps
       neovim
       lazygit
@@ -43,6 +44,7 @@ in {
       gimp
       gnome.nautilus
       vscode
+      spotify
       # Programming
       python312
       poetry
@@ -51,6 +53,7 @@ in {
       nodejs_20
       # Misc
       dconf
+      mpd
     ];
 
     programs = {
@@ -80,7 +83,6 @@ in {
       ".config/aliases".source = ./config/aliases;
       ".config/awesome".source = ./awesome/awesomerc;
     };
-
 
   };
 

@@ -27,5 +27,11 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs; [ picom rofi betterlockscreen ];
+  environment.systemPackages = with pkgs; [
+    picom
+    rofi
+    betterlockscreen
+    lm_sensors
+    playerctl
+  ];
 }
