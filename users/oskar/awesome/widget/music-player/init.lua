@@ -4,26 +4,17 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
 local clickable_container = require("widget.clickable-container")
-local widget_icon_dir = config_dir .. "widget/music-player/icons/"
 
-local function init_icon(image, size, color)
-	image = gears.color.recolor_image(widget_icon_dir .. image, color)
-	return wibox.widget({
-		image = image,
-		forced_height = size,
-		forced_width = size,
-		widget = wibox.widget.imagebox,
-	})
-end
+local icon_dir = require("helpers.widget").get_icon_dir("music-player")
+local init_icon = require("helpers.icon").init_icon
 
 function init_music_player()
 	-- Create icons
-	local play_icon = init_icon("play.svg", dpi(80), beautiful.green)
-	local pause_icon = init_icon("pause.svg", dpi(80), beautiful.green)
-	local next_icon = init_icon("next.svg", dpi(60), beautiful.green)
-	local previous_icon = init_icon("previous.svg", dpi(60), beautiful.green)
+	local play_icon = init_icon(icon_dir .. "play.svg", dpi(80), beautiful.green)
+	local pause_icon = init_icon(icon_dir .. "pause.svg", dpi(80), beautiful.green)
+	local next_icon = init_icon(icon_dir .. "next.svg", dpi(60), beautiful.green)
+	local previous_icon = init_icon(icon_dir .. "previous.svg", dpi(60), beautiful.green)
 
 	-- Create buttons
 	local play_pause_button = wibox.widget({
@@ -69,7 +60,7 @@ function init_music_player()
 				widget = wibox.container.place,
 			},
 			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(20),
+			spacing = dpi(12),
 			expand = "none",
 		},
 		widget = wibox.container.place,
@@ -79,7 +70,7 @@ function init_music_player()
 
 	-- Create song and artist view
 	local song_title = wibox.widget({
-		text = "No song playing",
+		text = "Nothing playing...",
 		font = "Inter, Bold 20",
 		halign = "center",
 		ellipsize = "end",
@@ -87,7 +78,7 @@ function init_music_player()
 	})
 
 	local artist = wibox.widget({
-		text = "Abc Def",
+		text = "...",
 		font = "Inter 14",
 		halign = "center",
 		ellipsize = "end",

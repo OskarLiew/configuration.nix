@@ -51,6 +51,8 @@ theme.gray0 = "#7A8478"
 theme.gray1 = "#859289"
 theme.gray2 = "#9DA9A0"
 
+theme.transparent = "#00000000"
+
 -- Apply colors
 theme.bg_normal = theme.bg0
 theme.bg_focus = theme.bg_green

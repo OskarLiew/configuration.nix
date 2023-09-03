@@ -56,31 +56,63 @@ function init_sidebar(s)
 	})
 
 	local hardware = wibox.widget({
+		require("widget.hardware-bar")("temp"),
+		require("widget.hardware-bar")("ram"),
+		require("widget.hardware-bar")("cpu"),
+		widget = wibox.layout.fixed.vertical,
+	})
+
+	local uptime_textbox = wibox.widget({
+		text = "Hi, hello",
+		widget = wibox.widget.textbox,
+		halign = "center",
+		font = "Inter 16",
+	})
+
+	awful.widget.watch([[sh -c "uptime -p | sed -e 's/up //g'"]], 60, function(widget, stdout)
+		stdout = stdout:gsub("\n", "")
+		uptime_textbox.text = stdout
+	end)
+
+	local power_button = wibox.widget({
 		{
-			require("widget.hardware-bar")("temp"),
-			require("widget.hardware-bar")("ram"),
-			require("widget.hardware-bar")("cpu"),
-			widget = wibox.layout.fixed.vertical,
+			{
+				require("widget.power-button")(),
+				uptime_textbox,
+				layout = wibox.layout.align.horizontal,
+				spacing = dpi(10),
+			},
+			widget = wibox.container.margin,
+			margins = dpi(10),
 		},
-		widget = wibox.container.margin,
-		margins = dpi(20),
-		left = dpi(40),
-		right = dpi(40),
+		widget = wibox.container.background,
+		bg = beautiful.bg_popup .. "90",
+		shape = function(cr, w, h)
+			gears.shape.rounded_rect(cr, w, h, dpi(40))
+		end,
+		forced_height = dpi(80),
 	})
 
-	local music_player = wibox.widget({
-		require("widget.music-player")(),
-		widget = wibox.container.margin,
-		left = dpi(40),
-		right = dpi(40),
-	})
-
-	local main_area = wibox.widget({
+	local widgets = wibox.widget({
 		{
 			hardware,
-			music_player,
+			require("widget.music-player")(),
 			layout = wibox.layout.fixed.vertical,
-			spacing = dpi(30),
+			spacing = dpi(60),
+		},
+		nil,
+		power_button,
+		layout = wibox.layout.align.vertical,
+	})
+
+	local widget_area = wibox.widget({
+		{
+			widgets,
+			widget = wibox.container.margin,
+			left = dpi(40),
+			right = dpi(40),
+			top = dpi(20),
+			bottom = dpi(20),
 		},
 		bg = beautiful.bg_dim .. "90",
 		shape = sidebar_shape,
@@ -93,7 +125,7 @@ function init_sidebar(s)
 			layout = wibox.layout.fixed.vertical,
 			spacing = dpi(30),
 			big_clock,
-			main_area,
+			widget_area,
 		},
 		top = 20,
 		widget = wibox.container.margin,
