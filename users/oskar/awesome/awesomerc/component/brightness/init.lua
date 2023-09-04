@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 
-local slider = require("widget.slider")
+local slider = require("widget.slider-popup")
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local icon_dir = config_dir .. "component/brightness/icons/"

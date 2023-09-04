@@ -37,6 +37,9 @@ end)
 
 local config_dir = gears.filesystem.get_configuration_dir()
 
+-- Daemons
+require("daemon")
+
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀

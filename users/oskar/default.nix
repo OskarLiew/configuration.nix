@@ -51,6 +51,7 @@ in {
       cargo
       rustc
       nodejs_20
+      lua
       # Misc
       dconf
       mpd

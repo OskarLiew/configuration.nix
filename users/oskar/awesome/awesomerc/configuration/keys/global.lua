@@ -159,16 +159,13 @@ awful.keyboard.append_global_keybindings({
 -- Audio keybindings
 awful.keyboard.append_global_keybindings({
 	awful.key({}, "XF86AudioPlay", function()
-		awesome.emit_signal("player_change")
-		awful.util.spawn("playerctl play-pause")
+		awesome.emit_signal("daemon::playerctl-play-pause")
 	end),
 	awful.key({}, "XF86AudioNext", function()
-		awesome.emit_signal("player_change")
-		awful.util.spawn("playerctl next")
+		awesome.emit_signal("daemon::playerctl-next")
 	end),
 	awful.key({}, "XF86AudioPrev", function()
-		awesome.emit_signal("player_change")
-		awful.util.spawn("playerctl previous")
+		awesome.emit_signal("daemon::playerctl-previous")
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		awesome.emit_signal("volume_change")

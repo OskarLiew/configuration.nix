@@ -18,12 +18,24 @@ let
 in {
   imports = [ ../../../modules/X11.nix ];
 
+  nixpkgs.overlays = [
+
+    (self: super: { awesome = super.awesome.override { gtk3Support = true; }; })
+
+    (import (fetchGit {
+      url = "https://github.com/stefano-m/nix-stefano-m-nix-overlays.git";
+      rev = "0c0342bfb795c7fa70e2b760fb576a5f6f26dfff"; # git revision heere
+    }))
+
+  ];
+
   services.xserver = {
     enable = true;
     displayManager = { defaultSession = "none+awesome"; };
     windowManager.awesome = {
       enable = true;
       package = awesome;
+      luaModules = with pkgs.luaPackages; [ cjson ];
     };
   };
 
@@ -34,4 +46,5 @@ in {
     lm_sensors
     playerctl
   ];
+
 }

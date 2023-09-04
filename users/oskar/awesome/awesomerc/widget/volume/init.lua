@@ -4,7 +4,7 @@ local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
 
 local apps = require("configuration.apps")
-local slider = require("widget.slider")
+local slider = require("widget.slider-popup")
 local clickable_container = require("widget.clickable-container")
 
 local config_dir = gears.filesystem.get_configuration_dir()
