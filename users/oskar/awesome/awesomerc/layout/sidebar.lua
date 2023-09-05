@@ -21,7 +21,7 @@ function init_sidebar(s)
 	-- Create panel
 	local top_margin = dpi(20)
 	local panel = wibox({
-		visible = true,
+		visible = false,
 		ontop = true,
 		type = "normal",
 		height = s.tiling_area.height,
@@ -112,8 +112,8 @@ function init_sidebar(s)
 			widget = wibox.container.margin,
 			left = dpi(40),
 			right = dpi(40),
-			top = dpi(20),
-			bottom = dpi(20),
+			top = dpi(40),
+			bottom = dpi(40),
 		},
 		bg = beautiful.bg_dim .. "90",
 		shape = sidebar_shape,
