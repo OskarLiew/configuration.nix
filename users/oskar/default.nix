@@ -45,6 +45,7 @@ in {
       gnome.nautilus
       vscode
       spotify
+      discord
       # Programming
       python312
       poetry

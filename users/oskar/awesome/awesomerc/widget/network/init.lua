@@ -32,11 +32,7 @@ local function return_button(wireless_interface)
 	})
 
 	local network_button = wibox.widget({
-		{
-			network_widget,
-			margins = dpi(4),
-			widget = wibox.container.margin,
-		},
+		network_widget,
 		widget = clickable_container,
 	})
 

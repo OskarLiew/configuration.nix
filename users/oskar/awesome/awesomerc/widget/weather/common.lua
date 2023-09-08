@@ -43,47 +43,47 @@ local function get_weather_icon(icon_code)
 end
 
 local function init_weather_imagebox(size)
-    local icon_stylesheet = ""
-        .. ".sun { stroke:"
-        .. beautiful.yellow
-        .. "; fill:"
-        .. beautiful.yellow
-        .. ";} "
-        .. ".moon { stroke:"
-        .. beautiful.blue
-        .. "; fill:"
-        .. beautiful.blue
-        .. ";} "
-        .. ".cloud { stroke:"
-        .. beautiful.fg
-        .. ";}"
-        .. ".cloud-dark { stroke:"
-        .. beautiful.gray2
-        .. ";}"
-        .. ".lightning { stroke:"
-        .. beautiful.yellow
-        .. ";}"
-        .. ".fog { stroke:"
-        .. beautiful.blue
-        .. ";}"
-        .. ".snow { stroke:"
-        .. beautiful.blue
-        .. ";}"
-        .. ".rain {stroke:"
-        .. beautiful.blue
-        .. ";}"
-        .. ".error {stroke:"
-        .. beautiful.red
-        .. ";}"
+	local icon_stylesheet = ""
+		.. ".sun { stroke:"
+		.. beautiful.yellow
+		.. "; fill:"
+		.. beautiful.yellow
+		.. ";} "
+		.. ".moon { stroke:"
+		.. beautiful.blue
+		.. "; fill:"
+		.. beautiful.blue
+		.. ";} "
+		.. ".cloud { stroke:"
+		.. beautiful.fg
+		.. ";}"
+		.. ".cloud-dark { stroke:"
+		.. beautiful.gray2
+		.. ";}"
+		.. ".lightning { stroke:"
+		.. beautiful.yellow
+		.. ";}"
+		.. ".fog { stroke:"
+		.. beautiful.blue
+		.. ";}"
+		.. ".snow { stroke:"
+		.. beautiful.blue
+		.. ";}"
+		.. ".rain {stroke:"
+		.. beautiful.blue
+		.. ";}"
+		.. ".error {stroke:"
+		.. beautiful.red
+		.. ";}"
 	local weather_icon = init_icon(icon_dir .. "error.svg", size)
 	weather_icon.stylesheet = icon_stylesheet
-    return weather_icon
+	return weather_icon
 end
 
 return {
-    init_weather_imagebox = init_weather_imagebox,
-    get_weather_icon = get_weather_icon,
-    convert_temp = convert_temp,
-    token = token,
-    config = config,
+	init_weather_imagebox = init_weather_imagebox,
+	get_weather_icon = get_weather_icon,
+	convert_temp = convert_temp,
+	token = token,
+	config = config,
 }

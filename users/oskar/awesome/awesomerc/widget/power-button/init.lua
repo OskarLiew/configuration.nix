@@ -10,12 +10,12 @@ local init_icon = require("helpers.icon").init_icon
 
 local apps = require("configuration.apps")
 
-local function init_power_button()
+local function init_power_button(margins)
 	local power_icon = wibox.widget({
 		{
 			init_icon(icon_dir .. "power.svg", nil, beautiful.red),
 			widget = wibox.container.margin,
-			margins = dpi(8),
+			margins = margins or dpi(8),
 		},
 		widget = wibox.container.place,
 		halign = "center",

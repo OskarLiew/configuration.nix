@@ -30,7 +30,7 @@ end)))
 
 local keyboard_widget = wibox.widget({
 	layout = wibox.layout.fixed.horizontal,
-	spacing = dpi(0),
+	spacing = dpi(2),
 	keyboard_imagebox,
 	widget.keyboardlayout(),
 })
@@ -38,8 +38,9 @@ local keyboard_widget = wibox.widget({
 local keyboard_button = wibox.widget({
 	{
 		keyboard_widget,
-		margins = dpi(2),
 		widget = wibox.container.margin,
+		left = dpi(4),
+		right = dpi(2),
 	},
 	widget = clickable_container,
 })

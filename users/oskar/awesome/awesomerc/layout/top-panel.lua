@@ -8,11 +8,15 @@ local config = require("configuration.widget")
 
 local top_panel = function(s)
 	-- Playground
-	local offsetx = dpi(45)
-	local panel_height = dpi(24)
+	local offsetx = 2 * beautiful.useless_gap
+	local panel_height = dpi(32)
+	local bg_opacity = "60"
+	local widget_spacing = 0.1 * panel_height
+	local widget_margins = 0.1 * panel_height
+	local icon_margins = 0.1 * panel_height
 
 	local panel_shape = function(cr, width, height)
-		gears.shape.rounded_rect(cr, width, height, beautiful.edge_radius)
+		gears.shape.rounded_rect(cr, width, height, panel_height / 2)
 	end
 
 	-- Create panel
@@ -24,11 +28,10 @@ local top_panel = function(s)
 		height = panel_height,
 		width = s.geometry.width - 2 * offsetx,
 		x = s.geometry.x + offsetx,
-		y = s.geometry.y + 0.2 * panel_height,
+		y = s.geometry.y + 0.1 * panel_height,
 		shape = panel_shape,
 		stretch = false,
-		bg = beautiful.bg_normal .. beautiful.bg_opacity,
-		fg = beautiful.fg_normal,
+		bg = beautiful.transparent,
 	})
 
 	panel:struts({
@@ -41,9 +44,9 @@ local top_panel = function(s)
 	local volume = require("widget.volume")()
 	local keyboardlayout = require("widget.keyboard-layout")
 	local network = require("widget.network")(config.network.wireless_interface)
+	local power_button = require("widget.power-button")(icon_margins)
 	s.layoutbox = require("widget.layoutbox")(s)
-	s.task_list = require("widget.task-list")(s)
-	s.tag_list = require("widget.tag-list")(s)
+	s.tag_list = require("widget.tag-list")(s, { spacing = widget_spacing, margins = icon_margins })
 
 	s.systray = wibox.widget({
 		visible = true,
@@ -52,35 +55,71 @@ local top_panel = function(s)
 		screen = "primary",
 		widget = wibox.widget.systray,
 	})
+
+	-- Create layouts
 	local left = {
 		{
-			wibox.widget.spacing,
-			margins = dpi(2),
+			{
+				s.tag_list,
+				widget = wibox.layout.fixed.horizontal,
+			},
 			widget = wibox.container.margin,
+			margins = widget_margins,
 		},
-		layout = wibox.layout.fixed.horizontal,
-		s.tag_list,
-		s.task_list,
+		widget = wibox.container.background,
+		shape = panel_shape,
+		bg = beautiful.bg_normal .. bg_opacity,
 	}
-	local center = textclock
-	local right = {
-		layout = wibox.layout.fixed.horizontal,
-		spacing = dpi(1),
+
+	local center = wibox.widget({
 		{
-			s.systray,
-			margins = dpi(5),
+			textclock,
 			widget = wibox.container.margin,
+			left = dpi(18),
+			right = dpi(18),
 		},
+		widget = wibox.container.background,
+		shape = panel_shape,
+		bg = beautiful.bg_normal .. beautiful.bg_opacity,
+	})
+
+	local right_widgets = {
+		-- s.systray,
 		network,
 		volume,
 		battery,
 		keyboardlayout,
 		s.layoutbox,
+	}
+	local right_widgets_layout = wibox.widget({
+		layout = wibox.layout.fixed.horizontal,
+		spacing = widget_spacing,
+	})
+
+	for i, w in ipairs(right_widgets) do
+		local widget = wibox.widget({
+			{
+				w,
+				widget = wibox.container.margin,
+				margins = icon_margins,
+			},
+			widget = wibox.container.background,
+			bg = beautiful.bg_normal .. beautiful.bg_opacity,
+			shape = panel_shape,
+		})
+		right_widgets_layout:add(widget)
+	end
+	right_widgets_layout:add(power_button)
+
+	local right = {
 		{
-			wibox.widget.spacing,
-			margins = dpi(2),
+			right_widgets_layout,
 			widget = wibox.container.margin,
+			margins = widget_margins,
 		},
+		widget = wibox.container.background,
+		shape = panel_shape,
+		bg = beautiful.bg_dim .. bg_opacity,
 	}
 	panel:setup({
 		{
@@ -90,7 +129,6 @@ local top_panel = function(s)
 			center,
 			right,
 		},
-		right = dpi(4),
 		widget = wibox.container.margin,
 	})
 	return panel

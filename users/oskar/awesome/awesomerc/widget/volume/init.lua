@@ -31,11 +31,7 @@ local function return_button()
 	})
 
 	local volume_button = wibox.widget({
-		{
-			volume_widget,
-			margins = dpi(4),
-			widget = wibox.container.margin,
-		},
+		volume_widget,
 		widget = clickable_container,
 	})
 
