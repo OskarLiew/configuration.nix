@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
 
     # Users
-    ../../users/oskar
+    ../../home
 
     # Modules
     ../../modules/localization.nix
@@ -14,6 +14,7 @@
     ../../modules/bluetooth.nix
     ../../modules/sound.nix
     ../../modules/powermanagement.nix
+    ../../modules/usb.nix
   ];
 
   # Bootloader.
@@ -30,8 +31,14 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall = {
+    allowedUDPPorts = [ 5353 ]; # For device discovery
+    allowedUDPPortRanges = [{
+      from = 32768;
+      to = 61000;
+    }]; # For Streaming
+    allowedTCPPorts = [ 8010 ]; # For gnomecast server
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
