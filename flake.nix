@@ -9,19 +9,19 @@
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nix-colors, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
     in {
       nixosConfigurations.nixbtw = nixpkgs.lib.nixosSystem {
         inherit pkgs system;
-        specialArgs = { inherit inputs; };
         modules = [
           ./machines/nixbtw/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
           home-manager.nixosModules.home-manager
         ];
+        specialArgs = { inherit nix-colors; };
       };
     };
 }

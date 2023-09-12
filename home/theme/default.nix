@@ -32,9 +32,9 @@ in {
     };
   };
 
-  # xdg.configFile = {
-  #   "gtk-3.0/gtk.css" = import ./gtk.nix;
-  #   "gtk-4.0/gtk.css" = import ./gtk.nix;
-  # };
+  xdg.configFile = {
+    "gtk-3.0/gtk.css" = import ./gtk.nix {inherit config; };
+    "gtk-4.0/gtk.css" = import ./gtk.nix {inherit config; };
+  };
 
 }
