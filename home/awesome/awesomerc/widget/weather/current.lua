@@ -45,7 +45,8 @@ local function init_weather_widget()
 				current_weather_icon.image = icon_dir .. "error.svg"
 				current_weather_desc.text = "Error"
 				naughty.notification({
-					message = "Error in weather widget: " .. current_weather_data.message,
+                    title = "Error in the weather widget",
+					message = current_weather_data.message,
 					urgency = "critical",
 				})
 			end

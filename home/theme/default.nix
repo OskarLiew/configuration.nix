@@ -18,18 +18,25 @@ in {
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-    };
+    # cursorTheme = {
+    #   package = pkgs.vanilla-dmz;
+    #   name = "Vanilla-DMZ";
+    # };
     iconTheme = {
       package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
     };
-    theme = {
-      package = pkgs.gnome.gnome-themes-extra;
-      name = "Adwaita-dark";
-    };
+    # theme = {
+    #   package = pkgs.gnome.gnome-themes-extra;
+    #   name = "Adwaita-dark";
+    # };
+  };
+  home.pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 38;
+      x11.enable = true;
+      gtk.enable = true;
   };
 
   xdg.configFile = {

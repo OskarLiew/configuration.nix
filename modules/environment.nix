@@ -17,6 +17,7 @@
     git
     wget
     python38
+    python38Packages.pip
     lua
     gcc
     gnumake

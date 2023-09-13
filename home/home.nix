@@ -31,12 +31,21 @@
     deluge-gtk
     vlc
     # Programming
-    python312
+    # - Python
+    python311
+    python311Packages.pip
     poetry
+    # - Rust
     cargo
     rustc
+    # - js
     nodejs_20
+    # - lua
     lua
+    stylua
+    love
+    # - Go
+    go
     # Misc
     dconf
     mpd
@@ -46,7 +55,6 @@
     firefox.enable = true;
     kitty = {
       enable = true;
-
       theme = "Everforest Dark Hard";
       settings = { confirm_os_window_close = 2; };
     };
@@ -66,6 +74,13 @@
 
   xdg = {
     enable = true;
+    userDirs = with config.home; {
+        enable = true;
+        extraConfig = {
+          XDG_DEV_DIR = "${homeDirectory}/Development";
+        };
+        createDirectories = true;
+    };
     configFile = {
       "zsh".source = ./config/zsh;
       "tmux".source = ./config/tmux;

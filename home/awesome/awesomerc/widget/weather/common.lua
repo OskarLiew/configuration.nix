@@ -9,7 +9,17 @@ local init_icon = require("helpers.icon").init_icon
 local read_file = require("helpers.io").read_file
 
 local config = require("configuration.widget").weather
-local token = read_file(config.api_key_path):gsub("\n", "")
+local token = read_file(config.api_key_path)
+if token == nil then
+    naughty.notification({
+        title = "Error in the weather widget",
+        message = "API key path at " .. config.api_key_path .. " not found.",
+        urgency = "critical",
+    })
+    token = ""
+else
+    token = token:gsub("\n", "")
+end
 
 local json = require("cjson")
 
