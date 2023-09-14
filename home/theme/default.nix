@@ -32,16 +32,16 @@ in {
     # };
   };
   home.pointerCursor = {
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
-      size = 38;
-      x11.enable = true;
-      gtk.enable = true;
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors";
+    size = 38;
+    x11.enable = true;
+    gtk.enable = true;
   };
 
   xdg.configFile = {
-    "gtk-3.0/gtk.css" = import ./gtk.nix {inherit config; };
-    "gtk-4.0/gtk.css" = import ./gtk.nix {inherit config; };
+    "gtk-3.0/gtk.css" = import ./gtk.nix { inherit config; };
+    "gtk-4.0/gtk.css" = import ./gtk.nix { inherit config; };
   };
 
 }

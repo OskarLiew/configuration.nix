@@ -31,7 +31,8 @@ in {
     syncthing = {
       enable = true;
       inherit user;
-      dataDir = "/home/${user}/Documents"; # Default folder for new synced folders
+      dataDir =
+        "/home/${user}/Documents"; # Default folder for new synced folders
       configDir =
         "/home/${user}/.config/syncthing"; # Folder for Syncthing's settings and keys
       folders = {

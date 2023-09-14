@@ -55,13 +55,6 @@ local top_panel = function(s)
 		screen = "primary",
 		widget = wibox.widget.systray,
 	})
-    s.systray:connect_signal("widget::redraw_needed", function()
-        if #s.systray.children == 0 then
-            s.systray.visible = false
-        else
-            s.systray.visible = true
-        end
-    end)
 
 	-- Create layouts
 	local left = {
@@ -92,7 +85,7 @@ local top_panel = function(s)
 
 	local right_widgets = {
 		-- s.systray,
-        s.systray,
+		s.systray,
 		network,
 		volume,
 		battery,

@@ -1,5 +1,5 @@
 { pkgs, config, nix-colors, ... }: {
-  imports = [ nix-colors.homeManagerModules.default ./theme ];
+  imports = [ nix-colors.homeManagerModules.default ./vscode.nix ./theme ];
 
   colorScheme = nix-colors.colorSchemes.everforest;
 
@@ -25,7 +25,7 @@
     deluge
     gimp
     gnome.nautilus
-    vscode
+    # vscode
     spotify
     discord
     deluge-gtk
@@ -43,6 +43,7 @@
     # - lua
     lua
     stylua
+    lua-language-server
     love
     # - Go
     go
@@ -75,11 +76,9 @@
   xdg = {
     enable = true;
     userDirs = with config.home; {
-        enable = true;
-        extraConfig = {
-          XDG_DEV_DIR = "${homeDirectory}/Development";
-        };
-        createDirectories = true;
+      enable = true;
+      extraConfig = { XDG_DEV_DIR = "${homeDirectory}/Development"; };
+      createDirectories = true;
     };
     configFile = {
       "zsh".source = ./config/zsh;
