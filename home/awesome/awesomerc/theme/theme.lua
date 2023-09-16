@@ -9,7 +9,7 @@ local gears = require("gears")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
--- local themes_path = gfs.get_configuration_dir() .. "/theme"
+local theme_path = gfs.get_configuration_dir() .. "/theme/"
 
 local themes_path = gfs.get_themes_dir()
 
@@ -55,15 +55,15 @@ theme.transparent = "#00000000"
 
 -- Apply colors
 theme.bg_normal = theme.bg0
-theme.bg_focus = theme.bg_green
-theme.bg_urgent = theme.bg_red
+theme.bg_focus = theme.green
+theme.bg_urgent = theme.red
 theme.bg_popup = theme.bg3
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = theme.fg
-theme.fg_focus = theme.green
-theme.fg_urgent = theme.red
-theme.fg_minimize = theme.gray1
+theme.fg_focus = theme.bg_green
+theme.fg_urgent = theme.bg_red
+theme.fg_inactive = theme.gray0
 
 theme.useless_gap = dpi(6)
 theme.border_width = dpi(0)
@@ -84,19 +84,16 @@ theme.edge_radius = dpi(18)
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+
+--Tooltip
 theme.tooltip_bg = theme.bg_popup
 theme.tooltip_fg = theme.fg_normal
+
+-- Hotkeys
 theme.hotkeys_bg = theme.bg_popup
 theme.hotkeys_modifiers_fg = theme.fg_focus
-theme.menu_bg_normal = theme.bg_popup
-theme.menu_bg_focus = theme.bg_focus
-theme.menu_fg_focus = theme.fg_normal
 
--- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
-
+-- Notifications
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -109,44 +106,67 @@ theme.notification_bg = theme.bg_popup
 theme.notification_fg = theme.fg_normal
 theme.notification_border_color = theme.bg_popup
 
+-- Menu
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)
+theme.menu_bg_normal = theme.bg_popup
 
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
+-- Titlebar
+theme.titlebar_fg_normal = theme.fg_inactive
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_fg_focus = theme.fg
+theme.titlebar_bg_focus = theme.bg_normal
+theme.titlebar_fg_urgent = theme.bg_urgent
+theme.titlebar_bg_urgent = theme.fg_urgent
+
+theme.titlebar_color_close_bg = theme.bg_red
+theme.titlebar_color_close_fg = theme.red
+theme.titlebar_color_on_top_bg = theme.bg_yellow
+theme.titlebar_color_on_top_fg = theme.yellow
+theme.titlebar_color_max_bg = theme.bg_green
+theme.titlebar_color_max_fg = theme.green
+theme.titlebar_color_float_bg = theme.bg_blue
+theme.titlebar_color_float_fg = theme.blue
+
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path .. "default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus = themes_path .. "default/titlebar/close_focus.png"
+local titlebar_close = theme_path .. "icons/titlebar/close.svg"
+local titlebar_on_top = theme_path .. "icons/titlebar/on-top.svg"
+local titlebar_not_on_top = theme_path .. "icons/titlebar/not-on-top.svg"
+local titlebar_maximize = theme_path .. "icons/titlebar/maximize.svg"
+local titlebar_unmaximize = theme_path .. "icons/titlebar/unmaximize.svg"
+local titlebar_floating = theme_path .. "icons/titlebar/floating.svg"
+local titlebar_tiling = theme_path .. "icons/titlebar/tiling.svg"
 
-theme.titlebar_minimize_button_normal = themes_path .. "default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus = themes_path .. "default/titlebar/minimize_focus.png"
+theme.titlebar_close_button_normal = gears.color.recolor_image(titlebar_close, theme.fg_inactive)
+theme.titlebar_close_button_focus = gears.color.recolor_image(titlebar_close, theme.titlebar_color_close_fg)
 
-theme.titlebar_ontop_button_normal_inactive = themes_path .. "default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive = themes_path .. "default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path .. "default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active = themes_path .. "default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = gears.color.recolor_image(titlebar_on_top, theme.fg_inactive)
+theme.titlebar_ontop_button_focus_inactive = gears.color.recolor_image(titlebar_on_top, theme.titlebar_color_on_top_fg)
+theme.titlebar_ontop_button_normal_active = gears.color.recolor_image(titlebar_not_on_top, theme.fg_inactive)
+theme.titlebar_ontop_button_focus_active =
+	gears.color.recolor_image(titlebar_not_on_top, theme.titlebar_color_on_top_fg)
+theme.titlebar_floating_button_normal_inactive = gears.color.recolor_image(titlebar_floating, theme.fg_inactive)
 
-theme.titlebar_sticky_button_normal_inactive = themes_path .. "default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive = themes_path .. "default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path .. "default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active = themes_path .. "default/titlebar/sticky_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = gears.color.recolor_image(titlebar_maximize, theme.fg_inactive)
+theme.titlebar_maximized_button_focus_inactive =
+	gears.color.recolor_image(titlebar_maximize, theme.titlebar_color_max_fg)
+theme.titlebar_maximized_button_normal_active = gears.color.recolor_image(titlebar_unmaximize, theme.fg_inactive)
+theme.titlebar_maximized_button_focus_active =
+	gears.color.recolor_image(titlebar_unmaximize, theme.titlebar_color_max_fg)
 
-theme.titlebar_floating_button_normal_inactive = themes_path .. "default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive = themes_path .. "default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path .. "default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active = themes_path .. "default/titlebar/floating_focus_active.png"
-
-theme.titlebar_maximized_button_normal_inactive = themes_path .. "default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive = themes_path .. "default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path .. "default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active = themes_path .. "default/titlebar/maximized_focus_active.png"
+theme.titlebar_floating_button_focus_inactive =
+	gears.color.recolor_image(titlebar_floating, theme.titlebar_color_float_fg)
+theme.titlebar_floating_button_normal_active = gears.color.recolor_image(titlebar_tiling, theme.fg_inactive)
+theme.titlebar_floating_button_focus_active = gears.color.recolor_image(titlebar_tiling, theme.titlebar_color_float_fg)
 
 theme.wallpaper = require("theme.wallpaper")
 

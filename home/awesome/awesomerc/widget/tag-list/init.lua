@@ -12,12 +12,12 @@ local function init_tag_list(s, custom_style)
 	local bg_opacity = custom_style.bg_opacity or "ff"
 	local style = {
 		shape = gears.shape.circle,
-		fg_focus = beautiful.bg_green,
+		fg_focus = beautiful.fg_focus,
 		bg_focus = beautiful.green .. beautiful.bg_opacity,
-		fg_empty = beautiful.gray0,
+		fg_empty = beautiful.fg_inactive,
 		bg_empty = beautiful.bg_normal .. beautiful.bg_opacity,
-		fg_urgent = beautiful.red,
-		bg_urgent = beautiful.bg_red .. beautiful.bg_opacity,
+		fg_urgent = beautiful.bg_urgent,
+		bg_urgent = beautiful.fg_urgent .. beautiful.bg_opacity,
 		fg_occupied = beautiful.fg_normal,
 		bg_occupied = beautiful.bg_normal .. beautiful.bg_opacity,
 	}

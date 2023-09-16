@@ -31,10 +31,16 @@
     deluge-gtk
     vlc
     # Programming
+    # - Nix
+    nil
     # - Python
     python311
     python311Packages.pip
+    python311Packages.mypy
+    python311Packages.isort
+    python311Packages.black
     poetry
+    ruff
     # - Rust
     cargo
     rustc

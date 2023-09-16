@@ -30,8 +30,8 @@ local function slider(args)
 	local bar = wibox.widget({
 		widget = wibox.widget.progressbar,
 		shape = gears.shape.rounded_rect,
-		color = beautiful.fg_focus,
-		background_color = beautiful.bg_focus,
+		color = beautiful.bg_focus,
+		background_color = beautiful.fg_focus,
 		max_value = args.max_value or 100,
 		value = 0,
 	})

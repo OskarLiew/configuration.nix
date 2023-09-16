@@ -1,4 +1,3 @@
-local gears = require("gears")
 local awful = require("awful")
 local ruled = require("ruled")
 

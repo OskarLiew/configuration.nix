@@ -1,4 +1,3 @@
-local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
@@ -9,7 +8,7 @@ local config = require("configuration.widget")
 local top_panel = function(s)
 	-- Playground
 	local offsetx = 2 * beautiful.useless_gap
-	local panel_height = dpi(32)
+	local panel_height = dpi(30)
 	local bg_opacity = "60"
 	local widget_spacing = 0.1 * panel_height
 	local widget_margins = 0.1 * panel_height
@@ -22,20 +21,20 @@ local top_panel = function(s)
 	-- Create panel
 	local panel = wibox({
 		visible = true,
-		ontop = true,
+		ontop = false,
 		screen = s,
 		type = "dock",
 		height = panel_height,
 		width = s.geometry.width - 2 * offsetx,
 		x = s.geometry.x + offsetx,
-		y = s.geometry.y + 0.1 * panel_height,
+		y = s.geometry.y + beautiful.useless_gap,
 		shape = panel_shape,
 		stretch = false,
 		bg = beautiful.transparent,
 	})
 
 	panel:struts({
-		top = panel.height + panel.y,
+		top = panel.height + panel.y - beautiful.useless_gap,
 	})
 
 	-- Initialize widgets
@@ -97,7 +96,7 @@ local top_panel = function(s)
 		spacing = widget_spacing,
 	})
 
-	for i, w in ipairs(right_widgets) do
+	for _, w in ipairs(right_widgets) do
 		local widget = wibox.widget({
 			{
 				w,
@@ -132,6 +131,17 @@ local top_panel = function(s)
 		},
 		widget = wibox.container.margin,
 	})
+
+	tag.connect_signal("property::layout", function(t)
+		local clients = t:clients()
+		for _, c in pairs(clients) do
+			if c.max or c.first_tag.layout.name == "max" then
+				panel.visible = false
+			else
+				panel.visible = true
+			end
+		end
+	end)
 	return panel
 end
 
