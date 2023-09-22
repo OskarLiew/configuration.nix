@@ -3,23 +3,20 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = require("beautiful").xresources.apply_dpi
 local clickable_container = require("widget.clickable-container")
-local icons = require("theme.icons")
 local gears = require("gears")
 
-local naughty = require("naughty")
-
 local function init_tag_list(s, custom_style)
-	local bg_opacity = custom_style.bg_opacity or "ff"
+	local bg_opacity = custom_style.bg_opacity or beautiful.bg_opacity
 	local style = {
 		shape = gears.shape.circle,
 		fg_focus = beautiful.fg_focus,
-		bg_focus = beautiful.green .. beautiful.bg_opacity,
+		bg_focus = beautiful.green .. bg_opacity,
 		fg_empty = beautiful.fg_inactive,
-		bg_empty = beautiful.bg_normal .. beautiful.bg_opacity,
+		bg_empty = beautiful.bg_normal .. bg_opacity,
 		fg_urgent = beautiful.bg_urgent,
-		bg_urgent = beautiful.fg_urgent .. beautiful.bg_opacity,
+		bg_urgent = beautiful.fg_urgent .. bg_opacity,
 		fg_occupied = beautiful.fg_normal,
-		bg_occupied = beautiful.bg_normal .. beautiful.bg_opacity,
+		bg_occupied = beautiful.bg_normal .. bg_opacity,
 	}
 
 	local function new_tag_icon(tag)

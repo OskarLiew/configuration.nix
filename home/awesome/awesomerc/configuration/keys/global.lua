@@ -1,5 +1,4 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
 
 require("awful.autofocus")
 
@@ -16,6 +15,7 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 })
 
+-- Client related keybindings
 -- Tags related keybindings
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
@@ -85,6 +85,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Shift" }, "space", function()
 		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
+	awful.key({ modkey }, "z", function()
+		awesome.emit_signal("top_panel::toggle")
+	end, { description = "toggle top panel", group = "layout" }),
 })
 
 awful.keyboard.append_global_keybindings({

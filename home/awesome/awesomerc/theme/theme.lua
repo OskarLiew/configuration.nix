@@ -90,8 +90,8 @@ theme.tooltip_bg = theme.bg_popup
 theme.tooltip_fg = theme.fg_normal
 
 -- Hotkeys
-theme.hotkeys_bg = theme.bg_popup
-theme.hotkeys_modifiers_fg = theme.fg_focus
+theme.hotkeys_bg = theme.bg_normal .. theme.bg_opacity
+theme.hotkeys_modifiers_fg = theme.bg_focus
 
 -- Notifications
 -- Variables set for theming notifications:
@@ -102,9 +102,9 @@ theme.hotkeys_modifiers_fg = theme.fg_focus
 theme.notification_shape = function(cr, width, height)
 	return gears.shape.rounded_rect(cr, width, height, theme.edge_radius)
 end
-theme.notification_bg = theme.bg_popup
+theme.notification_bg = theme.bg_popup .. theme.bg_opacity
 theme.notification_fg = theme.fg_normal
-theme.notification_border_color = theme.bg_popup
+theme.notification_border_color = theme.bg_popup .. theme.bg_opacity
 
 -- Menu
 -- Variables set for theming the menu:
@@ -113,7 +113,7 @@ theme.notification_border_color = theme.bg_popup
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)
-theme.menu_bg_normal = theme.bg_popup
+theme.menu_bg_normal = theme.bg_popup .. theme.bg_opacity
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -199,7 +199,7 @@ theme.icon_theme = nil
 rnotification.connect_signal("request::rules", function()
 	rnotification.append_rule({
 		rule = { urgency = "critical" },
-		properties = { bg = theme.bg_urgent, fg = theme.fg_normal },
+		properties = { bg = theme.bg_urgent .. theme.bg_opacity, fg = theme.fg_normal },
 	})
 end)
 

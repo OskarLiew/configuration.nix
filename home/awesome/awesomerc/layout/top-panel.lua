@@ -2,6 +2,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
 local gears = require("gears")
+local awful = require("awful")
 
 local config = require("configuration.widget")
 
@@ -132,7 +133,7 @@ local top_panel = function(s)
 		widget = wibox.container.margin,
 	})
 
-	tag.connect_signal("property::layout", function(t)
+	local function set_panel_visible(t)
 		local clients = t:clients()
 		for _, c in pairs(clients) do
 			if c.max or c.first_tag.layout.name == "max" then
@@ -141,7 +142,23 @@ local top_panel = function(s)
 				panel.visible = true
 			end
 		end
+	end
+
+	tag.connect_signal("property::layout", set_panel_visible)
+	tag.connect_signal("property::selected", function(t)
+		if t.selected then
+			set_panel_visible(t)
+		end
 	end)
+	awesome.connect_signal("top_panel::toggle", function()
+		-- Don't toggle in fullscreen
+		if panel.visible then
+			panel.visible = false
+		else
+			set_panel_visible(awful.tag.selected())
+		end
+	end)
+
 	return panel
 end
 
