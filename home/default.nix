@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, nix-colors, ... }:
+{ config, pkgs, home-manager, nix-colors, dotfiles, ... }:
 let user = "oskar";
 in {
 
@@ -22,7 +22,7 @@ in {
 
   home-manager = {
     users.${user} = import ./home.nix;
-    extraSpecialArgs = { inherit nix-colors; };
+    extraSpecialArgs = { inherit nix-colors dotfiles; };
   };
 
   # Services

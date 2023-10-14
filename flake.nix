@@ -7,9 +7,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    dotfiles = {
+        url = "github:OskarLiew/dotfiles";
+        flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nix-colors, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nix-colors, dotfiles, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -21,7 +25,7 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
           home-manager.nixosModules.home-manager
         ];
-        specialArgs = { inherit nix-colors; };
+        specialArgs = { inherit nix-colors dotfiles; };
       };
     };
 }

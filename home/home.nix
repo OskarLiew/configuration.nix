@@ -1,4 +1,4 @@
-{ pkgs, config, nix-colors, ... }: {
+{ pkgs, config, nix-colors, dotfiles, ... }: {
   imports = [
     nix-colors.homeManagerModules.default
     ./theme
@@ -59,6 +59,7 @@
     love
     # - Go
     go
+    hugo
     # Misc
     dconf
     mpd
@@ -76,8 +77,8 @@
   home.stateVersion = "23.05";
 
   home.file = {
-    ".zshenv".source = ./config/.zshenv;
-    ".local/bin/tat".source = ./config/tmux/tat;
+    ".zshenv".source = "${dotfiles}/.zshenv";
+    ".local/bin/tat".source = "${dotfiles}/config/tmux/tat";
   };
 
   home.sessionVariables = rec {
@@ -93,13 +94,13 @@
       createDirectories = true;
     };
     configFile = {
-      "zsh".source = ./config/zsh;
-      "tmux".source = ./config/tmux;
-      "nvim".source = ./config/nvim;
-      "picom".source = ./config/picom;
-      "rofi".source = ./config/rofi;
-      "aliases".source = ./config/aliases;
-      "awesome".source = ./config/awesome;
+      "zsh".source = "${dotfiles}/config/zsh";
+      "tmux".source = "${dotfiles}/config/tmux";
+      "nvim".source = "${dotfiles}/config/nvim";
+      "picom".source = "${dotfiles}/config/picom";
+      "rofi".source = "${dotfiles}/config/rofi";
+      "aliases".source = "${dotfiles}/config/aliases";
+      "awesome".source = "${dotfiles}/config/awesome";
     };
   };
 
