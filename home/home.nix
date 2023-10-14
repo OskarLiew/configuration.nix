@@ -1,5 +1,10 @@
 { pkgs, config, nix-colors, ... }: {
-  imports = [ nix-colors.homeManagerModules.default ./vscode.nix ./theme ];
+  imports = [
+    nix-colors.homeManagerModules.default
+    ./theme
+    ./programs/vscode.nix
+    ./programs/git.nix
+  ];
 
   colorScheme = nix-colors.colorSchemes.everforest;
 
@@ -13,6 +18,7 @@
     parallel
     tldr
     # TUI apps
+    tmux
     neovim
     lazygit
     lazydocker
@@ -65,11 +71,6 @@
       theme = "Everforest Dark Hard";
       settings = { confirm_os_window_close = 2; };
     };
-    git = {
-      enable = true;
-      userName = "Oskar Liew";
-      userEmail = "oskar@liew.se";
-    };
   };
 
   home.stateVersion = "23.05";
@@ -77,6 +78,11 @@
   home.file = {
     ".zshenv".source = ./config/.zshenv;
     ".local/bin/tat".source = ./config/tmux/tat;
+  };
+
+  home.sessionVariables = rec {
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = "$PATH:${XDG_BIN_HOME}";
   };
 
   xdg = {
@@ -93,7 +99,7 @@
       "picom".source = ./config/picom;
       "rofi".source = ./config/rofi;
       "aliases".source = ./config/aliases;
-      "awesome".source = ./awesome/awesomerc;
+      "awesome".source = ./config/awesome;
     };
   };
 

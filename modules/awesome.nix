@@ -16,7 +16,7 @@ let
     '';
   });
 in {
-  imports = [ ../../modules/X11.nix ];
+  imports = [ ./X11.nix ];
 
   nixpkgs.overlays = [
 

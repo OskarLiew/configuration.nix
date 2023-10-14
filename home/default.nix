@@ -2,7 +2,7 @@
 let user = "oskar";
 in {
 
-  imports = [ ./awesome ];
+  imports = [ ../modules/awesome.nix ];
 
   programs.zsh = {
     enable = true;

@@ -7,20 +7,20 @@ local util = require("lspconfig.util")
 local servers = { "html", "cssls", "tsserver", "clangd" }
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 end
 
 lspconfig.pyright.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "python" },
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "python" },
 })
 
 lspconfig.nil_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "nix" },
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "nix" },
 })
