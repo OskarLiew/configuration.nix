@@ -20,7 +20,6 @@
     # TUI apps
     tmux
     neovim
-    lazygit
     lazydocker
     neofetch
     ranger

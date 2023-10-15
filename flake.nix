@@ -22,6 +22,7 @@
         inherit pkgs system;
         modules = [
           ./machines/nixbtw/configuration.nix
+          ./users/oskar.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
           home-manager.nixosModules.home-manager
         ];

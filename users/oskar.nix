@@ -4,14 +4,6 @@ in {
 
   imports = [ ../modules/awesome.nix ];
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = false;
-    histSize = 10000;
-    histFile = "$XDG_CACHE_HOME/zsh/.zsh_history";
-    setOptions = [ ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
@@ -21,13 +13,12 @@ in {
   };
 
   home-manager = {
-    users.${user} = import ./home.nix;
+    users.${user} = import ../home/home.nix;
     extraSpecialArgs = { inherit nix-colors dotfiles; };
   };
 
   # Services
   services = {
-    gvfs.enable = true;
     syncthing = {
       enable = true;
       inherit user;
