@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, nix-colors, dotfiles, ... }:
+{ pkgs, ... }:
 let user = "oskar";
 in {
 
@@ -10,11 +10,6 @@ in {
     description = "Oskar Liew";
     extraGroups = [ "networkmanager" "wheel" "${user}" "docker" "video" ];
     shell = pkgs.zsh;
-  };
-
-  home-manager = {
-    users.${user} = import ../home/home.nix;
-    extraSpecialArgs = { inherit nix-colors dotfiles; };
   };
 
   # Services

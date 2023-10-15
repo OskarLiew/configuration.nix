@@ -16,6 +16,7 @@
     vim
 
     # Tools
+    home-manager
     git
     wget
     unzip
@@ -39,7 +40,7 @@
       enable = true;
       enableCompletion = false;
       histSize = 10000;
-      histFile = "$XDG_CACHE_HOME/zsh/.zsh_history";
+      histFile = "$XDG_CACHE_HOME/zsh/history";
       setOptions = [ ];
     };
   };
