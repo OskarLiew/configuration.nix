@@ -6,13 +6,13 @@
     ./hardware-configuration.nix
 
     # Modules
-    ../../modules/localization.nix
-    ../../modules/environment.nix
     ../../modules/bluetooth.nix
-    ../../modules/sound.nix
+    ../../modules/environment.nix
+    ../../modules/localization.nix
     ../../modules/powermanagement.nix
-    ../../modules/usb.nix
     ../../modules/programs.nix
+    ../../modules/sound.nix
+    ../../modules/usb.nix
   ];
 
   # Bootloader.

@@ -17,7 +17,6 @@
 
     # Tools
     home-manager
-    git
     wget
     unzip
     playerctl
@@ -29,6 +28,8 @@
     # Languages
     python38
     python38Packages.pip
+    python310
+    python310Packages.pip
     lua
     gcc
     gnumake
@@ -43,6 +44,11 @@
       histFile = "$XDG_CACHE_HOME/zsh/history";
       setOptions = [ ];
     };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+    git.enable = true;
   };
 
   services = {

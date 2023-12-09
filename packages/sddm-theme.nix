@@ -8,7 +8,8 @@ let
     url = imgLink;
     sha256 = "MZYwMXi2SBZq4BaU4jyaC0tyqVspH9YpCScdnyAQaUk=";
   };
-in pkgs.stdenv.mkDerivation {
+in
+pkgs.stdenv.mkDerivation {
   name = "sddm-theme";
   src = pkgs.fetchFromGitHub {
     owner = "MarianArlt";

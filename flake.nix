@@ -8,7 +8,11 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-    in {
+    in
+    {
+      formatter.${system} = pkgs.nixpkgs-fmt;
+
+      # Machines
       nixosConfigurations.nixbtw = nixpkgs.lib.nixosSystem {
         inherit pkgs system;
         modules = [

@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   # Configure keymap in X11
   services.xserver = {
-    layout = "se,us";
+    layout = "us,se";
     xkbVariant = "";
-    xkbOptions = "grp:rctrl_rshift_toggle";
+    xkbOptions = "grp:rctrl_rshift_toggle,grp:switch";
   };
 
   # Enable touchpad support
@@ -26,6 +26,8 @@
     enable = true;
     theme = "${import ../packages/sddm-theme.nix { inherit pkgs; }}";
   };
+
+  services.autorandr.enable = true;
 
   hardware.acpilight.enable = true;
 }

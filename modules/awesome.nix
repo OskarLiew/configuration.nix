@@ -15,7 +15,8 @@ let
       patchShebangs tests/examples/_postprocess.lua
     '';
   });
-in {
+in
+{
   imports = [ ./X11.nix ];
 
   nixpkgs.overlays = [
@@ -41,10 +42,17 @@ in {
 
   environment.systemPackages = with pkgs; [
     picom
-    rofi
     betterlockscreen
+    flameshot
+    rofi
     lm_sensors
     playerctl
   ];
+
+  services.autorandr = {
+    hooks.postswitch = {
+      "reload-awesome" = ''echo 'awesome.restart()' | awesome-client'';
+    };
+  };
 
 }
