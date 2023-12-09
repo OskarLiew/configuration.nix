@@ -48,9 +48,6 @@
   networking.networkmanager.enable = true;
   networking.usePredictableInterfaceNames = false;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Enable garbage collection
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
@@ -61,7 +58,7 @@
   # Configure console keymap
   console.keyMap = "sv-latin1";
 
-  fonts.fonts = with pkgs;
+  fonts.packages = with pkgs;
     [ (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; }) ];
 
   # This value determines the NixOS release from which the default

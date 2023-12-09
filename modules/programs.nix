@@ -26,10 +26,8 @@
     chromium
 
     # Languages
-    python38
-    python38Packages.pip
-    python310
-    python310Packages.pip
+    python311
+    python311Packages.pip
     lua
     gcc
     gnumake
