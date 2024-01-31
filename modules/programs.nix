@@ -16,7 +16,6 @@
     vim
 
     # Tools
-    home-manager
     wget
     unzip
     playerctl
@@ -45,6 +44,7 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+      vimAlias = true;
     };
     git.enable = true;
   };

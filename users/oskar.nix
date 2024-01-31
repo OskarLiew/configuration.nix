@@ -8,7 +8,7 @@ in {
   users.users.${user} = {
     isNormalUser = true;
     description = "Oskar Liew";
-    extraGroups = [ "networkmanager" "wheel" "${user}" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "${user}" "docker" "video" "audio" ];
     shell = pkgs.zsh;
   };
 
