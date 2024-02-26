@@ -11,23 +11,5 @@ in {
     extraGroups = [ "networkmanager" "wheel" "${user}" "docker" "video" "audio" ];
     shell = pkgs.zsh;
   };
-
-  # Services
-  services = {
-    syncthing = {
-      enable = true;
-      inherit user;
-      dataDir =
-        "/home/${user}/Documents"; # Default folder for new synced folders
-      configDir =
-        "/home/${user}/.config/syncthing"; # Folder for Syncthing's settings and keys
-      settings.folders = {
-        "Default Folder" = {
-          id = "default";
-          path = "/home/${user}/Documents/sync";
-        };
-      };
-    };
-  };
 }
 
