@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us,se";
-    xkbVariant = "";
-    xkbOptions = "grp:rctrl_rshift_toggle,grp:switch";
+    variant = "";
+    options = "grp:rctrl_rshift_toggle,grp:switch";
   };
 
   # Enable touchpad support
