@@ -2,20 +2,20 @@
 
 let
   imgLink =
-    "https://images.unsplash.com/photo-1556480435-b7b37fd635d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80";
+    "https://i.ibb.co/vHymspV/everforest-themed-nixos-wallpaper-i-made-which-isnt-literal-v0-y3o84lcin07b1.png";
 
   image = pkgs.fetchurl {
     url = imgLink;
-    sha256 = "YcSLqGix3UtJhy6CZdMXTo7oDQpsfhpcsXSFvD5fVC8=";
+    sha256 = "sha256-GAbOVmO1sievwNOBZcxfX27j1AULScm260g8eXqwMSs=";
   };
 in
 pkgs.stdenv.mkDerivation {
   name = "sddm-theme";
   src = pkgs.fetchFromGitHub {
-    owner = "MarianArlt";
+    owner = "Kowbell";  # Fork with backgound color option
     repo = "sddm-sugar-dark";
-    rev = "ceb2c455663429be03ba62d9f898c571650ef7fe";
-    sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+    rev = "9a80f5790ca1f2f661e6e823c012c1aa65596ed7";
+    sha256 = "sha256-wLhO0zRseg3pcUapo+/A2jPKXTzl2cxyf445oBINjPo=";
   };
   installPhase = ''
     mkdir -p $out
@@ -23,5 +23,8 @@ pkgs.stdenv.mkDerivation {
     cd $out/
     rm Background.jpg
     cp -r ${image} $out/Background.jpg
+    echo 'PanelColor="#2f393d"' >> $out/theme.conf
+    echo 'ThemeColor="#D3C6AA"' >> $out/theme.conf
+    echo 'AccentColor="#A7C080"' >> $out/theme.conf
   '';
 }

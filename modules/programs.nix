@@ -38,7 +38,7 @@
       enable = true;
       enableCompletion = false;
       histSize = 10000;
-      histFile = "$XDG_CACHE_HOME/zsh/history";
+      histFile = "$XDG_DATA_HOME/zsh/history";
       setOptions = [ ];
     };
     neovim = {

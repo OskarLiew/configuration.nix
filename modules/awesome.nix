@@ -1,13 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = "YcSLqGix3UtJhy6CZdMXTo7oDQpsfhpcsXSFvD5fVC8=";
-    src = pkgs.fetchFromGitHub {
-      owner = "awesomeWM";
-      repo = "awesome";
-      rev = "YcSLqGix3UtJhy6CZdMXTo7oDQpsfhpcsXSFvD5fVC8=";
-      hash = "sha256-zCxghNGk/GsSt2+9JK8eXRySn9pHXaFhrRU3OtFrDoA=";
-    };
+    src = inputs.awesome;
 
     patches = [ ];
 

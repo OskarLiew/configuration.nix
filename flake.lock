@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "awesome": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711259403,
+        "narHash": "sha256-ZGZ53IWfQfNU8q/hKexFpb/2mJyqtK5M9t9HrXoEJCg=",
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "rev": "8b1f8958b46b3e75618bc822d512bb4d449a89aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1711352745,
@@ -34,6 +50,7 @@
     },
     "root": {
       "inputs": {
+        "awesome": "awesome",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
