@@ -10,7 +10,6 @@ can be done by adding
 
 ```nix
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 ```
 
 to `/etc/nixos/configuration.nix` and then rebuilding with `sudo nixos-rebuild switch`.
@@ -27,4 +26,3 @@ replaced with a specific machine host name.
 ## Available machines
 
 - nixbtw: Home laptop
-

@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 let
   imgLink =
@@ -12,7 +12,7 @@ in
 pkgs.stdenv.mkDerivation {
   name = "sddm-theme";
   src = pkgs.fetchFromGitHub {
-    owner = "Kowbell";  # Fork with backgound color option
+    owner = "Kowbell"; # Fork with backgound color option
     repo = "sddm-sugar-dark";
     rev = "9a80f5790ca1f2f661e6e823c012c1aa65596ed7";
     sha256 = "sha256-wLhO0zRseg3pcUapo+/A2jPKXTzl2cxyf445oBINjPo=";

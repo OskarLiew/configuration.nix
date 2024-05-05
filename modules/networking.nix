@@ -1,27 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
-    # Modules
-    ../../modules/bluetooth.nix
-    ../../modules/environment.nix
-    ../../modules/localization.nix
-    ../../modules/powermanagement.nix
-    ../../modules/programs.nix
-    ../../modules/sound.nix
-    ../../modules/usb.nix
-  ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  networking.hostName = "nixbtw"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -41,22 +20,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Virtualization
-  virtualisation.docker.enable = true;
-
   # Enable networking
   networking.networkmanager.enable = true;
   networking.usePredictableInterfaceNames = false;
-
-  # Enable garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "03:15";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Configure console keymap
-  console.keyMap = "sv-latin1";
 
   fonts.packages = with pkgs;
     [ (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; }) ];
