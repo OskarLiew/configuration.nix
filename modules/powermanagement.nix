@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [ acpi ];
+
   services = {
     thermald.enable = true;
     tlp = {
@@ -19,4 +20,6 @@
     };
     upower.enable = true;
   };
+
+  powerManagement.powertop.enable = true;
 }

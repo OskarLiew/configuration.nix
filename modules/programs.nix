@@ -13,13 +13,15 @@
 
     # Productivity
     tmux
-    vim
 
     # Tools
     wget
     unzip
     playerctl
     htop
+    gpg
+    openssh
+    parallel
 
     # Apps
     chromium
