@@ -19,7 +19,7 @@
     unzip
     playerctl
     htop
-    gpg
+    gnupg
     openssh
     parallel
 
