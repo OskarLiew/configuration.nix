@@ -19,7 +19,6 @@
     unzip
     playerctl
     htop
-    gnupg
     openssh
     parallel
 
@@ -49,6 +48,11 @@
       vimAlias = true;
     };
     git.enable = true;
+    gnupg.agent = {
+        enable = true;
+        pinentryPackage = pkgs.pinentry-curses;
+        enableSSHSupport = true;
+    };
   };
 
   services = {
