@@ -27,13 +27,13 @@ in
 
   services.xserver = {
     enable = true;
-    displayManager = { defaultSession = "none+awesome"; };
     windowManager.awesome = {
       enable = true;
       package = awesome;
       luaModules = with pkgs.luaPackages; [ cjson ];
     };
   };
+  services.displayManager.defaultSession = "none+awesome";
 
   environment.systemPackages = with pkgs; [
     picom

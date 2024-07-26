@@ -7,7 +7,7 @@
   };
 
   # Enable touchpad support
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
 
     touchpad = {
@@ -22,7 +22,7 @@
     libsForQt5.qt5.qtgraphicaleffects
   ];
 
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     theme = "${import ../packages/sddm-theme.nix { inherit pkgs; }}";
   };

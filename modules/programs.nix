@@ -49,9 +49,9 @@
     };
     git.enable = true;
     gnupg.agent = {
-        enable = true;
-        pinentryPackage = pkgs.pinentry-curses;
-        enableSSHSupport = true;
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+      enableSSHSupport = true;
     };
   };
 
