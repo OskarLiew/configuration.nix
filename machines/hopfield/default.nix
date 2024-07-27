@@ -11,7 +11,7 @@
 
     # Modules
     ../../modules
-    ../../modules/gaming
+    ../../modules/gaming.nix
 
     # Users
     ../../users/oskar.nix
