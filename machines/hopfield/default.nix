@@ -23,6 +23,7 @@
 
   boot.kernelParams = [
     "nvme.noacpi=1"
+    "usbcore.autosuspend=-1"
   ];
 
   hardware.opengl = {
