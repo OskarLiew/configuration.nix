@@ -21,6 +21,9 @@
     htop
     openssh
     parallel
+    pavucontrol
+    alsa-utils
+    psmisc
 
     # Apps
     chromium
