@@ -10,12 +10,6 @@
   # Then enable in steam game options under compatibility
   environment.systemPackages = with pkgs; [
     protonup
-
-    # Games
-    runelite
-
-    # Utils
-    path-of-building
   ];
 
   environment.sessionVariables = {
