@@ -57,6 +57,7 @@
       intelBusId = "PCI:0:2:0";
     };
   };
+  virtualisation.docker.enableNvidia = true;
 
   specialisation = {
     nvidia-on.configuration = {
