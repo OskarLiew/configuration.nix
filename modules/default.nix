@@ -10,6 +10,7 @@
     ./programs.nix
     ./sound.nix
     ./usb.nix
+    ./udev.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
