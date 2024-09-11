@@ -15,6 +15,10 @@
       accelProfile = "flat";
       accelSpeed = "0.9";
     };
+
+    mouse = {
+      accelProfile = "flat";
+    };
   };
 
   environment.systemPackages = with pkgs; [
