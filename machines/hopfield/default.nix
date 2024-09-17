@@ -26,11 +26,8 @@
     "usbcore.autosuspend=-1"
   ];
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   environment.systemPackages = [
     (
@@ -45,6 +42,7 @@
   ];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    open = false;
 
     modesetting.enable = true;
 
@@ -57,7 +55,8 @@
       intelBusId = "PCI:0:2:0";
     };
   };
-  virtualisation.docker.enableNvidia = true;
+  hardware.nvidia-container-toolkit.enable = true;
+
 
   specialisation = {
     nvidia-on.configuration = {
