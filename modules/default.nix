@@ -18,7 +18,8 @@
 
   # Enable garbage collection
   nix.gc.automatic = true;
-  nix.gc.dates = "03:15";
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-older-than 30d";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
