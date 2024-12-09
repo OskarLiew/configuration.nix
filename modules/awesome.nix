@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ upkgs, pkgs, inputs, ... }:
 let
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = "YcSLqGix3UtJhy6CZdMXTo7oDQpsfhpcsXSFvD5fVC8=";
@@ -36,9 +36,9 @@ in
   services.displayManager.defaultSession = "none+awesome";
 
   environment.systemPackages = with pkgs; [
-    picom
-    betterlockscreen
-    flameshot
+    upkgs.picom
+    upkgs.betterlockscreen
+    upkgs.flameshot
     rofi
     lm_sensors
     playerctl

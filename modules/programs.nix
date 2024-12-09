@@ -10,6 +10,7 @@
     upower
     wirelesstools
     iw
+    lsof
 
     # Productivity
     tmux
