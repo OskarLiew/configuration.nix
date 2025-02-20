@@ -55,8 +55,11 @@
       intelBusId = "PCI:0:2:0";
     };
   };
-  virtualisation.docker.enableNvidia = true; # Until hardware.nvidia-container-toolkit is fixed
 
+  # Enable nvidia containers
+  hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.docker.daemon.settings.features.cdi = true;
+  virtualisation.docker.enableNvidia = true;
 
   specialisation = {
     nvidia-on.configuration = {
