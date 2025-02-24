@@ -1,0 +1,2 @@
+[virtualenvs]
+in-project = false  # Prefer to keep venv in project

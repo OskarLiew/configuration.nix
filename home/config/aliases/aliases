@@ -1,0 +1,80 @@
+# Git
+alias gco='git checkout'
+alias gcob='git checkout -b'
+gcol () {  # List branches with fzf and checkout selected
+    if [ -d "./.git" ]; then
+        git branch --format='%(refname:short)' \
+        | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+        | fzf --preview='git log --color=always --pretty=format:"%Cgreen+ %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" ..{};echo;git log --color=always --pretty=format:"%Cred- %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" {}..' \
+        | xargs git checkout
+    else
+        echo "Error: Not a git repository"
+    fi
+}
+alias gc='git commit' 
+alias gcm='git commit -m'
+alias gs='git status -s'
+alias gl='git log'
+alias gpl='git pull'
+alias gps='git push'
+alias gpsf='git push --force-with-lease'
+alias gpssu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
+alias ga='git add'
+alias gus='git restore --staged'
+alias gd='git diff'
+alias gds='git diff --stat'
+alias gdc="git diff --cached"
+# List branches sorted by last modified
+alias gb="git for-each-ref --sort='-authordate' --format='%(authordate:format:%Y-%m-%d %H:%M:%S)    %(objectname:short)    %(refname)' refs/heads | sed -e 's-refs/heads/--'"
+alias gwt="git worktree"
+# new_branch dir remote_branch
+newgwt () {
+    git worktree add -b $1 $(echo $1 | sed -e "s/\//_/g") origin/$2
+}
+
+# ls
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Colour output
+alias cat='bat --style=plain --paging=never'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip -color=auto'
+alias ls='ls --color=auto'
+
+# Directory stack
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+# Lazygit and lazydocker
+alias lg='lazygit'
+alias ldk='lazydocker'
+
+# WSL-specific aliases
+if [[ -v WSL_DISTRO_NAME ]]; then
+    alias exp="explorer.exe"
+fi
+
+# Python stuff
+vact () {
+    . $1/bin/activate
+}
+
+# Lazygit and lazydocker
+alias lg='lazygit'
+alias ldk='lazydocker'
+
+# tmux
+alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
+tl () {  # List tmux sessions to attach
+    if [ -z "$TMUX" ]; then
+        tmux attach -t "$(tmux list-sessions | sed -E 's/:.*$//' | fzf )"
+    else
+        echo "Already in tmux"
+    fi
+}
+
+# russ
+alias russ-read='russ read -d $HOME/Sync/rss/russ-feeds.db'
