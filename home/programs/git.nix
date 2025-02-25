@@ -12,7 +12,11 @@
       };
       delta = {
         enable = true;
-        options = { syntax-theme = "ansi"; };
+        options = {
+          syntax-theme = "ansi";
+          # Nice colors for colorMoved
+          map-styles = "bold purple => syntax rebeccapurple, bold cyan => syntax midnightblue";
+        };
       };
       ignores = [
         ".direnv"
@@ -25,8 +29,18 @@
           enabled = true;
           autoUpdate = true;
         };
+        # Sort branches and tags
         branch.sort = "-committerdate";
         column.ui = "auto";
+        tag.sort = "version:refname";
+        # Better diffs
+        diff.algorithm = "histogram";
+        diff.colorMoved = "plain";
+        diff.mnemonicPrefix = true;
+        diff.renames = true;
+        # Add diff to commit
+        commit.verbose = true;
+        # Set up fancy pager
         pager = {
           blame = "delta";
           diff = "delta";

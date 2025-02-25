@@ -46,6 +46,6 @@
           specialArgs = { inherit upkgs inputs; };
         };
       };
-      homeConfigurations = import ./home {inherit pkgs upkgs inputs; };
+      homeConfigurations = import ./home { inherit pkgs upkgs inputs; };
     };
 }

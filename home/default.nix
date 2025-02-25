@@ -1,4 +1,4 @@
-{ pkgs, upkgs, inputs, ...}:
+{ pkgs, upkgs, inputs, ... }:
 
 let
   extraSpecialArgs = { inherit inputs upkgs; };
