@@ -97,9 +97,19 @@ local function init_music_player(with_icon)
 				gears.shape.rounded_rect(cr, w, h, dpi(18))
 			end,
 		})
+
+		local prev_art_url = nil
 		awesome.connect_signal("daemon::playerctl", function(status)
+			if status.art_url == prev_art_url then
+				return
+			end
+
 			icon_helpers.fetch_image(status.art_url, function(icon)
 				album_art:set_image(icon or icons.music)
+
+				if icon then
+					prev_art_url = status.art_url
+				end
 			end)
 		end)
 		album_art_container = wibox.widget({
