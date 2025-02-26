@@ -14,6 +14,7 @@
       naturalScrolling = true;
       accelProfile = "flat";
       accelSpeed = "0.9";
+      disableWhileTyping = true;
     };
 
     mouse = {
@@ -24,6 +25,7 @@
   environment.systemPackages = with pkgs; [
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    arandr
   ];
 
   services.displayManager.sddm = {
