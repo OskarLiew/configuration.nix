@@ -1,6 +1,6 @@
 { pkgs, upkgs, ... }: {
 
-  imports = [ ./theme ./programs/vscode.nix ./programs/gaming.nix ];
+  imports = [ ./theme ./programs/vscode.nix ./programs/gaming.nix ./programs/firefox.nix ];
 
   home.packages = with pkgs; [
     # Utils
@@ -36,7 +36,6 @@
   ];
 
   programs = {
-    firefox.enable = true;
     chromium = {
       enable = true;
       extensions = [
@@ -59,7 +58,6 @@
 
   home.sessionVariables = {
     TERMINAL = "kitty";
-    BROWSER = "firefox";
   };
 
   xdg = {
@@ -67,12 +65,6 @@
       enable = true;
       defaultApplications = {
         "text/plain" = [ "nvim.desktop" ];
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
-        "application/pdf" = "firefox.desktop";
         "inode/directory" = "yazi.desktop";
       };
     };
