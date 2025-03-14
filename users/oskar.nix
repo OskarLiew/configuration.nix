@@ -11,5 +11,6 @@ in {
     extraGroups = [ "networkmanager" "wheel" "${user}" "docker" "video" "audio" ];
     shell = pkgs.zsh;
   };
+  environment.pathsToLink = [ "/share/zsh" ]; # For completion for system packages
 }
 
