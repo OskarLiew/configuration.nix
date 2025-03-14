@@ -9,8 +9,7 @@ with inputs; {
     inherit pkgs extraSpecialArgs;
     modules = [
       ./home.nix
-      ./graphical.nix
-      ./programs/syncthing.nix
+      ./modules/desktop.nix
     ];
   };
 
@@ -20,9 +19,8 @@ with inputs; {
       inherit pkgs extraSpecialArgs;
       modules = [
         ./home.nix
-        ./graphical.nix
+        ./modules/desktop.nix
         ./packages/awesome.nix
-        ./programs/syncthing.nix
         { targets.genericLinux.enable = true; }
       ];
     };

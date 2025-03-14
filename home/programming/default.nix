@@ -2,10 +2,9 @@
 
   home.packages = with pkgs; [
     # - Python
-    python311
-    python311Packages.pip
     mypy
     poetry
+    upkgs.uv
     ruff
     upkgs.pyright
     # - js
