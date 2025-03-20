@@ -212,6 +212,7 @@ M.crawlerr = {
             end,
             "Go to node text sv",
         },
+        ["<leader>fn"] = { require("plugins.crawlerr").quick_scope, "RR - QuickScope" },
     },
 }
 

@@ -35,6 +35,7 @@ local ruff_isort = h.make_builtin({
     generator_opts = {
         command = "ruff",
         args = {
+            "check",
             "--fix",
             "--select",
             "I001", -- Import sorting

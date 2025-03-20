@@ -70,4 +70,55 @@ M.jump_to_texts = function(language)
     end
 end
 
+local function split(str, sep)
+    local result = {}
+    for match in str:gmatch("([^" .. sep .. "]+)") do
+        table.insert(result, match)
+    end
+    return result
+end
+
+local function entry_maker(entry)
+    local split_line = split(entry, ":")
+    local file_path = split_line[1]
+    local name_id = split_line[#split_line]
+    local node_id = string.match(file_path, "node_(%d+).yaml")
+    local combined_name = string.format("%s (%s)", name_id, node_id)
+    return {
+        value = file_path,
+        filename = file_path,
+        display = combined_name,
+        ordinal = combined_name,
+    }
+end
+local function get_rg_output()
+    local cmd = {
+        "rg",
+        "--with-filename",
+        "--no-heading",
+        "--glob",
+        "network/node_*.yaml",
+        "-e",
+        "name_id: ",
+    }
+    local result = vim.fn.systemlist(cmd)
+    return result
+end
+function M.quick_scope(opts)
+    opts = opts or {}
+    opts.entry_maker = opts.entry_maker or entry_maker
+    local node_finder = require("telescope.finders").new_table({
+        results = get_rg_output(),
+        entry_maker = opts.entry_maker,
+    })
+    require("telescope.pickers")
+        .new({}, {
+            prompt_title = "RR - QuickScope",
+            finder = node_finder,
+            previewer = require("telescope.config").values.grep_previewer(opts),
+            sorter = require("telescope.sorters").get_fzy_sorter(),
+        })
+        :find()
+end
+
 return M
