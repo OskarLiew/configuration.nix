@@ -117,7 +117,7 @@ local options = {
         tiebreak = function(current_entry, existing_entry, prompt)
             return tiebreak(current_entry.ordinal, existing_entry.ordinal, prompt)
         end,
-        preview = { filesize_limit = 0.2 },
+        preview = { filesize_limit = 1.0 },
     },
 
     extensions_list = { "themes", "terms", "fzf" },

@@ -15,6 +15,9 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 
+opt.modeline = false -- Inline vim settings
+opt.synmaxcol = 256 -- Limit syntax highlighting for long lines
+
 -- Setup clipboard tool, saved .5s on startup
 vim.g.clipboard = nil
 opt.smartindent = true

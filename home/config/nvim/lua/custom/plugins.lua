@@ -238,6 +238,13 @@ local plugins = {
         end,
     },
 
+    {
+        "tpope/vim-repeat",
+        event = {
+            "BufEnter",
+        },
+    },
+
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
