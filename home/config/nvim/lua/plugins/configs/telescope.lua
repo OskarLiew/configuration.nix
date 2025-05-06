@@ -1,68 +1,68 @@
-local function get_last_path_component(path)
-    -- Check if filePath ends with '/'
-    if string.sub(path, -1) == "/" then
-        -- Remove trailing '/'
-        path = string.sub(path, 1, -2)
-    end
-
-    -- Find the last occurrence of '/'
-    local last_slash_index, _ = string.find(path, "/[^/]*$")
-    -- Extract the last component
-    local last_component = string.sub(path, (last_slash_index or 0) + 1)
-    if last_component then
-        return last_component
-    end
+local function get_file_name_without_extension(path)
+    local name = path:match("^.+/(.+)$") or path
+    return name:match("(.+)%..+$") or name
 end
 
-local function get_file_name(str)
-    local index = str:find("%.")
-    if index then
-        return str:sub(1, index - 1)
-    else
-        return str
+local function split_path(path)
+    local parts = {}
+    for part in path:gmatch("[^/]+") do
+        table.insert(parts, part)
     end
+    return parts
 end
 
-local function filename_cmp(current, existing, prompt)
-    local current_file_name = get_file_name(current)
-    if current_file_name == prompt then
-        local existing_file_name = get_file_name(existing)
-        if current_file_name ~= existing_file_name then
-            return true
+local function earliest_match_start(str, prompt)
+    local start_pos = str:lower():find(prompt:lower(), 1, true)
+    return start_pos or math.huge
+end
+
+local function tiebreak(current, existing, prompt)
+    local cur_file = get_file_name_without_extension(current)
+    local ex_file = get_file_name_without_extension(existing)
+
+    -- 1. Exact match of file-name without extension
+    if cur_file:lower() == prompt:lower() and ex_file:lower() ~= prompt:lower() then
+        return true
+    elseif ex_file:lower() == prompt:lower() and cur_file:lower() ~= prompt:lower() then
+        return false
+    end
+
+    -- 2. Earliest match on start of file name
+    local cur_file_match = earliest_match_start(cur_file, prompt)
+    local ex_file_match = earliest_match_start(ex_file, prompt)
+    if cur_file_match ~= ex_file_match then
+        return cur_file_match < ex_file_match
+    end
+
+    -- 3. Earliest match on start of one of the folder names
+    local cur_parts = split_path(current)
+    local ex_parts = split_path(existing)
+    local cur_folder_match = math.huge
+    local ex_folder_match = math.huge
+
+    for _, part in ipairs(cur_parts) do
+        local match = earliest_match_start(part, prompt)
+        if match < cur_folder_match then
+            cur_folder_match = match
         end
     end
-end
-
-local function first_match_cmp(current, existing, prompt)
-    local start_pos1, _ = current:find(prompt)
-    local start_pos2, _ = existing:find(prompt)
-    if start_pos1 then
-        if start_pos2 then
-            if start_pos1 < start_pos2 then -- If same pos, then continue
-                return true
-            end
-        else
-            return true
+    for _, part in ipairs(ex_parts) do
+        local match = earliest_match_start(part, prompt)
+        if match < ex_folder_match then
+            ex_folder_match = match
         end
     end
-end
-
-local function tiebreak(current_ordinal, existing_ordinal, prompt)
-    local current_last = get_last_path_component(current_ordinal)
-    local existing_last = get_last_path_component(existing_ordinal)
-
-    -- Perfect file name matches
-    if filename_cmp(current_last, existing_last, prompt) then
-        return true
+    if cur_folder_match ~= ex_folder_match then
+        return cur_folder_match < ex_folder_match
     end
 
-    -- Files with prompt early in file component
-    if first_match_cmp(current_last, existing_last, prompt) then
-        return true
+    -- 4. Shorter text first
+    if #current ~= #existing then
+        return #current < #existing
     end
 
-    -- Fallback to alphabetical
-    return current_ordinal < existing_ordinal
+    -- 5. Alphanumeric order
+    return current:lower() < existing:lower()
 end
 
 local options = {
