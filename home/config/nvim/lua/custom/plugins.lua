@@ -243,6 +243,9 @@ local plugins = {
         event = {
             "BufEnter",
         },
+        config = function()
+            vim.cmd([[silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)]])
+        end,
     },
 
     -- To make a plugin not be loaded
