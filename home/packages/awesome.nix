@@ -30,12 +30,13 @@ in
 
   home.packages = with pkgs; [
     upkgs.picom
-    upkgs.betterlockscreen
     upkgs.flameshot
     rofi
     lm_sensors
     playerctl
   ];
+
+  services.betterlockscreen.enable = true;
 
   programs.autorandr = {
     hooks.postswitch = {

@@ -25,15 +25,20 @@
   environment.systemPackages = with pkgs; [
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    arandr
+    arandr  # Screen config util
   ];
 
+  # Display manager, e.g. login screen
   services.displayManager.sddm = {
     enable = true;
     theme = "${import ../packages/sddm-theme.nix { inherit pkgs; }}";
   };
 
+  # Automatic configuration of screens
   services.autorandr.enable = true;
+
+  # Screen-lock
+  programs.i3lock.enable = true;
 
   hardware.acpilight.enable = true;
 }
