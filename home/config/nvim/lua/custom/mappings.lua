@@ -39,45 +39,27 @@ M.trouble = {
     plugin = true,
     n = {
         ["<leader>xx"] = {
-            function()
-                require("trouble").toggle()
-            end,
+            "<cmd>Trouble diagnostics toggle<cr>",
             "Toggle diagnostics",
         },
-        ["<leader>xw"] = {
-            function()
-                require("trouble").toggle("workspace_diagnostics")
-            end,
-            "Workspace diagnostics",
-        },
-        ["<leader>xd"] = {
-            function()
-                require("trouble").toggle("document_diagnostics")
-            end,
-            "Document diagnostics",
+        ["<leader>xb"] = {
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            "Buffer diagnostics",
         },
         ["<leader>xq"] = {
-            function()
-                require("trouble").toggle("quickfix")
-            end,
+            "<cmd>Trouble diagnostics toggle<cr>",
             "Quickfix diagnostics",
         },
         ["<leader>xl"] = {
-            function()
-                require("trouble").toggle("loclist")
-            end,
+            "<cmd>Trouble loclist toggle<cr>",
             "Loclist diagnostics",
         },
         ["]x"] = {
-            function()
-                require("trouble").next({ skip_groups = true, jump = true })
-            end,
+            "<cmd>Trouble diagnostics next<cr>",
             "Next trouble",
         },
         ["[x"] = {
-            function()
-                require("trouble").previous({ skip_groups = true, jump = true })
-            end,
+            "<cmd>Trouble diagnostics prev<cr>",
             "Previous trouble",
         },
     },

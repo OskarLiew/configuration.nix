@@ -7,7 +7,7 @@ local util = require("lspconfig.util")
 local servers = {
     "html",
     "cssls",
-    "tsserver",
+    "ts_ls",
     "clangd",
     "nil_ls",
     "gopls",
@@ -18,6 +18,7 @@ local servers = {
     "phpactor",
     "taplo",
     "yamlls",
+    "ruff",
 }
 
 for _, lsp in ipairs(servers) do

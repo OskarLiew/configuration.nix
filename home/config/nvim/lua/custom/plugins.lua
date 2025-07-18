@@ -10,7 +10,7 @@ local plugins = {
         dependencies = {
             -- format & linting
             {
-                "jose-elias-alvarez/null-ls.nvim",
+                "nvimtools/none-ls.nvim",
                 config = function()
                     require("custom.configs.null-ls")
                 end,
@@ -45,31 +45,20 @@ local plugins = {
 
     {
         "folke/which-key.nvim",
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "whichkey")
-            require("which-key").setup(opts)
-            local present, wk = pcall(require, "which-key")
-            if not present then
-                return
-            end
-            wk.register({
-                -- add group
-                ["<leader>"] = {
-                    c = { name = "+code" },
-                    d = { name = "+debug" },
-                    f = { name = "+find" },
-                    h = { name = "+help" },
-                    g = { name = "+git" },
-                    r = { name = "+refactor" },
-                    s = { name = "+settings" },
-                    w = { name = "+workspace" },
-                    x = { name = "+error" },
-                },
-            })
-        end,
-        setup = function()
-            require("core.utils").load_mappings("whichkey")
-        end,
+        event = "BufEnter",
+        opts = {
+            spec = {
+                { "<leader>c", group = "code" },
+                { "<leader>d", group = "debug" },
+                { "<leader>f", group = "find" },
+                { "<leader>g", group = "git" },
+                { "<leader>h", group = "help" },
+                { "<leader>r", group = "refactor" },
+                { "<leader>s", group = "settings" },
+                { "<leader>w", group = "workspace" },
+                { "<leader>x", group = "error" },
+            },
+        },
     },
 
     {
@@ -142,10 +131,9 @@ local plugins = {
         init = function()
             require("core.utils").load_mappings("trouble")
         end,
+        opts = {},
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        event = {
-            "BufEnter",
-        },
+        cmd = "Trouble",
     },
     -- Rust
     {

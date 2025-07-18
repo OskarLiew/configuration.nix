@@ -14,11 +14,12 @@ let
   profiles = {
     home = {
       id = 0;
-      inherit extensions settings;
+      inherit settings;
+      extensions.packages = extensions;
     };
     work = {
       id = 1;
-      extensions = extensions ++ [ ];
+      extensions.packages = extensions ++ [ ];
       settings = settings // { };
     };
 

@@ -2,6 +2,7 @@
   programs.vscode = {
     enable = true;
     package = upkgs.vscode;
+    profiles.default = {
     extensions = with upkgs.vscode-extensions;
       [
         vscodevim.vim
@@ -35,7 +36,6 @@
           sha256 = "sha256-3Me7vs+dP+oUhJOjX0eRxflLVJiNTbRaIfvbmv6mzj0=";
         }
       ];
-    mutableExtensionsDir = false;
     enableUpdateCheck = false;
     userSettings = {
       "window.titleBarStyle" = "custom";
@@ -175,5 +175,8 @@
       python = builtins.fromJSON (builtins.readFile ../config/snippets/python.json);
       nix = builtins.fromJSON (builtins.readFile ../config/snippets/nix.json);
     };
+
+    };
+    mutableExtensionsDir = false;
   };
 }

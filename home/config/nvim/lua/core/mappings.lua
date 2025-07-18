@@ -145,7 +145,7 @@ M.lspconfig = {
 
         ["K"] = {
             function()
-                vim.lsp.buf.hover()
+                vim.lsp.buf.hover({ border = "rounded" })
             end,
             "LSP hover",
         },

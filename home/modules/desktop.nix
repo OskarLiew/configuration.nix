@@ -27,7 +27,7 @@
     libreoffice
 
     # Other
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    pkgs.nerd-fonts.fira-code
 
     # Work
     slack

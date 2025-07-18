@@ -8,6 +8,7 @@
 
     # Modules
     ../../modules
+    ../../modules/gaming.nix
 
     # Users
     ../../users/oskar.nix

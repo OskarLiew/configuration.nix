@@ -22,7 +22,7 @@ in
       autosuggestion.enable = true;
       loginExtra = builtins.readFile ../config/zsh/.zlogin;
       envExtra = builtins.readFile ../config/zsh/.zshenv;
-      initExtra = builtins.readFile ../config/zsh/.zshrc;
+      initContent = builtins.readFile ../config/zsh/.zshrc;
       completionInit = ''# Faster load 
 autoload -Uz compinit
 for dump in $ZDOTDIR/.zcompdump(N.mh+18); do

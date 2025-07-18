@@ -55,7 +55,7 @@ local ruff_isort = h.make_builtin({
 local sources = {
 
     -- webdev stuff
-    b.formatting.deno_fmt, -- deno for ts/js files is very fast
+    b.formatting.biome.with({ filetypes = { "javascript", "typescript" } }),
     b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
 
     -- Lua
@@ -65,10 +65,6 @@ local sources = {
     b.formatting.clang_format,
 
     -- Python
-    -- b.diagnostics.mypy,
-    b.diagnostics.ruff.with({
-        extra_args = { "--ignore", "F821,F841,F401,B018" },
-    }),
     ruff_format,
     ruff_isort,
 }

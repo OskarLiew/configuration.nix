@@ -11,6 +11,7 @@
     nodejs_20
     nodePackages.prettier
     dockerfile-language-server-nodejs
+    biome
     # - lua
     lua
     stylua
@@ -34,6 +35,7 @@
     docker-compose-language-service
     # Tools
     llm
+    tree-sitter
 
     # Markup
     taplo
