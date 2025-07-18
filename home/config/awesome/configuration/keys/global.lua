@@ -13,6 +13,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
+	awful.key({ modkey }, "q", function()
+		awful.util.spawn(apps.default.rofi_powermenu)
+	end, { description = "power menu", group = "awesome" }),
 })
 
 -- Client related keybindings
