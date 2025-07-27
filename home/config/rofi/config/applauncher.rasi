@@ -13,6 +13,10 @@ configuration {
     show-icons:                 true;
     display-drun:               "󰍉";
 	drun-display-format:        "{name}";
+    kb-row-up:                  "";
+    kb-row-down:                "";
+    kb-element-next:            "Ctrl+n,Tab";
+    kb-element-prev:            "Ctrl+p,ISO_Left_Tab";
 }
 
 /*****----- Global Properties -----*****/
