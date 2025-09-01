@@ -89,9 +89,11 @@ local function entry_maker(entry)
         filename = file_path,
         display = combined_name,
         ordinal = combined_name,
+        node_id = node_id,
     }
 end
-local function get_rg_output()
+
+local function get_rg_nodes()
     local cmd = {
         "rg",
         "--with-filename",
@@ -104,19 +106,38 @@ local function get_rg_output()
     local result = vim.fn.systemlist(cmd)
     return result
 end
+
 function M.quick_scope(opts)
     opts = opts or {}
     opts.entry_maker = opts.entry_maker or entry_maker
     local node_finder = require("telescope.finders").new_table({
-        results = get_rg_output(),
+        results = get_rg_nodes(),
         entry_maker = opts.entry_maker,
     })
+
+    local insert_node_id = function(prompt_bufnr, _)
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
+        actions.close(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        vim.api.nvim_put({ selection["node_id"] }, "", false, true)
+        return true
+    end
+
+    local attach_ctrl_enter = function(_, map)
+        map("i", "<C-j>", insert_node_id)
+        map("n", "<C-j>", insert_node_id)
+
+        return true
+    end
+
     require("telescope.pickers")
         .new({}, {
             prompt_title = "RR - QuickScope",
             finder = node_finder,
             previewer = require("telescope.config").values.grep_previewer(opts),
             sorter = require("telescope.sorters").get_fzy_sorter(),
+            attach_mappings = attach_ctrl_enter,
         })
         :find()
 end
