@@ -1,9 +1,8 @@
-{ config, inputs, ... }: {
+{ config, ... }: {
   home.username = "oskar";
   home.homeDirectory = "/home/oskar";
 
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     ./programs/git.nix
     ./programs/neovim.nix
     ./programs/shell-tools.nix
@@ -12,7 +11,6 @@
     ./theme/shell.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.everforest;
 
   programs.home-manager.enable = true;
 

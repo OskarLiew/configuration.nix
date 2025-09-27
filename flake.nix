@@ -11,7 +11,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
     awesome = {
       url = "github:awesomeWM/awesome";
       flake = false;
@@ -20,6 +19,7 @@
       url = "github:kosorin/awesome-code-doc";
       flake = false;
     };
+    stylix.url = "github:nix-community/stylix/release-25.05";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:

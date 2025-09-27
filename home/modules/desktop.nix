@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ... }: {
+{ config, pkgs, upkgs, ... }: {
   imports = [ ./gaming.nix ../programs/syncthing.nix ../programs/vscode.nix ../programs/firefox.nix ../theme ];
 
   home.packages = with pkgs; [
@@ -44,7 +44,6 @@
 
     kitty = {
       enable = true;
-      themeFile = "everforest_dark_hard";
       settings = {
         confirm_os_window_close = 2;
         enable_audio_bell = false;
@@ -70,7 +69,17 @@
     configFile = {
       "awesome".source = ../config/awesome;
       "picom".source = ../config/picom;
-      "rofi".source = ../config/rofi;
+      "rofi/config".source = ../config/rofi/config;
+      "rofi/color/colorscheme.rasi".text = with config.lib.stylix.colors; ''
+        * {
+            background:     #${base00}90;
+            background-alt: #${base01}70;
+            foreground:     #${base05}ff;
+            selected:       #${base0D}ff;
+            active:         #${base0B}30;
+            urgent:         #${base08}ff;
+        }
+      '';
     };
     desktopEntries = {
       # Make apps open in kitty

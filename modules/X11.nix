@@ -25,7 +25,7 @@
   environment.systemPackages = with pkgs; [
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    arandr  # Screen config util
+    arandr # Screen config util
   ];
 
   # Display manager, e.g. login screen

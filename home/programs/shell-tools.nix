@@ -33,7 +33,6 @@
       enable = true;
       package = upkgs.btop;
       settings = {
-        color_theme = "everforest-dark-hard";
         theme_background = false;
         vim_keys = true;
       };

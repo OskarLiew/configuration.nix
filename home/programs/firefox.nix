@@ -59,6 +59,8 @@ in
     };
   };
 
+  stylix.targets.firefox.profileNames = builtins.attrNames profiles;
+
   home.sessionVariables.BROWSER = "firefox";
 }
 
