@@ -11,7 +11,6 @@
     ./sound.nix
     ./usb.nix
     ./udev.nix
-    ./flatpak.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
