@@ -1,22 +1,49 @@
-local options = {
-    ensure_installed = { "lua" },
+return {
+  {
+    "nvim-treesitter/nvim-treesitter", 
+    branch = 'master', 
+    lazy = false, 
+    build = ":TSUpdate",
+    config = function ()
+      require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = { 
+    "lua", 
+    "vim", 
+    "vimdoc", 
+    "query", 
+    "markdown", 
+    "markdown_inline",
+    "python",
+    "rust",
+    "go",
+    "javascript",
+    "typescript",
+    "tsx",
+    "yaml",
+    "json",
+    "toml",
+    "nix",
+    "html",
+    "css",
+    "bash",
+  },
 
-    highlight = {
-        enable = true,
-        use_languagetree = true,
-    },
+  -- Automatically install missing parsers when entering buffer
+  auto_install = false,
 
-    indent = { enable = true },
-
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "gnn",
-            node_incremental = "gn",
-            scope_incremental = "gs",
-            node_decremental = "gp",
-        },
-    },
+  highlight = {
+    enable = true,
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+    additional_vim_regex_highlighting = false,
+  },
 }
-
-return options
+    end
+  },
+}

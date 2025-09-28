@@ -1,13 +1,7 @@
 local options = {
 	filters = {
 		dotfiles = false,
-		exclude = { vim.fn.stdpath("config") .. "/lua/custom" },
 	},
-	disable_netrw = true,
-	hijack_netrw = true,
-	hijack_cursor = true,
-	hijack_unnamed_buffer_when_opening = false,
-	sync_root_with_cwd = true,
 	update_focused_file = {
 		enable = true,
 		update_root = false,
@@ -19,7 +13,7 @@ local options = {
 		preserve_window_proportions = true,
 	},
 	git = {
-		enable = false,
+		enable = true,
 		ignore = true,
 	},
 	filesystem_watchers = {
@@ -44,7 +38,7 @@ local options = {
 				file = true,
 				folder = true,
 				folder_arrow = true,
-				git = false,
+				git = true,
 			},
 
 			glyphs = {
@@ -74,4 +68,15 @@ local options = {
 	},
 }
 
-return options
+return {
+	{
+		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		init = function()
+			vim.keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+		end,
+		config = function(_, opts)
+			require("nvim-tree").setup(options)
+		end,
+	},
+}
