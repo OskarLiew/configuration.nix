@@ -2,4 +2,4 @@ require("opts")
 require("mappings")
 
 -- Run after opts
-require("plugins")
+require("configs")

@@ -49,13 +49,3 @@ vim.keymap.set("v", "<", "<gv", { desc = "Deindent line" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent line" })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
-
--- Crawlerr
-vim.keymap.set("n", "<leader>jn", require("plugins.crawlerr").jump_to_node, { desc = "RR jump to node" })
-vim.keymap.set("n", "<leader>je", function()
-	require("plugins.crawlerr").jump_to_texts("en")
-end, { desc = "Go to node text en" })
-vim.keymap.set("n", "<leader>js", function()
-	require("plugins.crawlerr").jump_to_texts("sv")
-end, { desc = "Go to node text sv" })
-vim.keymap.set("n", "<leader>fn", require("plugins.crawlerr").quick_scope, { desc = "RR - QuickScope" })
