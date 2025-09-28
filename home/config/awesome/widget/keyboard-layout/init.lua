@@ -38,8 +38,6 @@ local keyboard_button = wibox.widget({
 	{
 		keyboard_widget,
 		widget = wibox.container.margin,
-		left = dpi(4),
-		right = dpi(2),
 	},
 	widget = clickable_container,
 })

@@ -6,28 +6,13 @@ local clickable_container = require("widget.clickable-container")
 local gears = require("gears")
 
 local function init_tag_list(s, custom_style)
-	local bg_opacity = custom_style.bg_opacity or beautiful.bg_opacity
 	local style = {
 		shape = gears.shape.circle,
 		fg_focus = beautiful.fg_focus,
-		bg_focus = beautiful.green .. bg_opacity,
-		fg_empty = beautiful.fg_inactive,
-		bg_empty = beautiful.bg_normal .. bg_opacity,
-		fg_urgent = beautiful.bg_urgent,
-		bg_urgent = beautiful.fg_urgent .. bg_opacity,
+		fg_empty = beautiful.gray2,
+		fg_urgent = beautiful.fg_urgent,
 		fg_occupied = beautiful.fg_normal,
-		bg_occupied = beautiful.bg_normal .. bg_opacity,
 	}
-
-	local function new_tag_icon(tag)
-		local color = style.fg_empty
-		if tag.selected then
-			color = style.fg_focus
-		elseif #tag:clients() > 0 then
-			color = style.fg_occupied
-		end
-		return gears.color.recolor_image(tag.icon, color)
-	end
 
 	local taglist = awful.widget.taglist({
 		screen = s,
@@ -53,6 +38,19 @@ local function init_tag_list(s, custom_style)
 			widget = wibox.container.background,
 			-- Add support for tag colors and click to change
 			create_callback = function(self, tag, index, tags) --luacheck: no unused args
+				local function new_tag_icon(tag)
+					local color = style.fg_empty
+					-- self.visible = false
+					if tag.selected then
+						color = style.fg_focus
+						-- self.visible = true
+					elseif #tag:clients() > 0 then
+						color = style.fg_occupied
+						-- self.visible = true
+					end
+					return gears.color.recolor_image(tag.icon, color)
+				end
+
 				tag.icon = new_tag_icon(tag)
 
 				tag:connect_signal("property::selected", function(selected)
@@ -81,7 +79,6 @@ local function init_tag_list(s, custom_style)
 			end,
 			update_callback = function(self, tag, index, tags) --luacheck: no unused args
 				self:get_children_by_id("icon_role")[1].image = "/home/oskar/awesome/theme/icons/code.svg"
-				-- self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
 			end,
 		},
 	})

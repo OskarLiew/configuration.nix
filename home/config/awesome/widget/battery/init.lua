@@ -45,8 +45,6 @@ local return_button = function()
 		{
 			battery_widget,
 			widget = wibox.container.margin,
-			left = dpi(4),
-			right = dpi(4),
 		},
 		widget = clickable_container,
 	})

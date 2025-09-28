@@ -35,6 +35,8 @@ ruled.client.connect_signal("request::rules", function()
 			class = {
 				"Arandr",
 				"Blueman-manager",
+				".blueman-manager-wrapped",
+				".arandr-wrapped",
 				"pavucontrol",
 				"Gpick",
 				"Kruler",
@@ -43,7 +45,9 @@ ruled.client.connect_signal("request::rules", function()
 				"Wpa_gui",
 				"veromix",
 				"xtightvncviewer",
-                "net-runelite-client-RuneLite"
+				"SimpleScreenRecorder",
+				"Nautilus",
+				"BoltLauncher",
 			},
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
 			-- and the name shown there might not match defined rules here.
@@ -55,42 +59,26 @@ ruled.client.connect_signal("request::rules", function()
 				"ConfigManager", -- Thunderbird's about:config.
 				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
-		},
-		properties = {
-			floating = true,
-			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
-		},
-	})
-
-	-- Clients that should be floating in a small window
-	ruled.client.append_rule({
-		id = "floating-small",
-		rule_every = {
-			class = {
-				"Nautilus",
-				".blueman-manager-wrapped",
-				"Pavucontrol",
-				".arandr-wrapped",
-				"SimpleScreenRecorder",
-				"jagexlauncher.exe",
+			type = {
+				"dialog", -- Commonly used for popups
+				"popup_menu",
+				"toolbar",
+				"notification",
 			},
 		},
 		properties = {
 			floating = true,
-			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
-			width = 1200,
-			height = 700,
 		},
 	})
 
 	-- Clients that should never have titlebar
 	ruled.client.append_rule({
 		id = "no-titlebar",
-		rule_every = {
-			class = {
-				"Nautilus",
-                "net-runelite-client-RuneLite"
+		rule_any = {
+			type = {
+				"splash",
 			},
+			requests_no_titlebar = true,
 		},
 		properties = {
 			titlebar = false,

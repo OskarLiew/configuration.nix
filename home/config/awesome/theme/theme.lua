@@ -189,6 +189,7 @@ theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
 
 -- Systray
 theme.systray_icon_spacing = dpi(6)
+theme.bg_systray = theme.gray1
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)

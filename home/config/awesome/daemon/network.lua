@@ -10,12 +10,14 @@ local function start_network_daemon(wireless_interface)
 	local script = "iw dev " .. wireless_interface .. " link"
 
 	local connected = false
+	local connected_prev = nil
+
 	local show_disconnected_notification = function()
 		naughty.notification({
 			icon = icons.wifi_disconnected,
 			app_name = "System",
 			title = "Disconnection",
-			message = "You have been disconnected from a network",
+			message = "You have disconnected from a network",
 			urgency = "normal",
 		})
 	end
@@ -25,7 +27,7 @@ local function start_network_daemon(wireless_interface)
 			icon = icons.wifi_high,
 			app_name = "System",
 			title = "Connection",
-			message = "You have been connected to a network",
+			message = "You have connected to a network",
 			urgency = "normal",
 		})
 	end
@@ -37,27 +39,30 @@ local function start_network_daemon(wireless_interface)
 			local numer, denom = stdout:match("([^,]+)/([^,]+)")
 			local network_strength = tonumber(numer) / tonumber(denom)
 
-			awful.emit_signal("daemon::network", network_strength)
+			awesome.emit_signal("daemon::network", network_strength)
 		end)
 	end
 
 	local refresh_rate = 5 -- In seconds
 	awful.widget.watch(script, refresh_rate, function(widget, stdout)
 		-- Disconnected
-		local connected_tmp = false
 		if string.find(stdout, "^Connected") then
-			connected_tmp = true
+			connected = true
 			get_network_signal_and_emit()
+		else
+			connected = false
 		end
 
-		if connected and not connected_tmp then
-			show_disconnected_notification()
-			awful.emit_signal("daemon::network-connected")
-		elseif not connected and connected_tmp then
-			show_connected_notification()
-			awful.emit_signal("daemon::network-disconnected")
+		if connected_prev ~= nil then
+			if connected and not connected_prev then
+				show_connected_notification()
+				awesome.emit_signal("daemon::network-connected")
+			elseif not connected and connected_prev then
+				show_disconnected_notification()
+				awesome.emit_signal("daemon::network-disconnected")
+			end
 		end
-		connected = connected_tmp
+		connected_prev = connected
 	end)
 end
 
