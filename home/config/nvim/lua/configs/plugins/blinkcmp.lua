@@ -88,6 +88,15 @@ return {
 				},
 			},
 			signature = { enabled = true }, -- Experimental feature
+			sources = {
+				default = { "lsp", "buffer", "snippets", "path", "rrnode" },
+				providers = {
+					rrnode = {
+						name = "rrnode",
+						module = "configs.blinkcmp.rrsource",
+					},
+				},
+			},
 		},
 		opts_extend = { "sources.default" },
 	},

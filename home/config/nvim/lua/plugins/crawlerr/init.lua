@@ -143,4 +143,5 @@ function M.quick_scope(opts)
 end
 
 M.setup = function() end
+
 return M
