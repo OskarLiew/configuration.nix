@@ -142,16 +142,5 @@ function M.quick_scope(opts)
 		:find()
 end
 
-M.setup = function()
-	-- Mappings
-	vim.keymap.set("n", "<leader>jn", M.jump_to_node, { desc = "RR jump to node" })
-	vim.keymap.set("n", "<leader>je", function()
-		M.jump_to_texts("en")
-	end, { desc = "Go to node text en" })
-	vim.keymap.set("n", "<leader>js", function()
-		M.jump_to_texts("sv")
-	end, { desc = "Go to node text sv" })
-	vim.keymap.set("n", "<leader>fn", M.quick_scope, { desc = "RR - QuickScope" })
-end
-
+M.setup = function() end
 return M
