@@ -25,8 +25,16 @@
     enable = true;
     userDirs = with config.home; {
       enable = true;
-      extraConfig = { XDG_DEV_DIR = "${homeDirectory}/Development"; };
+      extraConfig = { XDG_DEV_DIR = "${homeDirectory}/dev"; };
       createDirectories = true;
+      desktop = null;
+      documents = "${homeDirectory}/docs";
+      download = "${homeDirectory}/tmp";
+      music = "${homeDirectory}/music";
+      pictures = "${homeDirectory}/pics";
+      publicShare = null;
+      templates = null;
+      videos = "${homeDirectory}/vids";
     };
     configFile = {
       "aliases".source = ./config/aliases;
