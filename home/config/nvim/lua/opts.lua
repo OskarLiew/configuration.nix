@@ -69,3 +69,15 @@ opt.incsearch = true
 
 -- Snippets
 g.vscode_snippets_path = os.getenv("XDG_CONFIG_HOME") .. "/snippets"
+
+-- Define diagnostic signs
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
+})
