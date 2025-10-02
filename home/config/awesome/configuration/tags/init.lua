@@ -77,6 +77,21 @@ tag.connect_signal("request::default_layouts", function()
 	})
 end)
 
+local function restore_windows_to_desired_screen(new_screen)
+	for _, c in ipairs(client.get()) do
+		if not (c.desired_screen == nil) then
+			local tag_name = c.first_tag.name
+			c:move_to_screen(c.desired_screen)
+			local t = awful.tag.find_by_name(c.screen, tag_name)
+			if not (tag == nil) then
+				c:move_to_tag(t)
+			end
+			-- now clear the "desired_screen"
+			c.desired_screen = nil
+		end
+	end
+end
+
 -- Create tags for each screen
 screen.connect_signal("request::desktop_decoration", function(s)
 	for i, tag in pairs(tags) do
@@ -92,6 +107,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			index = i,
 		})
 	end
+	restore_windows_to_desired_screen(s)
 end)
 
 local update_gap_and_shape = function(t)
@@ -139,6 +155,38 @@ awful.tag.attached_connect_signal(nil, "property::selected", function()
 		if c.first_tag == mouse.screen.selected_tag then
 			c:emit_signal("request::activate")
 			c:raise()
+		end
+	end
+end)
+
+-- Handle screen being removed.
+-- We'll look for same tag names and move clients there, but preserve
+-- the "desired_screen" so we can move them back when it's connected.
+tag.connect_signal("request::screen", function(t)
+	local fallback_tag = nil
+
+	-- find tag with same name on any other screen
+	for other_screen in screen do
+		if other_screen ~= t.screen then
+			fallback_tag = awful.tag.find_by_name(other_screen, t.name)
+			if fallback_tag ~= nil then
+				break
+			end
+		end
+	end
+
+	-- no tag with same name exists, use fallback
+	if fallback_tag == nil then
+		fallback_tag = awful.tag.find_fallback()
+	end
+
+	if not (fallback_tag == nil) then
+		local clients = t:clients()
+		for _, c in ipairs(clients) do
+			c:move_to_tag(fallback_tag)
+			-- preserve info about which screen the window was originally on, so
+			-- we can restore it if the screen is reconnected.
+			c.desired_screen = t.screen.index
 		end
 	end
 end)

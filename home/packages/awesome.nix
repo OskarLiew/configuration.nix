@@ -38,9 +38,4 @@ in
 
   services.betterlockscreen.enable = true;
 
-  programs.autorandr = {
-    hooks.postswitch = {
-      "reload-awesome" = ''echo 'awesome.restart()' | awesome-client'';
-    };
-  };
 }

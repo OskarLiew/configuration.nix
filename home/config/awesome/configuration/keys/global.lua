@@ -94,9 +94,6 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Shift" }, "space", function()
 		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
-	awful.key({ modkey }, "z", function()
-		awesome.emit_signal("top_panel::toggle")
-	end, { description = "toggle top panel", group = "layout" }),
 })
 
 awful.keyboard.append_global_keybindings({

@@ -1,13 +1,11 @@
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
-local gears = require("gears")
 local awful = require("awful")
 
 local config = require("configuration.widget")
 
 -- Settings
-local offsetx = 2 * beautiful.useless_gap
 local panel_height = dpi(30)
 local widget_spacing = 0.1 * panel_height
 local widget_margins = 0.1 * panel_height
@@ -24,16 +22,13 @@ local top_panel = function(s)
 	local systray = require("widget.systray")(panel_height - 2 * icon_margins - 2 * widget_margins)
 
 	-- Create panel
-	local panel = wibox({
+	local panel = awful.wibar({
 		visible = true,
 		ontop = false,
+		position = "top",
 		screen = s,
 		type = "dock",
-		height = panel_height,
-		width = s.geometry.width,
-		x = s.geometry.x,
-		y = s.geometry.y,
-		stretch = false,
+		stretch = true,
 		bg = beautiful.bg_dim .. beautiful.bg_opacity2,
 	})
 
@@ -129,21 +124,6 @@ local top_panel = function(s)
 			end
 		end
 	end
-
-	tag.connect_signal("property::layout", set_panel_visible)
-	tag.connect_signal("property::selected", function(t)
-		if t.selected then
-			set_panel_visible(t)
-		end
-	end)
-	awesome.connect_signal("top_panel::toggle", function()
-		-- Don't toggle in fullscreen
-		if panel.visible then
-			panel.visible = false
-		else
-			set_panel_visible(awful.tag.selected())
-		end
-	end)
 
 	return panel
 end
