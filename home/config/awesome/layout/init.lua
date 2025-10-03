@@ -5,10 +5,27 @@ require("layout.titlebar")
 require("layout.mymainmenu")
 
 local top_panel = require("layout.top-panel")
+local info_center = require("layout.info-center")
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.top_panel = top_panel(s)
-	s.info_center = require("layout.info-center")(s)
+	s.info_center = info_center(s)
+	s.info_center:move_to_screen(s)
+end)
+
+screen.connect_signal("removed", function(s)
+	if s.top_panel then
+		s.top_panel:remove()
+		s.top_panel = nil
+	end
+	if s.info_center then
+		s.info_center.visible = false
+		s.info_center = nil
+	end
+end)
+
+screen.connect_signal("property::geometry", function(s, geometry)
+	s.info_center:move_to_screen(s)
 end)
 
 -- {{{ Rules

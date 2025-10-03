@@ -13,13 +13,13 @@ local icon_margins = 0.1 * panel_height
 
 local top_panel = function(s)
 	-- Initialize widgets
-	local textclock = wibox.widget.textclock("%H:%M")
-	local battery = require("widget.battery")()
-	local volume = require("widget.volume")()
-	local mic = require("widget.microphone")()
-	local keyboardlayout = require("widget.keyboard-layout")
-	local network = require("widget.network")(config.network.wireless_interface)
-	local systray = require("widget.systray")(panel_height - 2 * icon_margins - 2 * widget_margins)
+	s.textclock = wibox.widget.textclock("%H:%M")
+	s.battery = require("widget.battery")()
+	s.volume = require("widget.volume")()
+	s.mic = require("widget.microphone")()
+	s.keyboardlayout = require("widget.keyboard-layout")
+	s.network = require("widget.network")(config.network.wireless_interface)
+	s.systray = require("widget.systray")(panel_height - 2 * icon_margins - 2 * widget_margins)
 
 	-- Create panel
 	local panel = awful.wibar({
@@ -58,15 +58,15 @@ local top_panel = function(s)
 	})
 
 	local right_widgets = {
-		systray,
-		network,
-		volume,
-		mic,
-		battery,
-		keyboardlayout,
+		s.systray,
+		s.network,
+		s.volume,
+		s.mic,
+		s.battery,
+		s.keyboardlayout,
 		s.layoutbox,
 		wibox.widget({
-			textclock,
+			s.textclock,
 			widget = wibox.container.margin,
 			left = 2 * widget_spacing,
 		}),
@@ -113,17 +113,6 @@ local top_panel = function(s)
 		},
 		widget = wibox.container.background,
 	})
-
-	local function set_panel_visible(t)
-		local clients = t:clients()
-		for _, c in pairs(clients) do
-			if c.max or c.first_tag.layout.name == "max" then
-				panel.visible = false
-			else
-				panel.visible = true
-			end
-		end
-	end
 
 	return panel
 end

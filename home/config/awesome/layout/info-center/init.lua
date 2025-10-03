@@ -50,6 +50,7 @@ local function init_info_panel(s)
 		type = "dock", -- Deactivates opacity for bg
 		height = panel_height,
 		width = panel_width,
+		screen = s,
 		x = s.geometry.x + (s.geometry.width - panel_width) / 2,
 		y = s.geometry.y + (s.geometry.height - panel_height) / 2,
 		stretch = false,
@@ -156,6 +157,14 @@ local function init_info_panel(s)
 		if self.visible then
 			awesome.emit_signal("notif-center::opened")
 		end
+	end
+
+	panel.move_to_screen = function(self, s)
+		self:geometry({
+			x = s.geometry.x + (s.geometry.width - panel_width) / 2,
+			y = s.geometry.y + (s.geometry.height - panel_height) / 2,
+		})
+		self.screen = s
 	end
 
 	return panel
