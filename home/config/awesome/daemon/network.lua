@@ -39,7 +39,7 @@ local function start_network_daemon(wireless_interface)
 			local numer, denom = stdout:match("([^,]+)/([^,]+)")
 			local network_strength = tonumber(numer) / tonumber(denom)
 
-			awesome.emit_signal("daemon::network", network_strength)
+			awesome.emit_signal("daemon::network-strength", network_strength)
 		end)
 	end
 
