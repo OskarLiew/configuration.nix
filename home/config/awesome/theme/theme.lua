@@ -12,6 +12,7 @@ local gfs = require("gears.filesystem")
 
 local themes_path = gfs.get_themes_dir()
 local icons = require("theme.icons")
+local awful = require("awful")
 
 local theme = {}
 
@@ -69,11 +70,22 @@ theme.fg_focus = theme.bg_green
 theme.fg_urgent = theme.bg_red
 theme.fg_inactive = theme.gray0
 
+-- Client borders
 theme.useless_gap = dpi(6)
-theme.border_width = dpi(0)
-theme.border_color_normal = theme.bg_dim
-theme.border_color_active = theme.bg_blue
+theme.border_width = dpi(2)
+theme.border_color_normal = theme.bg_normal
+theme.border_color_active = theme.gray0
 theme.border_color_marked = theme.bg_visual
+screen.connect_signal("arrange", function(s)
+	local only_one = #s.clients == 1
+	for _, c in pairs(s.clients) do
+		if only_one then
+			c.border_width = 0
+		else
+			c.border_width = theme.border_width
+		end
+	end
+end)
 
 theme.edge_radius = dpi(18)
 
