@@ -1,4 +1,4 @@
-{ config, pkgs, upkgs, ... }: {
+{ config, pkgs, upkgs, lib, ... }: {
   imports = [ ./gaming.nix ../programs/syncthing.nix ../programs/vscode.nix ../programs/firefox.nix ../theme ];
 
   home.packages = with pkgs; [
@@ -47,6 +47,7 @@
       settings = {
         confirm_os_window_close = 2;
         enable_audio_bell = false;
+        background_opacity = lib.mkForce 0.9;
       };
     };
     autorandr.enable = true;
