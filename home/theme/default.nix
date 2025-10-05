@@ -1,6 +1,6 @@
 { pkgs, ... }:
-let 
-    colorscheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+let
+  colorscheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
 in
 {
   gtk = {

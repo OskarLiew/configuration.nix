@@ -8,7 +8,7 @@ with inputs; {
   "oskar" = home-manager.lib.homeManagerConfiguration {
     inherit pkgs extraSpecialArgs;
     modules = [
-       inputs.stylix.homeModules.stylix
+      inputs.stylix.homeModules.stylix
       ./home.nix
       ./modules/desktop.nix
     ];

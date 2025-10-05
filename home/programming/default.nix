@@ -14,7 +14,7 @@
     biome
     # - lua
     lua
-    upkgs.stylua  # Formatting added 2025-09-14
+    upkgs.stylua # Formatting added 2025-09-14
     luarocks
     lua-language-server
     # - Go

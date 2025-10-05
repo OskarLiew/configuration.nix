@@ -9,6 +9,7 @@
     ./programs/zsh.nix
     ./programming
     ./theme/shell.nix
+    ./modules/workmode.nix
   ];
 
 
