@@ -27,7 +27,7 @@
     psmisc
 
     # Apps
-    chromium
+    firefox
 
     # Languages
     python311

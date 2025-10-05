@@ -23,14 +23,14 @@ configuration {
 
 * {
     /* Resolution : 1920x1080 */
-    mainbox-spacing:             75px;
-    mainbox-margin:              75px;
-    message-margin:              0px 175px;
+    mainbox-spacing:             50px;
+    mainbox-margin:              50px;
+    message-margin:              0px 10px;
     message-padding:             18px;
     message-border-radius:       18px;
-    listview-spacing:            45px;
-    element-padding:             35px 0px;
-    element-border-radius:       40px;
+    listview-spacing:            30px;
+    element-padding:             35px 10px;
+    element-border-radius:       18px;
 
     background-window:           @background;
     background-normal:           @background-alt;
@@ -44,9 +44,9 @@ window {
     transparency:                "real";
     location:                    center;
     anchor:                      center;
-    width:                       1500px;
+    width:                       1250px;
     fullscreen:                  false;
-    border-radius:               80px;
+    border-radius:               18px;
     cursor:                      "default";
     background-color:            var(background-window);
 }

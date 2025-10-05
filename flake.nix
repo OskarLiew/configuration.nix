@@ -50,6 +50,13 @@
           ];
           specialArgs = { inherit upkgs inputs; };
         };
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
+          modules = [
+            ./machines/desktop
+          ];
+          specialArgs = { inherit upkgs inputs; };
+        };
       };
       homeConfigurations = import ./home { inherit pkgs upkgs inputs; };
     };
