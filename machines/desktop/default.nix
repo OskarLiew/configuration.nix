@@ -4,10 +4,6 @@
   imports = [
     # Hardware
     ./hardware-configuration.nix
-    # inputs.nixos-hardware.nixosModules.common-cpu-intel
-    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    # inputs.nixos-hardware.nixosModules.common-pc-laptop
-    # inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
     # Modules
     ../../modules
@@ -17,7 +13,7 @@
     ../../users/oskar.nix
   ];
 
-  networking.hostName = "hopfield";
+  networking.hostName = "desktop";
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
