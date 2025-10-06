@@ -41,6 +41,7 @@ ruled.client.connect_signal("request::rules", function()
 			screen = awful.screen.preferred,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
 			titlebar = true,
+			size_hints_honor = false,
 		},
 	})
 
