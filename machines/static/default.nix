@@ -13,7 +13,7 @@
     ../../users/oskar.nix
   ];
 
-  networking.hostName = "desktop";
+  networking.hostName = "static";
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -37,6 +37,18 @@
   hardware.nvidia-container-toolkit.enable = true;
   virtualisation.docker.daemon.settings.features.cdi = true;
   virtualisation.docker.enableNvidia = true;
+
+  # Disks
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/d10bfc31-1841-43e8-a901-13165a7794c7";
+    fsType = "ext4";
+  };
+  fileSystems."/mnt/media" = {
+    device = "/dev/disk/by-uuid/514bc2bb-9ceb-4207-a0db-c75d329943d4";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" "users" "exec" ];
+  };
+
 
   console.keyMap = "sv-latin1";
 }

@@ -5,6 +5,6 @@ return {
 	},
 	weather = {
 		location = "Gothenburg,se",
-		api_key_path = "/home/oskar/dev/secrets/weather-api-token",
+		api_key_path = "/home/oskar/Develop/secrets/weather-api-token",
 	},
 }

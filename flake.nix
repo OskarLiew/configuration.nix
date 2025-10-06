@@ -43,17 +43,10 @@
           ];
           specialArgs = { inherit upkgs inputs; };
         };
-        hopfield = nixpkgs.lib.nixosSystem {
+        static = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
           modules = [
-            ./machines/hopfield
-          ];
-          specialArgs = { inherit upkgs inputs; };
-        };
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit pkgs system;
-          modules = [
-            ./machines/desktop
+            ./machines/static
           ];
           specialArgs = { inherit upkgs inputs; };
         };
