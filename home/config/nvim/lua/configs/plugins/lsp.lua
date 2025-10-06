@@ -92,11 +92,10 @@ return {
 			end, { desc = "List workspace folders" })
 		end,
 		config = function()
-			vim.lsp.enable(lsps)
-
 			for lsp, opts in pairs(lsp_opts) do
 				vim.lsp.config(lsp, opts)
 			end
+			vim.lsp.enable(lsps)
 
 			-- Enable auto formatting
 			vim.api.nvim_create_autocmd("LspAttach", {
