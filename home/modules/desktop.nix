@@ -51,6 +51,11 @@
       };
     };
     autorandr.enable = true;
+
+    thunderbird = {
+      enable = true;
+      profiles.email.isDefault = true;
+    };
   };
 
   services = { autorandr.enable = true; };
