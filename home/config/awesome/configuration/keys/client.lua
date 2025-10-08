@@ -20,7 +20,44 @@ client.connect_signal("request::default_keybindings", function()
 			c:swap(awful.client.getmaster())
 		end, { description = "move to master", group = "client" }),
 		awful.key({ modkey }, "o", function(c)
-			c:move_to_screen()
+			-- Move to next screen but keep it in the same tag
+			-- Also update the old screen to switch to a tag with clients
+			awful.screen.focus_relative(1)
+			local old_screen = c.screen
+			local new_screen = awful.screen.focused()
+			local tags = c:tags()
+			local new_tags = {}
+			for index, t in ipairs(tags) do
+				new_tags[index] = awful.tag.find_by_name(new_screen, t.name)
+			end
+			c:move_to_screen(new_screen)
+			c:tags(new_tags)
+
+			local any_selected = false
+			for _, t in ipairs(tags) do
+				if #t:clients() == 0 then
+					t.selected = false
+				else
+					any_selected = true
+				end
+			end
+
+			if not any_selected then
+				local any_clients = false
+				for _, t in ipairs(old_screen.tags) do
+					if #t:clients() > 0 then
+						t.selected = true
+						any_clients = true
+						break
+					else
+						t.selected = false
+					end
+				end
+				if not any_clients then
+					old_screen.tags[1].selected = true
+				end
+			end
+			c:jump_to()
 		end, { description = "move to screen", group = "client" }),
 		awful.key({ modkey }, "t", function(c)
 			c.ontop = not c.ontop

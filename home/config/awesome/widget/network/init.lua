@@ -40,7 +40,7 @@ local function return_button(wireless_interface)
 
 	local network_tooltip = awful.tooltip({
 		objects = { network_button },
-		text = "None",
+		text = ":)",
 		mode = "outside",
 		align = "right",
 		margin_leftright = dpi(8),
@@ -48,39 +48,38 @@ local function return_button(wireless_interface)
 		preferred_positions = { "right", "left", "top", "bottom" },
 	})
 
-	local get_network_info = function()
-		awful.spawn.easy_async_with_shell("iwconfig " .. wireless_interface, function(stdout)
-			if stdout == nil or stdout == "" then
-				network_tooltip:set_text("iwconfig error with interface " .. wireless_interface)
-				return
-			end
-
-			-- Remove new line from the last line
-			network_tooltip:set_text(stdout:sub(1, -3))
-		end)
-	end
-	get_network_info()
-
-	network_widget:connect_signal("mouse::enter", function()
-		get_network_info()
-	end)
-
-	local function update_network_strength(network_strength)
+	local function update_network_strength(interface, network_strength)
 		-- Stop if null
-		if not network_strength then
+		local icon = icons.wifi
+		network_widget.spacing = dpi(5)
+
+		if not interface then
 			return
 		end
 
-		network_widget.spacing = dpi(5)
+		network_tooltip:set_text("Connected to " .. interface)
+		if interface:match("eth") then
+			icon = icons.ethernet_on
+		elseif interface:match("wlan") and network_strength ~= nil then
+			if network_strength < 0.33 then
+				icon = icons.wifi_low
+			elseif network_strength < 0.67 then
+				icon = icons.wifi_mid
+			else
+				icon = icons.wifi_high
+			end
 
-		local icon = icons.wifi
-		if network_strength < 0.33 then
-			icon = icons.wifi_low
-		elseif network_strength < 0.67 then
-			icon = icons.wifi_mid
-		else
-			icon = icons.wifi_high
+			awful.spawn.easy_async_with_shell("iwconfig " .. interface, function(stdout)
+				if stdout == nil or stdout == "" then
+					network_tooltip:set_text("iwconfig error with interface " .. interface)
+					return
+				end
+
+				-- Remove new line from the last line
+				network_tooltip:set_text(stdout:sub(1, -3))
+			end)
 		end
+
 		network_imagebox.icon:set_image(gears.surface.load_uncached(icon))
 	end
 

@@ -3,6 +3,7 @@ local dir = os.getenv("HOME") .. "/.config/awesome/theme/icons/"
 
 local icons = {
 
+	-- Icons from: https://iconpark.oceanengine.com/official
 	-- Taglist
 	taglist = {
 		terminal = dir .. "taglist/terminal.svg",

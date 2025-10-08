@@ -67,8 +67,10 @@ local return_button = function()
 		awful.spawn.easy_async_with_shell("upower -i $(upower -e | grep BAT)", function(stdout)
 			if stdout == nil or stdout == "" then
 				battery_tooltip:set_text("No battery detected!")
+				battery_button.visible = false
 				return
 			end
+			battery_button.visible = true
 
 			-- Remove new line from the last line
 			battery_tooltip:set_text(stdout:sub(1, -2))
@@ -88,7 +90,7 @@ local return_button = function()
 			icon = icons.alert,
 			app_name = "System",
 			title = "Battery is dying!",
-			message = "Battery is about to run out.\n Plug in the machine!",
+			message = "Battery is about to run out.\nPlug in the machine!",
 			urgency = "critical",
 		})
 	end

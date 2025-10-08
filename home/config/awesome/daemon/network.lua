@@ -1,18 +1,22 @@
 local awful = require("awful")
 local naughty = require("naughty")
-
-local config = require("configuration.widget")
-
 local beautiful = require("beautiful")
 local icons = beautiful.icons.network
 
-local function start_network_daemon(wireless_interface)
-	local script = "iw dev " .. wireless_interface .. " link"
+-- Helper: detect the active network interface (e.g., wlan0, eth0)
+local function get_active_interface(callback)
+	local cmd = "ip route get 8.8.8.8 | awk '{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1)}'"
+	awful.spawn.easy_async_with_shell(cmd, function(stdout)
+		local iface = stdout:match("(%S+)")
+		callback(iface or "unknown")
+	end)
+end
 
-	local connected = false
+local function start_network_daemon()
+	local refresh_rate = 5 -- seconds
 	local connected_prev = nil
 
-	local show_disconnected_notification = function()
+	local function show_disconnected_notification()
 		naughty.notification({
 			icon = icons.wifi_disconnected,
 			app_name = "System",
@@ -22,7 +26,7 @@ local function start_network_daemon(wireless_interface)
 		})
 	end
 
-	local show_connected_notification = function()
+	local function show_connected_notification()
 		naughty.notification({
 			icon = icons.wifi_high,
 			app_name = "System",
@@ -32,25 +36,34 @@ local function start_network_daemon(wireless_interface)
 		})
 	end
 
+	-- Get signal strength and emit signal
 	local function get_network_signal_and_emit()
-		local cmd = "iwconfig " .. wireless_interface .. [[ | awk '/Link Quality=/ {print $2}' | tr -d 'Quality=']]
-		awful.spawn.easy_async_with_shell(cmd, function(stdout)
-			stdout = stdout:gsub("\n", "")
-			local numer, denom = stdout:match("([^,]+)/([^,]+)")
-			local network_strength = tonumber(numer) / tonumber(denom)
+		get_active_interface(function(interface)
+			if not interface or interface == "unknown" then
+				awesome.emit_signal("daemon::network-strength", nil, "unknown")
+				return
+			end
 
-			awesome.emit_signal("daemon::network-strength", network_strength)
+			-- Check if it's a wireless interface
+			local cmd = "iwconfig "
+				.. interface
+				.. [[ 2>/dev/null | awk '/Link Quality=/ {print $2}' | tr -d 'Quality=']]
+			awful.spawn.easy_async_with_shell(cmd, function(stdout)
+				local numer, denom = stdout:match("([^/]+)/([^ ]+)")
+				local network_strength = nil
+				if numer and denom then
+					network_strength = tonumber(numer) / tonumber(denom)
+				end
+				awesome.emit_signal("daemon::network-strength", interface, network_strength)
+			end)
 		end)
 	end
 
-	local refresh_rate = 5 -- In seconds
-	awful.widget.watch(script, refresh_rate, function(widget, stdout)
-		-- Disconnected
-		if string.find(stdout, "^Connected") then
-			connected = true
+	-- Watch connectivity status periodically
+	awful.widget.watch("ip route get 8.8.8.8", refresh_rate, function(widget, stdout)
+		local connected = stdout and stdout ~= ""
+		if connected then
 			get_network_signal_and_emit()
-		else
-			connected = false
 		end
 
 		if connected_prev ~= nil then
@@ -62,8 +75,9 @@ local function start_network_daemon(wireless_interface)
 				awesome.emit_signal("daemon::network-disconnected")
 			end
 		end
+
 		connected_prev = connected
 	end)
 end
 
-return start_network_daemon(config.network.wireless_interface)
+return start_network_daemon()
