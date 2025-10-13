@@ -9,6 +9,7 @@
     ../../modules
     ../../modules/gaming.nix
     ../../modules/jellyfin.nix
+    ../../modules/audiobookshelf.nix
 
     # Users
     ../../users/oskar.nix
