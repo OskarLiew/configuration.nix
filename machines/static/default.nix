@@ -8,6 +8,7 @@
     # Modules
     ../../modules
     ../../modules/gaming.nix
+    ../../modules/jellyfin.nix
 
     # Users
     ../../users/oskar.nix
