@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     # - Python
     mypy
-    poetry
     upkgs.uv
     ruff
     upkgs.pyright
@@ -44,12 +43,17 @@
 
   xdg = {
     configFile = {
-      "pypoetry".source = ../config/pypoetry;
       "snippets".source = ../config/snippets;
     };
     dataFile = {
       "awesome-code-doc".source = inputs.awesomewm-doc;
     };
+  };
+
+  # Add templates
+  home.file."Templates/shells" = {
+    source = ./shells;
+    recursive = true;
   };
 
   programs = {

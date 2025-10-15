@@ -9,9 +9,6 @@ return {
 				keymaps = {
 					["g?"] = { "actions.show_help", mode = "n" },
 					["<CR>"] = "actions.select",
-					["<C-v>"] = { "actions.select", opts = { vertical = true } },
-					["<C-s>"] = { "actions.select", opts = { horizontal = true } },
-					["<C-t>"] = { "actions.select", opts = { tab = true } },
 					["="] = "actions.preview",
 					["<C-c>"] = { "actions.close", mode = "n" },
 					["<leader>R"] = "actions.refresh",

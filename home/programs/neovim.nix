@@ -9,7 +9,6 @@
   };
 
   xdg.configFile = {
-    "pypoetry".source = ../config/pypoetry;
     "nvim".source = ../config/nvim;
   };
 }

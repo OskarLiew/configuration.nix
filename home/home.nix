@@ -30,7 +30,6 @@
       createDirectories = true;
       desktop = null;
       publicShare = null;
-      templates = null;
     };
     configFile = {
       "aliases".source = ./config/aliases;
