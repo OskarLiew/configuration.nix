@@ -23,7 +23,7 @@ pkgs.stdenv.mkDerivation {
     cd $out/
     rm Background.jpg
     cp -r ${image} $out/Background.jpg
-    echo 'PanelColor="#2f393d"' >> $out/theme.conf
+    echo 'PanelColor="#2E383C"' >> $out/theme.conf
     echo 'ThemeColor="#D3C6AA"' >> $out/theme.conf
     echo 'AccentColor="#A7C080"' >> $out/theme.conf
   '';
