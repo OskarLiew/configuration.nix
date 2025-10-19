@@ -10,6 +10,7 @@
     ./programming
     ./theme/shell.nix
     ./modules/workmode.nix
+    ./modules/scripts.nix
   ];
 
 
