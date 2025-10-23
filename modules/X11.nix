@@ -41,4 +41,8 @@
   programs.i3lock.enable = true;
 
   hardware.acpilight.enable = true;
+
+  # Tablet driver
+  hardware.opentabletdriver.enable = true;
+
 }
