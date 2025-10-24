@@ -7,9 +7,9 @@
 
     # Modules
     ../../modules
-    ../../modules/gaming.nix
-    ../../modules/jellyfin.nix
-    ../../modules/audiobookshelf.nix
+    ../../modules/extra/gaming.nix
+    ../../modules/extra/jellyfin.nix
+    ../../modules/extra/audiobookshelf.nix
 
     # Users
     ../../users/oskar.nix
@@ -51,6 +51,4 @@
     options = [ "defaults" "nofail" "users" "exec" ];
   };
 
-
-  console.keyMap = "sv-latin1";
 }

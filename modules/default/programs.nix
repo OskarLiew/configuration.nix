@@ -1,0 +1,64 @@
+{ pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+    # Hardware
+    # pulseaudio
+    acpilight
+    procps
+    wirelesstools
+    iw
+    lsof
+
+    # Productivity
+    tmux
+
+    # Tools
+    wget
+    unzip
+    playerctl
+    htop
+    openssh
+    parallel
+    pavucontrol
+    alsa-utils
+    psmisc
+
+    # Apps
+    firefox
+
+    # Languages
+    python311
+    python311Packages.pip
+    lua
+    gcc
+    gnumake
+    cmake
+  ];
+
+  programs = {
+    zsh = {
+      enable = true;
+      enableCompletion = false;
+      histSize = 10000;
+      histFile = "$XDG_DATA_HOME/zsh/history";
+      setOptions = [ ];
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+    };
+    git.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+      enableSSHSupport = true;
+    };
+  };
+
+  services = {
+    gvfs.enable = true;
+  };
+
+}

@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ acpi ];
+  environment.systemPackages = with pkgs; [
+    acpi 
+    acpilight
+  ];
 
   services = {
     thermald.enable = true;

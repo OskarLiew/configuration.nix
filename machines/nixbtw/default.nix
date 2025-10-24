@@ -8,13 +8,11 @@
 
     # Modules
     ../../modules
-    ../../modules/gaming.nix
+    ../../modules/extra/gaming.nix
 
     # Users
     ../../users/oskar.nix
   ];
 
   networking.hostName = "nixbtw";
-
-  console.keyMap = "sv-latin1";
 }

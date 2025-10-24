@@ -1,16 +1,19 @@
 {
   imports = [
-    ./bluetooth.nix
-    ./docker.nix
-    ./environment.nix
-    ./fonts.nix
-    ./localization.nix
-    ./networking.nix
-    ./powermanagement.nix
-    ./programs.nix
-    ./sound.nix
-    ./usb.nix
-    ./udev.nix
+    ./default/bluetooth.nix
+    ./default/display-manager.nix
+    ./default/docker.nix
+    ./default/environment.nix
+    ./default/fonts.nix
+    ./default/hardware.nix
+    ./default/input-devices.nix
+    ./default/localization.nix
+    ./default/networking.nix
+    ./default/powermanagement.nix
+    ./default/programs.nix
+    ./default/sound.nix
+    ./default/usb.nix
+    ./default/udev.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
