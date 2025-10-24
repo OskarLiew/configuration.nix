@@ -24,6 +24,3 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'bat -n --color=always {}'"
 export FZF_ALT_C_COMMAND="fd --type d . $HOME"
 export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'tree -C {} | head -n 10'"
 
-# Ranger
-export RANGER_LOAD_DEFAULT_RC=false
-

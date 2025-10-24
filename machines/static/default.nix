@@ -10,6 +10,7 @@
     ../../modules/extra/gaming.nix
     ../../modules/extra/jellyfin.nix
     ../../modules/extra/audiobookshelf.nix
+    ../../modules/extra/programs.nix
 
     # Users
     ../../users/oskar.nix
@@ -30,15 +31,8 @@
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     open = false;
-
     modesetting.enable = true;
-
   };
-
-  # Enable nvidia containers
-  hardware.nvidia-container-toolkit.enable = true;
-  virtualisation.docker.daemon.settings.features.cdi = true;
-  virtualisation.docker.enableNvidia = true;
 
   # Disks
   fileSystems."/home" = {

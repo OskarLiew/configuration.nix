@@ -9,6 +9,7 @@
     # Modules
     ../../modules
     ../../modules/extra/gaming.nix
+    ../../modules/extra/programs.nix
 
     # Users
     ../../users/oskar.nix

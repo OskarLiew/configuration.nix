@@ -1,67 +1,69 @@
-{ pkgs, ... }:
+{ pkgs, upkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    # Hardware
-    pciutils
-    pulseaudio
-    acpilight
-    procps
-    upower
-    wirelesstools
-    iw
-    lsof
-
-    # Productivity
-    tmux
-
-    # Tools
-    wget
-    unzip
-    playerctl
-    htop
-    openssh
-    parallel
-    pavucontrol
-    alsa-utils
-    psmisc
-
-    # Apps
-    firefox
-
-    # Languages
-    python311
-    python311Packages.pip
-    lua
-    gcc
-    gnumake
-    cmake
+    upkgs.obsidian # Notes
+    nautilus # File browser
+    qimgv # Lightweight image viewer
+    pinta # Light image editor
+    gimp # Heavier image editor
+    inkscape # Vector graphics editor
+    libreoffice # Office suite
+    obs-studio # Screen recorder
+    vlc # Video player
+    audacity # Audio editor
+    spotify # Spotify
+    discord # Discord
+    kitty # Terminal
+    papers # PDF viewer
   ];
 
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      # Documents
+      "application/pdf" = "papers.desktop";
+      "application/vnd.oasis.opendocument.text" = "libreoffice.desktop";
+      "application/msword" = "libreoffice.desktop";
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "libreoffice.desktop";
+      "application/vnd.ms-excel" = "libreoffice.desktop";
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "libreoffice.desktop";
+      "application/vnd.ms-powerpoint" = "libreoffice.desktop";
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = "libreoffice.desktop";
+
+      # Images
+      "image/png" = "qimgv.desktop";
+      "image/jpeg" = "qimgv.desktop";
+      "image/svg+xml" = "inkscape.desktop";
+
+      # Audio & Video
+      "audio/mpeg" = "vlc.desktop";
+      "audio/ogg" = "vlc.desktop";
+      "video/mp4" = "vlc.desktop";
+      "video/x-matroska" = "vlc.desktop";
+      "audio/wav" = "vlc.desktop";
+
+      # Text
+      "text/plain" = "obsidian.desktop";
+
+      # Web / Communications
+      "x-scheme-handler/discord" = "discord.desktop"; # Optional
+
+      # File browser default (fallback)
+      "inode/directory" = "nautilus.desktop";
+    };
+
+  };
+
+  environment.sessionVariables = {
+    TERMINAL = "kitty";
+  };
+
   programs = {
-    zsh = {
+    localsend = {
       enable = true;
-      enableCompletion = false;
-      histSize = 10000;
-      histFile = "$XDG_DATA_HOME/zsh/history";
-      setOptions = [ ];
-    };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-    };
-    git.enable = true;
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-curses;
-      enableSSHSupport = true;
+      openFirewall = true;
     };
   };
-
-  services = {
-    gvfs.enable = true;
-  };
-
 }
 

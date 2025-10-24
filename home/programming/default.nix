@@ -31,6 +31,7 @@
     # LSPs
     nodePackages.bash-language-server
     nil
+    nixd
     docker-compose-language-service
     # Tools
     llm

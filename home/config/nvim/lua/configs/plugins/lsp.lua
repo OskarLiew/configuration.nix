@@ -8,7 +8,8 @@ local lsps = {
 	"cssls",
 	"ts_ls",
 	"clangd",
-	"nil_ls",
+	"nil_ls", -- General nix language
+	"nixd", -- nixpkgs
 	"gopls",
 	"bashls",
 	"docker_compose_language_service",

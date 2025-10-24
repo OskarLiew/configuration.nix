@@ -1,22 +1,8 @@
 { pkgs, upkgs, ... }: {
   home.packages = with pkgs; [
-    # Shell
-    bat
-    fzf
-    ripgrep
-    tree
-    parallel
     tldr
-    less
-    openssh
-    neofetch
-    fd
-    jq
-    yq
+
     # TUI apps
-    tmux
-    lazydocker
-    neofetch
     russ
   ];
 

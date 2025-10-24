@@ -16,13 +16,6 @@
 
   programs.home-manager.enable = true;
 
-  home.sessionVariables = rec {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = "$PATH:${XDG_BIN_HOME}";
-  };
-
   xdg = {
     enable = true;
     userDirs = with config.home; {

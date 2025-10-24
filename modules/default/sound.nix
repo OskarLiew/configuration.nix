@@ -8,6 +8,8 @@
     playerctl
     alsa-utils
     pavucontrol
+    mpd
+    pulseaudio
   ];
 
   security.rtkit.enable = true;

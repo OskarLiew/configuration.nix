@@ -2,7 +2,7 @@ local filesystem = require("gears.filesystem")
 local config_dir = filesystem.get_xdg_config_home()
 local rofi_dir = config_dir .. "/rofi"
 
-local terminal = "kitty"
+local terminal = os.getenv("TERMINAL") or "kitty"
 
 local default_apps = {
 	-- Default terminal emulator

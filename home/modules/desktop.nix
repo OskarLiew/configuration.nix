@@ -2,32 +2,16 @@
   imports = [ ./gaming.nix ../programs/syncthing.nix ../programs/vscode.nix ../programs/firefox.nix ../theme ];
 
   home.packages = with pkgs; [
-    # Utils
-    arandr
-    dconf
-    mpd
-    simplescreenrecorder
-
     # Apps
-    inkscape
     qbittorrent
     (pkgs.callPackage ../packages/filebot.nix { })
-    gimp
-    spotify
-    discord
-    vlc
-    audacity
     mullvad-browser
 
     # Productivity
-    nautilus
-    upkgs.obsidian
     bruno
     zotero
-    libreoffice
-
-    # Other
-    pkgs.nerd-fonts.fira-code
+    bitwarden-desktop
+    bitwarden-cli
 
     # Work
     slack
@@ -69,7 +53,6 @@
       enable = true;
       defaultApplications = {
         "text/plain" = [ "nvim.desktop" ];
-        "inode/directory" = "yazi.desktop";
       };
     };
     configFile = {
