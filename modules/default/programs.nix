@@ -2,27 +2,16 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # Hardware
-    # pulseaudio
-    acpilight
-    procps
-    wirelesstools
-    iw
-    lsof
-
-    # Productivity
+    # CLIs
+    procps # ps, kill, watch, ...
+    lsof # list open files
+    psmisc # fuser, killall, ...
     tmux
-
-    # Tools
+    curl
     wget
     unzip
-    playerctl
-    htop
-    openssh
     parallel
-    pavucontrol
-    alsa-utils
-    psmisc
+    btop
 
     # Apps
     firefox

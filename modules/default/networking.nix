@@ -1,30 +1,46 @@
 { pkgs, ... }:
 
 {
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Enable networking
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
+    wireless.iwd.enable = true;
+    usePredictableInterfaceNames = false;
 
-  # Open ports in the firewall.
-  networking.firewall = {
-    allowedUDPPorts = [ 5353 ]; # For device discovery
-    allowedUDPPortRanges = [{
-      from = 32768;
-      to = 61000;
-    }]; # For Streaming
-    allowedTCPPorts = [ 8010 ]; # For gnomecast server
+    # Firewall configuration
+    firewall = {
+      allowedUDPPorts = [ 5353 ]; # For device discovery
+      allowedUDPPortRanges = [{
+        from = 32768;
+        to = 61000;
+      }]; # For Streaming
+      allowedTCPPorts = [ 8010 ]; # For gnomecast server
+    };
+
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services = {
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.usePredictableInterfaceNames = false;
+    # VPN
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+  };
 
-  # VPN
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  environment.systemPackages = with pkgs; [
+    wirelesstools
+    iw
+    impala
+  ];
+
 }

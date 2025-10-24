@@ -1,6 +1,14 @@
+{ pkgs, ... }:
+
 {
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
+
+  environment.systemPackages = with pkgs; [
+    playerctl
+    alsa-utils
+    pavucontrol
+  ];
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -56,6 +64,7 @@
       };
     };
   };
+
 
   # From https://wiki.archlinux.org/title/PipeWire/Examples#Echo_cancellation
 }
