@@ -22,7 +22,6 @@ with inputs; {
         inputs.stylix.homeModules.stylix
         ./home.nix
         ./modules/desktop.nix
-        ./packages/awesome.nix
         { targets.genericLinux.enable = true; }
       ];
     };

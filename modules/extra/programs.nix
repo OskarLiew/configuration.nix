@@ -10,7 +10,7 @@
     inkscape # Vector graphics editor
     libreoffice # Office suite
     obs-studio # Screen recorder
-    vlc # Video player
+    mpv # Video player
     audacity # Audio editor
     spotify # Spotify
     discord # Discord
@@ -37,11 +37,11 @@
       "image/svg+xml" = "inkscape.desktop";
 
       # Audio & Video
-      "audio/mpeg" = "vlc.desktop";
-      "audio/ogg" = "vlc.desktop";
-      "video/mp4" = "vlc.desktop";
-      "video/x-matroska" = "vlc.desktop";
-      "audio/wav" = "vlc.desktop";
+      "audio/mpeg" = "mpv.desktop";
+      "audio/ogg" = "mpv.desktop";
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop";
+      "audio/wav" = "mpv.desktop";
 
       # Text
       "text/plain" = "obsidian.desktop";

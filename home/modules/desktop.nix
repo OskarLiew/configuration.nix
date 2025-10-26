@@ -42,7 +42,21 @@
     };
   };
 
-  services = { autorandr.enable = true; };
+
+  services = {
+    autorandr.enable = true;
+    betterlockscreen.enable = true;
+    flameshot = {
+      # https://github.com/flameshot-org/flameshot/issues/3328
+      enable = true;
+      settings = {
+        General = {
+          disabledTrayIcon = true;
+          showStartupLaunchMessage = false;
+        };
+      };
+    };
+  };
 
   home.sessionVariables = {
     TERMINAL = "kitty";
@@ -75,7 +89,7 @@
       yazi = {
         name = "Yazi";
         icon = "yazi";
-        exec = "kitty -e yazi";
+        exec = "${config.home.sessionVariables.TERMINAL} -e yazi";
         terminal = false;
         type = "Application";
         categories = [ "Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly" ];
@@ -84,7 +98,7 @@
       nvim = {
         name = "Neovim";
         icon = "nvim";
-        exec = "kitty -e nvim";
+        exec = "${config.home.sessionVariables.TERMINAL} -e nvim";
         terminal = false;
         type = "Application";
         categories = [ "Utility" "TextEditor" ];
@@ -93,7 +107,7 @@
       btop = {
         name = "btop";
         icon = "btop";
-        exec = "kitty -e btop";
+        exec = "${config.home.sessionVariables.TERMINAL} -e btop";
         terminal = false;
         type = "Application";
         categories = [ "Utility" "Core" "System" ];
