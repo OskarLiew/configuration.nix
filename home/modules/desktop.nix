@@ -45,7 +45,6 @@
 
   services = {
     autorandr.enable = true;
-    betterlockscreen.enable = true;
     flameshot = {
       # https://github.com/flameshot-org/flameshot/issues/3328
       enable = true;
