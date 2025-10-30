@@ -20,7 +20,10 @@ Examples
 
 ```sh
 use nix
-# OR use flake
+# OR 
+use flake
+
+# You can also use
 # dotenv .env
 # source .venv/bin/activate
 ```

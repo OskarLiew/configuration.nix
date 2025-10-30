@@ -5,6 +5,8 @@ return {
 			formatters_by_ft = {
 				python = { "ruff_format", "ruff_organize_imports" },
 				lua = { "stylua" },
+				typescript = { "biome", "biome-organize-imports" },
+				javascript = { "biome", "biome-organize-imports" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
