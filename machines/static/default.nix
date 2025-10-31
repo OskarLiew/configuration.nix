@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -10,6 +9,9 @@
   imports = [
     # Hardware
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     # Modules
     ../../modules
