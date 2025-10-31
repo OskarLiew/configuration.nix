@@ -1,10 +1,10 @@
 { pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     # Utils
     bolt-launcher # OSRS launcher for linux
     osu-lazer-bin
+    (pkgs.callPackage ../packages/path-of-building.nix { version = "2.57.0"; })
     (retroarch.withCores (
       cores: with cores; [
         gambatte # GB

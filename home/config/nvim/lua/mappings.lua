@@ -15,7 +15,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>h", { desc = "Window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>h", { desc = "Window right" })
 
 -- navigate within insert mode
-vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Beginning of line" })
+vim.keymap.set("i", "<C-a>", "<ESC>^i", { desc = "Beginning of line" })
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "End of line" })
 vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
 vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
