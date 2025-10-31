@@ -1,23 +1,20 @@
-{ pkgs, upkgs, inputs, ... }: {
+{ upkgs, inputs, ... }: {
 
-  home.packages = with pkgs; [
+  home.packages = with upkgs; [
     # - Python
     mypy
-    upkgs.uv
-    ruff
-    upkgs.pyright
+    uv
+    pyright
     # - js
-    nodejs_20
+    nodejs_22
     nodePackages.prettier
-    dockerfile-language-server-nodejs
     biome
     # - lua
     lua
-    upkgs.stylua # Formatting added 2025-09-14
+    stylua
     luarocks
     lua-language-server
     # - Go
-    go
     gopls
     # - C
     gcc
@@ -33,13 +30,12 @@
     nil
     nixd
     docker-compose-language-service
+    dockerfile-language-server
+    taplo
+    yaml-language-server
     # Tools
     llm
     tree-sitter
-
-    # Markup
-    taplo
-    yaml-language-server
   ];
 
   xdg = {
@@ -61,9 +57,11 @@
     go = {
       enable = true;
       goPath = "$XDG_DATA_HOME/go";
+      package = upkgs.go;
     };
     ruff = {
       enable = true;
+      package = upkgs.ruff;
       settings = {
         lint = {
           select = [

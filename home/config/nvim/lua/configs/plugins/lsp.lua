@@ -7,6 +7,7 @@ local lsps = {
 	"html",
 	"cssls",
 	"ts_ls",
+	"biome",
 	"clangd",
 	"nil_ls", -- General nix language
 	"nixd", -- nixpkgs
