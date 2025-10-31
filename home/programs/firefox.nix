@@ -29,14 +29,20 @@ let
     icon = "firefox";
     exec = "firefox -P ${name}";
     type = "Application";
-    categories = [ "Network" "WebBrowser" ];
+    categories = [
+      "Network"
+      "WebBrowser"
+    ];
   };
 in
 {
   programs = {
     firefox = {
       enable = true;
-      languagePacks = [ "en-US" "sv-SE" ];
+      languagePacks = [
+        "en-US"
+        "sv-SE"
+      ];
       inherit profiles;
     };
   };
@@ -74,12 +80,13 @@ in
         sha256 = "sha256-MgriIMU6YSbagar2gD2MgTg3vKqV853PX3WTIzV0ZnM=";
       }}";
     };
-  } // builtins.listToAttrs (map
-    (name: {
+  }
+  // builtins.listToAttrs (
+    map (name: {
       inherit name;
       value = mkFirefoxDesktopEntry name;
-    })
-    (builtins.attrNames profiles));
+    }) (builtins.attrNames profiles)
+  );
 
   xdg.mimeApps = {
     enable = true;
@@ -95,4 +102,3 @@ in
 
   home.sessionVariables.BROWSER = "firefox";
 }
-

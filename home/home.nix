@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   home.username = "oskar";
   home.homeDirectory = "/home/oskar";
 
@@ -13,14 +14,15 @@
     ./modules/scripts.nix
   ];
 
-
   programs.home-manager.enable = true;
 
   xdg = {
     enable = true;
     userDirs = with config.home; {
       enable = true;
-      extraConfig = { XDG_DEV_DIR = "${homeDirectory}/Develop"; };
+      extraConfig = {
+        XDG_DEV_DIR = "${homeDirectory}/Develop";
+      };
       createDirectories = true;
       desktop = null;
       publicShare = null;

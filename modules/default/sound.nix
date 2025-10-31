@@ -67,6 +67,5 @@
     };
   };
 
-
   # From https://wiki.archlinux.org/title/PipeWire/Examples#Echo_cancellation
 }

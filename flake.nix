@@ -22,32 +22,33 @@
     stylix.url = "github:nix-community/stylix/release-25.05";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs =
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        inherit system; config.allowUnfree = true;
+        inherit system;
+        config.allowUnfree = true;
         overlays = [ inputs.nur.overlays.default ];
       };
-      upkgs = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+      upkgs = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixfmt-tree;
 
       # Machines
       nixosConfigurations = {
         nixbtw = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
-          modules = [
-            ./machines/nixbtw
-          ];
+          modules = [ ./machines/nixbtw ];
           specialArgs = { inherit upkgs inputs; };
         };
         static = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
-          modules = [
-            ./machines/static
-          ];
+          modules = [ ./machines/static ];
           specialArgs = { inherit upkgs inputs; };
         };
       };

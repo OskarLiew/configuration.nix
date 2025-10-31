@@ -35,8 +35,7 @@ pkgs.stdenv.mkDerivation (finalAttrs: rec {
     copyDesktopItems
   ];
 
-
-  buildInputs = with pkgs;[
+  buildInputs = with pkgs; [
     zlib
     libzen
     libmediainfo

@@ -1,28 +1,28 @@
-{ upkgs, ... }: {
+{ upkgs, ... }:
+{
   programs.vscode = {
     enable = true;
     package = upkgs.vscode;
     profiles.default = {
-      extensions = with upkgs.vscode-extensions;
-        [
-          vscodevim.vim
-          ms-azuretools.vscode-docker
-          ms-vscode-remote.remote-ssh
-          ms-vscode-remote.remote-containers
-          ms-azuretools.vscode-docker
-          ms-python.python
-          ms-python.vscode-pylance
-          ms-python.black-formatter
-          sumneko.lua
-          eamodio.gitlens
-          njpwerner.autodocstring
-          mechatroner.rainbow-csv
-          yzhang.markdown-all-in-one
-          davidanson.vscode-markdownlint
-          rust-lang.rust-analyzer
-          redhat.vscode-yaml
-          vadimcn.vscode-lldb
-        ];
+      extensions = with upkgs.vscode-extensions; [
+        vscodevim.vim
+        ms-azuretools.vscode-docker
+        ms-vscode-remote.remote-ssh
+        ms-vscode-remote.remote-containers
+        ms-azuretools.vscode-docker
+        ms-python.python
+        ms-python.vscode-pylance
+        ms-python.black-formatter
+        sumneko.lua
+        eamodio.gitlens
+        njpwerner.autodocstring
+        mechatroner.rainbow-csv
+        yzhang.markdown-all-in-one
+        davidanson.vscode-markdownlint
+        rust-lang.rust-analyzer
+        redhat.vscode-yaml
+        vadimcn.vscode-lldb
+      ];
       enableUpdateCheck = false;
       userSettings = {
         "window.titleBarStyle" = "custom";
@@ -33,20 +33,35 @@
         "vim.normalModeKeyBindings" = [
           {
             "before" = [ "<C-u>" ];
-            "after" = [ "<C-u>" "z" "z" ];
+            "after" = [
+              "<C-u>"
+              "z"
+              "z"
+            ];
           }
           {
             "before" = [ "<C-d>" ];
-            "after" = [ "<C-d>" "z" "z" ];
+            "after" = [
+              "<C-d>"
+              "z"
+              "z"
+            ];
           }
           {
-            "before" = [ "<leader>" "/" ];
+            "before" = [
+              "<leader>"
+              "/"
+            ];
             "commands" = [ "editor.action.commentLine" ];
           }
         ];
         "vim.whichwrap" = "b,s,h,l,w,e,W,E";
-        "[python]" = { "editor.defaultFormatter" = "ms-python.black-formatter"; };
-        "[yaml]" = { "editor.defaultFormatter" = "redhat.vscode-yaml"; };
+        "[python]" = {
+          "editor.defaultFormatter" = "ms-python.black-formatter";
+        };
+        "[yaml]" = {
+          "editor.defaultFormatter" = "redhat.vscode-yaml";
+        };
         "[markdown]" = {
           "editor.defaultFormatter" = "davidanson.vscode-markdownlint";
         };

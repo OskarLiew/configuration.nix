@@ -1,4 +1,10 @@
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 # Upcoming :)
 {
   imports = [
@@ -42,7 +48,12 @@
   fileSystems."/mnt/media" = {
     device = "/dev/disk/by-uuid/514bc2bb-9ceb-4207-a0db-c75d329943d4";
     fsType = "ext4";
-    options = [ "defaults" "nofail" "users" "exec" ];
+    options = [
+      "defaults"
+      "nofail"
+      "users"
+      "exec"
+    ];
   };
 
 }

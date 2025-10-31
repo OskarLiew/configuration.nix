@@ -1,5 +1,18 @@
-{ config, pkgs, upkgs, lib, ... }: {
-  imports = [ ./gaming.nix ../programs/syncthing.nix ../programs/vscode.nix ../programs/firefox.nix ../theme ];
+{
+  config,
+  pkgs,
+  upkgs,
+  lib,
+  ...
+}:
+{
+  imports = [
+    ./gaming.nix
+    ../programs/syncthing.nix
+    ../programs/vscode.nix
+    ../programs/firefox.nix
+    ../theme
+  ];
 
   home.packages = with pkgs; [
     # Apps
@@ -22,7 +35,10 @@
     chromium = {
       enable = true;
       extensions = [
-        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+        {
+          id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+        }
+        # ublock origin
       ];
     };
 
@@ -41,7 +57,6 @@
       profiles.email.isDefault = true;
     };
   };
-
 
   services = {
     autorandr.enable = true;
@@ -91,7 +106,14 @@
         exec = "${config.home.sessionVariables.TERMINAL} -e yazi";
         terminal = false;
         type = "Application";
-        categories = [ "Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly" ];
+        categories = [
+          "Utility"
+          "Core"
+          "System"
+          "FileTools"
+          "FileManager"
+          "ConsoleOnly"
+        ];
         mimeType = [ "inode/directory" ];
       };
       nvim = {
@@ -100,8 +122,27 @@
         exec = "${config.home.sessionVariables.TERMINAL} -e nvim";
         terminal = false;
         type = "Application";
-        categories = [ "Utility" "TextEditor" ];
-        mimeType = [ "text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++" ];
+        categories = [
+          "Utility"
+          "TextEditor"
+        ];
+        mimeType = [
+          "text/english"
+          "text/plain"
+          "text/x-makefile"
+          "text/x-c++hdr"
+          "text/x-c++src"
+          "text/x-chdr"
+          "text/x-csrc"
+          "text/x-java"
+          "text/x-moc"
+          "text/x-pascal"
+          "text/x-tcl"
+          "text/x-tex"
+          "application/x-shellscript"
+          "text/x-c"
+          "text/x-c++"
+        ];
       };
       btop = {
         name = "btop";
@@ -109,7 +150,11 @@
         exec = "${config.home.sessionVariables.TERMINAL} -e btop";
         terminal = false;
         type = "Application";
-        categories = [ "Utility" "Core" "System" ];
+        categories = [
+          "Utility"
+          "Core"
+          "System"
+        ];
       };
     };
   };

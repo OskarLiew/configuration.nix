@@ -19,6 +19,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				css = { "prettier" },
+				nix = { "nixfmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

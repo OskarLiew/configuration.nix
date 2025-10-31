@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 let
-  imgLink =
-    "https://i.ibb.co/vHymspV/everforest-themed-nixos-wallpaper-i-made-which-isnt-literal-v0-y3o84lcin07b1.png";
+  imgLink = "https://i.ibb.co/vHymspV/everforest-themed-nixos-wallpaper-i-made-which-isnt-literal-v0-y3o84lcin07b1.png";
 
   image = pkgs.fetchurl {
     url = imgLink;

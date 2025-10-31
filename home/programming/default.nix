@@ -1,4 +1,5 @@
-{ upkgs, inputs, ... }: {
+{ upkgs, inputs, ... }:
+{
 
   home.packages = with upkgs; [
     # - Python
@@ -29,6 +30,7 @@
     nodePackages.bash-language-server
     nil
     nixd
+    nixfmt
     docker-compose-language-service
     dockerfile-language-server
     taplo

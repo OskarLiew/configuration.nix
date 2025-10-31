@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Configure keymap with xkbd
   services.xserver.xkb = {
     layout = "us,se";
@@ -27,4 +28,3 @@
   # Tablet driver
   hardware.opentabletdriver.enable = true;
 }
-

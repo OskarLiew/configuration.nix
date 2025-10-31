@@ -1,17 +1,20 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.services.xserver.videoDrivers;
-in
 
+in
 {
   virtualisation.docker = {
     enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    lazydocker
-  ];
+  environment.systemPackages = with pkgs; [ lazydocker ];
 
   # Enable nvidia containers if nvidia is enabled
   # Test with: docker run --rm -it --device=nvidia.com/gpu=all ubuntu:latest nvidia-smi

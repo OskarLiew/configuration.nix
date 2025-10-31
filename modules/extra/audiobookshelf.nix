@@ -15,6 +15,8 @@ in
       reverse_proxy 127.0.0.1:${builtins.toString port}
     '';
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 }
-

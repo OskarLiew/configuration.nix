@@ -23,12 +23,13 @@ in
       loginExtra = builtins.readFile ../config/zsh/.zlogin;
       envExtra = builtins.readFile ../config/zsh/.zshenv;
       initContent = builtins.readFile ../config/zsh/.zshrc;
-      completionInit = ''# Faster load 
-autoload -Uz compinit
-for dump in $ZDOTDIR/.zcompdump(N.mh+18); do
-  compinit
-done
-compinit -C
+      completionInit = ''
+        # Faster load 
+        autoload -Uz compinit
+        for dump in $ZDOTDIR/.zcompdump(N.mh+18); do
+          compinit
+        done
+        compinit -C
       '';
       dotDir = ".config/zsh";
       history = {
@@ -68,4 +69,3 @@ compinit -C
     };
   };
 }
-

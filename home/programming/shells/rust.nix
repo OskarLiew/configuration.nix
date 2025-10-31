@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 pkgs.mkShell {
   buildInputs = [
     pkgs.cargo
@@ -9,4 +11,3 @@ pkgs.mkShell {
     Ready!
   '';
 }
-

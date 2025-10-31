@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    pciutils
-  ];
+  environment.systemPackages = with pkgs; [ pciutils ];
 }
-

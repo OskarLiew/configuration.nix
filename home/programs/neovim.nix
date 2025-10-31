@@ -12,4 +12,3 @@
     "nvim".source = ../config/nvim;
   };
 }
-

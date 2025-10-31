@@ -1,4 +1,9 @@
-{ upkgs, pkgs, inputs, ... }:
+{
+  upkgs,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = "YcSLqGix3UtJhy6CZdMXTo7oDQpsfhpcsXSFvD5fVC8=";
