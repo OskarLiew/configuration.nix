@@ -76,16 +76,6 @@ theme.border_width = dpi(2)
 theme.border_color_normal = theme.bg_normal
 theme.border_color_active = theme.gray0
 theme.border_color_marked = theme.bg_visual
-screen.connect_signal("arrange", function(s)
-	local only_one = #s.clients == 1
-	for _, c in pairs(s.clients) do
-		if only_one then
-			c.border_width = 0
-		else
-			c.border_width = theme.border_width
-		end
-	end
-end)
 
 theme.edge_radius = dpi(18)
 

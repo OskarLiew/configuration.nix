@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  upkgs,
   lib,
   ...
 }:
@@ -40,6 +39,7 @@
         confirm_os_window_close = 2;
         enable_audio_bell = false;
         background_opacity = lib.mkForce 0.9;
+        window_padding_width = 4;
       };
     };
     autorandr.enable = true;
