@@ -1,8 +1,8 @@
-{ pkgs, upkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    upkgs.obsidian # Notes
+    obsidian # Notes
     nautilus # File browser
     qimgv # Lightweight image viewer
     pinta # Light image editor
@@ -42,9 +42,6 @@
       "video/mp4" = "mpv.desktop";
       "video/x-matroska" = "mpv.desktop";
       "audio/wav" = "mpv.desktop";
-
-      # Text
-      "text/plain" = "obsidian.desktop";
 
       # Web / Communications
       "x-scheme-handler/discord" = "discord.desktop"; # Optional

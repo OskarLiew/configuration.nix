@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  firefox = pkgs.firefox;
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     ublock-origin
     vimium
@@ -39,6 +40,7 @@ in
   programs = {
     firefox = {
       enable = true;
+      package = firefox;
       languagePacks = [
         "en-US"
         "sv-SE"
@@ -47,46 +49,14 @@ in
     };
   };
 
-  xdg.desktopEntries = {
-    outlook = {
-      name = "Outlook";
-      exec = "firefox --new-window https://outlook.office.com/mail/";
-      icon = "${pkgs.fetchurl {
-        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-outlook.svg";
-        sha256 = "sha256-3u8t5QNHFZvrAegxBiGicO4PjtMWhEaQSCv7MSSfLLc=";
-      }}";
-    };
-    teams = {
-      name = "Teams";
-      exec = "firefox --new-window https://teams.microsoft.com/v2/";
-      icon = "${pkgs.fetchurl {
-        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-teams.svg";
-        sha256 = "sha256-Pr9QS8nnXJq97r4/G3c6JXi34zxHl0ps9gcyI8cN/s8=";
-      }}";
-    };
-    chatgpt = {
-      name = "ChatGPT";
-      exec = "firefox --new-window https://chatgpt.com";
-      icon = "${pkgs.fetchurl {
-        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/chatgpt.svg";
-        sha256 = "sha256-Wo2tKGTMHIEJ6650vqRH3y8wuXi9rVZ0kkfEBuHLIic=";
-      }}";
-    };
-    youtube = {
-      name = "YouTube";
-      exec = "firefox --new-window https://youtube.com";
-      icon = "${pkgs.fetchurl {
-        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/youtube.svg";
-        sha256 = "sha256-MgriIMU6YSbagar2gD2MgTg3vKqV853PX3WTIzV0ZnM=";
-      }}";
-    };
-  }
-  // builtins.listToAttrs (
-    map (name: {
-      inherit name;
-      value = mkFirefoxDesktopEntry name;
-    }) (builtins.attrNames profiles)
-  );
+  xdg.desktopEntries =
+    { }
+    // builtins.listToAttrs (
+      map (name: {
+        inherit name;
+        value = mkFirefoxDesktopEntry name;
+      }) (builtins.attrNames profiles)
+    );
 
   xdg.mimeApps = {
     enable = true;

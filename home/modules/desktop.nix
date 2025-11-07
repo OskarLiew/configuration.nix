@@ -11,6 +11,7 @@
     ../programs/syncthing.nix
     ../programs/vscode.nix
     ../programs/firefox.nix
+    ../programs/chromium.nix
     ../theme
   ];
 
@@ -19,6 +20,7 @@
     qbittorrent
     (pkgs.callPackage ../packages/filebot.nix { })
     mullvad-browser
+    jellyfin-media-player
 
     # Productivity
     bruno
@@ -32,16 +34,6 @@
   ];
 
   programs = {
-    chromium = {
-      enable = true;
-      extensions = [
-        {
-          id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-        }
-        # ublock origin
-      ];
-    };
-
     kitty = {
       enable = true;
       settings = {

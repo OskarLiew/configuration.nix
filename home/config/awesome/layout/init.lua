@@ -87,6 +87,11 @@ ruled.client.connect_signal("request::rules", function()
 		properties = {
 			floating = true,
 		},
+		except_any = {
+			class = {
+				"Chromium-browser", -- Used for webapps
+			},
+		},
 	})
 
 	-- Clients that should never have titlebar
