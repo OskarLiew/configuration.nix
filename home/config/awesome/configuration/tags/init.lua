@@ -110,42 +110,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	restore_windows_to_desired_screen(s)
 end)
 
-local update_gap_and_shape = function(t)
-	-- Get current tag layout
-	local current_layout = awful.tag.getproperty(t, "layout")
-	-- If the current layout is awful.layout.suit.max
-	if current_layout == awful.layout.suit.max then
-		-- Set clients gap to 0 and shape to rectangle if maximized
-		t.gap = 0
-		for _, c in ipairs(t:clients()) do
-			if not c.floating or not c.round_corners or c.maximized or c.fullscreen then
-				c.shape = beautiful.client_shape_rectangle
-			else
-				c.shape = beautiful.client_shape_rounded
-			end
-		end
-	else
-		t.gap = tags[t.index].gap
-		for _, c in ipairs(t:clients()) do
-			if not c.round_corners or c.maximized or c.fullscreen then
-				c.shape = beautiful.client_shape_rectangle
-			else
-				c.shape = beautiful.client_shape_rounded
-			end
-		end
-	end
-end
-
--- Change tag's client's shape and gap on change
-tag.connect_signal("property::layout", function(t)
-	update_gap_and_shape(t)
-end)
-
--- Change tag's client's shape and gap on move to tag
-tag.connect_signal("tagged", function(t)
-	update_gap_and_shape(t)
-end)
-
 -- Focus on urgent clients
 awful.tag.attached_connect_signal(nil, "property::selected", function()
 	local urgent_clients = function(c)

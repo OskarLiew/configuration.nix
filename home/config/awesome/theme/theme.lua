@@ -72,8 +72,8 @@ theme.fg_inactive = theme.gray0
 
 -- Client borders
 theme.useless_gap = dpi(6)
-theme.border_width = dpi(2)
-theme.border_color_normal = theme.bg_normal
+theme.border_width = dpi(1)
+theme.border_color = theme.bg_normal
 theme.border_color_active = theme.gray0
 theme.border_color_marked = theme.bg_visual
 
