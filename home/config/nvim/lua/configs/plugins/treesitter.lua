@@ -27,6 +27,7 @@ return {
 					"html",
 					"css",
 					"bash",
+					"c_sharp",
 				},
 
 				-- Automatically install missing parsers when entering buffer
