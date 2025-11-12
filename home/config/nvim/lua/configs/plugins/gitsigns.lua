@@ -43,7 +43,7 @@ return {
 							return "[c"
 						end
 						vim.schedule(function()
-							require("gitsigns").next_hunk()
+							require("gitsigns").prev_hunk()
 						end)
 						return "<Ignore>"
 					end, { desc = "Previous hunk", expr = true, buffer = bufnr })
