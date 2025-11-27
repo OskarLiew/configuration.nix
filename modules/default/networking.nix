@@ -31,6 +31,7 @@
   services = {
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+    twingate.enable = true;
 
     # VPN
     mullvad-vpn = {
