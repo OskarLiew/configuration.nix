@@ -28,6 +28,10 @@
       {
          "language": "sh",
          "path": "./sh.json"
+      },
+      {
+         "language": "go",
+         "path": "./go.json"
       }
     ]
   }
