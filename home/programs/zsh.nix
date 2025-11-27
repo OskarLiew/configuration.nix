@@ -5,7 +5,7 @@ let
     name = "docker-completions";
     src = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker";
-      sha256 = "sha256-xES+2sFZtbm304YEFYVJZoNkTj8jc9FRjPOellTGrHA=";
+      sha256 = "sha256-hShu64TMksm8qyzNkFkSZ74X4GdTcKepbZ5JtD04/IA=";
     };
 
     phases = [ "installPhase" ];

@@ -61,7 +61,7 @@ pkgs.stdenv.mkDerivation (finalAttrs: rec {
       --replace '$FILEBOT_HOME/data/.license' '$APP_DATA/.license' \
       --replace '-jar "$FILEBOT_HOME/jar/filebot.jar"' '-Dcom.googlecode.lanterna.terminal.UnixTerminal.sttyCommand=${coreutils}/bin/stty -jar "$FILEBOT_HOME/jar/filebot.jar"'
     wrapProgram $out/opt/filebot.sh \
-      --prefix PATH : ${lib.makeBinPath [ (pkgs.jdk17.override { enableJavaFX = true; }) ]}
+      --prefix PATH : ${lib.makeBinPath [ (pkgs.jdk21.override { enableJavaFX = true; }) ]}
     # Expose the binary in bin to make runnable.
     ln -s $out/opt/filebot.sh $out/bin/filebot
 
