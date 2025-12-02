@@ -4,6 +4,7 @@ local lsps = {
 	"stylua",
 	"pyright",
 	"ruff",
+	"rust_analyzer",
 	"html",
 	"cssls",
 	"ts_ls",

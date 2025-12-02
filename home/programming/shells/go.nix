@@ -7,6 +7,6 @@ pkgs.mkShell {
     pkgs.gopls
   ];
   shellHook = ''
-    Ready!
+    echo "Ready!"
   '';
 }

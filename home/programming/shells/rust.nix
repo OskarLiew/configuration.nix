@@ -8,6 +8,6 @@ pkgs.mkShell {
     pkgs.rust-analyzer
   ];
   shellHook = ''
-    Ready!
+    echo "Ready!"
   '';
 }

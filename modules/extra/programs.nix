@@ -16,6 +16,7 @@
     discord # Discord
     kitty # Terminal
     papers # PDF viewer
+    qbittorrent
   ];
 
   xdg.mime = {
@@ -45,6 +46,8 @@
 
       # Web / Communications
       "x-scheme-handler/discord" = "discord.desktop"; # Optional
+      "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop"; # Optional
+      "x-scheme-handler/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop"; # Optional
 
       # File browser default (fallback)
       "inode/directory" = "nautilus.desktop";

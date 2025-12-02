@@ -35,6 +35,7 @@
     dockerfile-language-server
     taplo
     yaml-language-server
+    vscode-langservers-extracted
     # Tools
     llm
     tree-sitter

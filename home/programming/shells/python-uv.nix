@@ -17,6 +17,6 @@ pkgs.mkShell {
     ]}";
   UV_PYTHON_DOWNLOADS = "never";
   shellHook = ''
-    Ready!
+    echo "Ready!"
   '';
 }
