@@ -19,7 +19,6 @@
     qbittorrent
     (pkgs.callPackage ../packages/filebot.nix { })
     mullvad-browser
-    jellyfin-media-player
 
     # Productivity
     bruno

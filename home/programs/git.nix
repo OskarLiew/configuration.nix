@@ -3,25 +3,19 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "Oskar Liew";
-      userEmail = "oskar@liew.se";
-      aliases = {
-        co = "checkout";
-        tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
-      };
-      delta = {
-        enable = true;
-        options = {
-          syntax-theme = "ansi";
-          # Nice colors for colorMoved
-          map-styles = "bold purple => syntax rebeccapurple, bold cyan => syntax midnightblue";
-        };
-      };
       ignores = [
         ".direnv"
         ".envrc"
       ];
-      extraConfig = {
+      settings = {
+        alias = {
+          co = "checkout";
+          tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
+        };
+        user = {
+          name = "Oskar Liew";
+          email = "oskar@liew.se";
+        };
         init.defaultBranch = "main";
         rerere = {
           # Reuse recorded resolution - Smoother rebases
@@ -48,14 +42,24 @@
         };
       };
     };
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "ansi";
+        # Nice colors for colorMoved
+        map-styles = "bold purple => syntax rebeccapurple, bold cyan => syntax midnightblue";
+      };
+    };
     lazygit = {
       enable = true;
       settings = {
         git = {
-          paging = {
-            colorArg = "always";
-            pager = "delta --paging=never";
-          };
+          pagers = [
+            {
+              colorArg = "always";
+              pager = "delta --paging=never";
+            }
+          ];
         };
       };
     };

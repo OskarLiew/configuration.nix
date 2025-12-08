@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   # The completion script must be in a directory to work
   dockerCompletions = pkgs.stdenv.mkDerivation {
@@ -31,7 +31,7 @@ in
         done
         compinit -C
       '';
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       history = {
         path = "$XDG_DATA_HOME/zsh/history";
       };
@@ -42,7 +42,7 @@ in
         }
         {
           name = "fast-syntax-highlighting";
-          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting";
         }
         {
           name = "nix-zsh-completions";

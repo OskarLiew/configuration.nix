@@ -59,8 +59,10 @@
   programs = {
     go = {
       enable = true;
-      goPath = "$XDG_DATA_HOME/go";
       package = upkgs.go;
+      env = {
+        GOPATH = "$XDG_DATA_HOME/go";
+      };
     };
     ruff = {
       enable = true;

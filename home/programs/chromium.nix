@@ -37,12 +37,12 @@ in
         sha256 = "sha256-Wo2tKGTMHIEJ6650vqRH3y8wuXi9rVZ0kkfEBuHLIic=";
       }}";
     };
-    youtube = {
-      name = "YouTube";
-      exec = "${chromium}/bin/chromium --app=https://youtube.com";
+    jellyfin = {
+      name = "Jellyfin";
+      exec = "${chromium}/bin/chromium --app=https://jellyfin.oskarliew.com";
       icon = "${pkgs.fetchurl {
-        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/youtube.svg";
-        sha256 = "sha256-MgriIMU6YSbagar2gD2MgTg3vKqV853PX3WTIzV0ZnM=";
+        url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/jellyfin.svg";
+        sha256 = "sha256-f1PPCD27MRnsjFrL2AScUDMidhfkYVQPcFkawQkSQwY=";
       }}";
     };
   };
