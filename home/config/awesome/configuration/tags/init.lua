@@ -44,7 +44,7 @@ local tags = {
 		icon = icons.multimedia,
 		default_app = apps.default.multimedia,
 		gap = 0,
-		layout = awful.layout.suit.max,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "sandbox",

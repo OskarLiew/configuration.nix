@@ -28,6 +28,7 @@ return {
 					"css",
 					"bash",
 					"c_sharp",
+					"sql",
 				},
 
 				-- Automatically install missing parsers when entering buffer
