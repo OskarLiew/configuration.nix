@@ -23,7 +23,7 @@
     enable = true;
     defaultApplications = {
       # Documents
-      "application/pdf" = "papers.desktop";
+      "application/pdf" = "org.gnome.Papers.desktop";
       "application/vnd.oasis.opendocument.text" = "libreoffice.desktop";
       "application/msword" = "libreoffice.desktop";
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "libreoffice.desktop";
@@ -45,12 +45,13 @@
       "audio/wav" = "mpv.desktop";
 
       # Web / Communications
-      "x-scheme-handler/discord" = "discord.desktop"; # Optional
-      "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop"; # Optional
-      "x-scheme-handler/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop"; # Optional
+      "x-scheme-handler/discord" = "discord.desktop";
+      "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+      "x-scheme-handler/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
+      "x-scheme-handler/spotify" = "spotify.desktop";
 
       # File browser default (fallback)
-      "inode/directory" = "nautilus.desktop";
+      "inode/directory" = "org.gnome.Nautilus.desktop";
     };
 
   };
