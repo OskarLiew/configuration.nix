@@ -18,7 +18,7 @@ local lsps = {
 	"dockerls",
 	"taplo",
 	"yamlls",
-	"csharp_ls",
+	"omnisharp",
 }
 
 -- Option overrides
