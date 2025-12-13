@@ -39,8 +39,8 @@ in
         BackgroundColor = bg0;
         DimBackgroundColor = bg0;
 
-        LoginFieldBackgroundColor = "#222222";
-        PasswordFieldBackgroundColor = "#222222";
+        LoginFieldBackgroundColor = "#000000";
+        PasswordFieldBackgroundColor = "#000000";
         LoginFieldTextColor = fg;
         PasswordFieldTextColor = fg;
         UserIconColor = fg;
