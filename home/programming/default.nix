@@ -1,4 +1,9 @@
-{ upkgs, inputs, ... }:
+{
+  upkgs,
+  inputs,
+  config,
+  ...
+}:
 {
 
   home.packages = with upkgs; [
@@ -61,7 +66,7 @@
       enable = true;
       package = upkgs.go;
       env = {
-        GOPATH = "$XDG_DATA_HOME/go";
+        GOPATH = "${config.xdg.dataHome}/go";
       };
     };
     ruff = {
