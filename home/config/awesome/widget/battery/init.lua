@@ -64,9 +64,23 @@ local return_button = function()
 	})
 
 	local get_battery_info = function()
-		awful.spawn.easy_async_with_shell("upower -i $(upower -e | grep BAT)", function(stdout)
+		local battery_device = nil
+		awful.spawn.easy_async_with_shell("upower -e | grep BAT", function(stdout)
 			if stdout == nil or stdout == "" then
-				battery_tooltip:set_text("No battery detected!")
+				battery_tooltip:set_text("No battery detected")
+				battery_button.visible = false
+				return
+			end
+
+			battery_device = stdout
+		end)
+
+		if not battery_device then
+			return
+		end
+
+		awful.spawn.easy_async_with_shell("upower -i " .. battery_device, function(stdout)
+			if stdout == nil or stdout == "" then
 				battery_button.visible = false
 				return
 			end
