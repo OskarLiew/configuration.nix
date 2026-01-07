@@ -6,6 +6,10 @@
     arandr # Screen config util
   ];
 
+  environment.shellAliases = {
+    o = "xdg-open";
+  };
+
   # Automatic configuration of screens
   services.autorandr.enable = true;
 
