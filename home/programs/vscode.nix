@@ -1,4 +1,4 @@
-{ upkgs, ... }:
+{ upkgs, lib, ... }:
 {
   programs.vscode = {
     enable = true;
@@ -13,6 +13,7 @@
         ms-python.python
         ms-python.vscode-pylance
         ms-python.black-formatter
+        ms-python.debugpy
         sumneko.lua
         eamodio.gitlens
         njpwerner.autodocstring
@@ -25,6 +26,7 @@
       ];
       enableUpdateCheck = false;
       userSettings = {
+        "workbench.colorTheme" = lib.mkForce "Default Dark+";
         "window.titleBarStyle" = "custom";
         "telemetry.telemetryLevel" = "off";
         "editor.cursorSurroundingLines" = 8;
