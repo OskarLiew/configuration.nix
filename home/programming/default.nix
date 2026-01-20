@@ -1,12 +1,12 @@
 {
-  upkgs,
+  pkgs,
   inputs,
   config,
   ...
 }:
 {
 
-  home.packages = with upkgs; [
+  home.packages = with pkgs; [
     # - Python
     mypy
     uv
@@ -15,6 +15,7 @@
     nodejs_22
     nodePackages.prettier
     biome
+    typescript-language-server
     # - lua
     lua
     stylua
@@ -64,14 +65,14 @@
   programs = {
     go = {
       enable = true;
-      package = upkgs.go;
+      package = pkgs.go;
       env = {
         GOPATH = "${config.xdg.dataHome}/go";
       };
     };
     ruff = {
       enable = true;
-      package = upkgs.ruff;
+      package = pkgs.ruff;
       settings = {
         lint = {
           select = [

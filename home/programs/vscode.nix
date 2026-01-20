@@ -1,10 +1,10 @@
-{ upkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   programs.vscode = {
     enable = true;
-    package = upkgs.vscode;
+    package = pkgs.vscode;
     profiles.default = {
-      extensions = with upkgs.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
         ms-azuretools.vscode-docker
         ms-vscode-remote.remote-ssh

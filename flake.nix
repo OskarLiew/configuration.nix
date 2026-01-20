@@ -1,10 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {
@@ -19,21 +18,20 @@
       url = "github:kosorin/awesome-code-doc";
       flake = false;
     };
-    stylix.url = "github:nix-community/stylix/release-25.11";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [ inputs.nur.overlays.default ];
-      };
-      upkgs = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
       };
     in
     {
@@ -44,14 +42,16 @@
         nixbtw = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
           modules = [ ./machines/nixbtw ];
-          specialArgs = { inherit upkgs inputs; };
+          specialArgs = { inherit inputs; };
         };
         static = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
           modules = [ ./machines/static ];
-          specialArgs = { inherit upkgs inputs; };
+          specialArgs = { inherit inputs; };
         };
       };
-      homeConfigurations = import ./home { inherit pkgs upkgs inputs; };
+
+      # Home manager
+      homeConfigurations = import ./home { inherit pkgs inputs; };
     };
 }

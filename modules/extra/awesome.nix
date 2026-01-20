@@ -1,5 +1,4 @@
 {
-  upkgs,
   pkgs,
   inputs,
   ...
@@ -41,9 +40,9 @@ in
   services.displayManager.defaultSession = "none+awesome";
 
   environment.systemPackages = with pkgs; [
-    upkgs.picom
-    upkgs.betterlockscreen
-    upkgs.flameshot
+    picom
+    betterlockscreen
+    flameshot
     rofi
     lm_sensors
     playerctl

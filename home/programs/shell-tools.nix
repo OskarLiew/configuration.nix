@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     tldr
@@ -18,7 +18,6 @@
   programs = {
     btop = {
       enable = true;
-      package = upkgs.btop;
       settings = {
         theme_background = false;
         vim_keys = true;
