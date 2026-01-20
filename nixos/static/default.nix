@@ -1,10 +1,8 @@
 {
   inputs,
   config,
-  pkgs,
   ...
 }:
-# Upcoming :)
 {
   imports = [
     # Hardware
@@ -14,14 +12,19 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     # Modules
-    ../../modules
-    ../../modules/extra/gaming.nix
-    ../../modules/extra/jellyfin.nix
-    ../../modules/extra/audiobookshelf.nix
-    ../../modules/extra/programs.nix
+    ../modules
+    ../modules/extra/gaming.nix
+    ../modules/extra/jellyfin.nix
+    ../modules/extra/audiobookshelf.nix
+    ../modules/extra/programs.nix
 
     # Users
-    ../../users/oskar.nix
+    ../users.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.additions
+    inputs.self.overlays.modifications
   ];
 
   networking.hostName = "static";

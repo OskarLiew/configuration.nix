@@ -1,20 +1,29 @@
-{ config, ... }:
 {
-  home.username = "oskar";
-  home.homeDirectory = "/home/oskar";
-
+  config,
+  inputs,
+  ...
+}:
+{
   imports = [
-    ./programs/git.nix
-    ./programs/neovim.nix
-    ./programs/shell-tools.nix
-    ./programs/zsh.nix
-    ./programming
-    ./theme/shell.nix
+    ./modules/programs/git.nix
+    ./modules/programs/neovim.nix
+    ./modules/programs/shell-tools.nix
+    ./modules/programs/zsh.nix
+    ./modules/programming
+    ./modules/theme/shell.nix
     ./modules/workmode.nix
     ./modules/scripts.nix
   ];
 
+  nixpkgs.overlays = [
+    inputs.self.overlays.additions
+    inputs.self.overlays.modifications
+  ];
+
   programs.home-manager.enable = true;
+
+  home.username = "oskar";
+  home.homeDirectory = "/home/oskar";
 
   xdg = {
     enable = true;

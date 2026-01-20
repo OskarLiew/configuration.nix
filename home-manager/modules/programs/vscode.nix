@@ -174,8 +174,8 @@
         }
       ];
       languageSnippets = {
-        python = builtins.fromJSON (builtins.readFile ../config/snippets/python.json);
-        nix = builtins.fromJSON (builtins.readFile ../config/snippets/nix.json);
+        python = builtins.fromJSON (builtins.readFile ../../config/snippets/python.json);
+        nix = builtins.fromJSON (builtins.readFile ../../config/snippets/nix.json);
       };
 
     };

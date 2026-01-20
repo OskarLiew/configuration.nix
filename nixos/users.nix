@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   user = "oskar";
 in
 {
-
   imports = [ ../modules/extra/awesome.nix ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

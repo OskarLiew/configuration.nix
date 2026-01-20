@@ -20,9 +20,9 @@ in
     zsh = {
       enable = true;
       autosuggestion.enable = true;
-      loginExtra = builtins.readFile ../config/zsh/.zlogin;
-      envExtra = builtins.readFile ../config/zsh/.zshenv;
-      initContent = builtins.readFile ../config/zsh/.zshrc;
+      loginExtra = builtins.readFile ../../config/zsh/.zlogin;
+      envExtra = builtins.readFile ../../config/zsh/.zshenv;
+      initContent = builtins.readFile ../../config/zsh/.zshrc;
       completionInit = ''
         # Faster load 
         autoload -Uz compinit
@@ -54,7 +54,7 @@ in
         }
         {
           name = "bd";
-          src = ../config/zsh/plugins/bd;
+          src = ../../config/zsh/plugins/bd;
         }
         {
           name = "docker-completions";

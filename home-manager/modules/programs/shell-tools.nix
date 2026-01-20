@@ -8,11 +8,11 @@
   ];
 
   xdg.configFile = {
-    "tmux".source = ../config/tmux;
-    "fd".source = ../config/fd;
+    "tmux".source = ../../config/tmux;
+    "fd".source = ../../config/fd;
   };
   home.file = {
-    ".local/bin/tat".source = ../config/tmux/tat;
+    ".local/bin/tat".source = ../../config/tmux/tat;
   };
 
   programs = {

@@ -35,23 +35,20 @@
       };
     in
     {
+      # Formatter
       formatter.${system} = pkgs.nixfmt-tree;
 
-      # Machines
-      nixosConfigurations = {
-        nixbtw = nixpkgs.lib.nixosSystem {
-          inherit pkgs system;
-          modules = [ ./machines/nixbtw ];
-          specialArgs = { inherit inputs; };
-        };
-        static = nixpkgs.lib.nixosSystem {
-          inherit pkgs system;
-          modules = [ ./machines/static ];
-          specialArgs = { inherit inputs; };
-        };
-      };
+      # Add custom packages
+      packages.${system} = import ./pkgs nixpkgs.legacyPackages.${system};
 
-      # Home manager
-      homeConfigurations = import ./home { inherit pkgs inputs; };
+      # Configure overlays
+      overlays = import ./overlays { inherit inputs; };
+
+      # NixOS configs
+      nixosConfigurations = import ./nixos { inherit pkgs system inputs; };
+
+      # Home manager configs
+      homeConfigurations = import ./home-manager { inherit pkgs inputs; };
+
     };
 }

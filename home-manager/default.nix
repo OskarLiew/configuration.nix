@@ -6,7 +6,6 @@
 
 let
   extraSpecialArgs = { inherit inputs; };
-
 in
 with inputs;
 {

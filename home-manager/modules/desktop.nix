@@ -7,17 +7,18 @@
 {
   imports = [
     ./gaming.nix
-    ../programs/syncthing.nix
-    ../programs/vscode.nix
-    ../programs/firefox.nix
-    ../programs/chromium.nix
-    ../theme
+    ./programs/syncthing.nix
+    ./programs/vscode.nix
+    ./programs/firefox.nix
+    ./programs/chromium.nix
+    ./theme
   ];
 
   home.packages = with pkgs; [
     # Apps
     qbittorrent
-    (pkgs.callPackage ../packages/filebot.nix { })
+    custom.filebot
+
     mullvad-browser
 
     # Productivity

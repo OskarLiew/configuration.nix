@@ -49,7 +49,7 @@
 
   xdg = {
     configFile = {
-      "snippets".source = ../config/snippets;
+      "snippets".source = ../../config/snippets;
     };
     dataFile = {
       "awesome-code-doc".source = inputs.awesomewm-doc;
