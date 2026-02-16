@@ -9,7 +9,7 @@ let
       exec = "${pname}";
       icon = "${pkgs.fetchurl {
         url = "https://camo.githubusercontent.com/7f1a684d23f3b5bce8746fbe13c99d87a5cb01176de29d6073480adc276e6e18/68747470733a2f2f7765622e706f6563646e2e636f6d2f696d6167652f4172742f32444974656d732f43757272656e63792f5472616e736665724f72622e706e67";
-        sha256 = "sha256-USAblgANZUXJHzTB6JTpMHNwkgTvgRtUvUklxCH/Tl4=";
+        sha256 = "sha256-zqgTjrG0otAjlbUN1KQA7B2iH1kXyYedGOy96+yFLFU=";
       }}";
       comment = "${description}";
       desktopName = "Awakened PoE Trade";
@@ -17,6 +17,7 @@ let
         "poe"
         "path"
         "exile"
+        "awakened"
       ];
     }
   );
