@@ -6,10 +6,10 @@ local awful = require("awful")
 local config = require("configuration.widget")
 
 -- Settings
-local panel_height = dpi(30)
-local widget_spacing = 0.1 * panel_height
-local widget_margins = 0.1 * panel_height
-local icon_margins = 0.1 * panel_height
+local panel_height = dpi(24)
+local widget_spacing = dpi(6)
+local widget_margins = dpi(4)
+local icon_margins = dpi(2)
 
 local top_panel = function(s)
 	-- Initialize widgets
@@ -24,6 +24,7 @@ local top_panel = function(s)
 	-- Create panel
 	local panel = awful.wibar({
 		visible = true,
+		height = panel_height,
 		ontop = false,
 		position = "top",
 		screen = s,
