@@ -1,14 +1,19 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     awesome = {
       url = "github:awesomeWM/awesome";
@@ -18,20 +23,20 @@
       url = "github:kosorin/awesome-code-doc";
       flake = false;
     };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [ inputs.nur.overlays.default ];
+      };
+      upkgs = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
     in
     {
@@ -45,10 +50,17 @@
       overlays = import ./overlays { inherit inputs; };
 
       # NixOS configs
-      nixosConfigurations = import ./nixos { inherit pkgs system inputs; };
+      nixosConfigurations = import ./nixos {
+        inherit
+          pkgs
+          upkgs
+          system
+          inputs
+          ;
+      };
 
       # Home manager configs
-      homeConfigurations = import ./home-manager { inherit pkgs inputs; };
+      homeConfigurations = import ./home-manager { inherit pkgs upkgs inputs; };
 
     };
 }

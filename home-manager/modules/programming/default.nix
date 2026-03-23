@@ -1,12 +1,12 @@
 {
-  pkgs,
+  upkgs,
   inputs,
   config,
   ...
 }:
 {
 
-  home.packages = with pkgs; [
+  home.packages = with upkgs; [
     # - Python
     mypy
     uv
@@ -65,14 +65,14 @@
   programs = {
     go = {
       enable = true;
-      package = pkgs.go;
+      package = upkgs.go;
       env = {
         GOPATH = "${config.xdg.dataHome}/go";
       };
     };
     ruff = {
       enable = true;
-      package = pkgs.ruff;
+      package = upkgs.ruff;
       settings = {
         lint = {
           select = [

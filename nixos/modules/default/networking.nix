@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# If network suddenly stops working it could be because of mullvad-vpn killswitch setting!
 {
   networking = {
 

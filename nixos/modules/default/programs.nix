@@ -23,8 +23,8 @@
     gh
 
     # Code
-    python311
-    python311Packages.pip
+    python313
+    python313Packages.pip
     lua
     gcc
     gnumake
