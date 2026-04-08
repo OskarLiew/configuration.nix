@@ -19,7 +19,7 @@
     ../modules/extra/programs.nix
 
     # Users
-    ../users.nix
+    ../users/oskar.nix
   ];
 
   nixpkgs.overlays = [

@@ -13,7 +13,7 @@
     pyright
     # - js
     nodejs_22
-    nodePackages.prettier
+    prettier
     biome
     typescript-language-server
     # - lua
@@ -33,7 +33,7 @@
     php
     phpactor
     # LSPs
-    nodePackages.bash-language-server
+    bash-language-server
     nil
     nixd
     nixfmt

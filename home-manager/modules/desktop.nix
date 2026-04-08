@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./gaming.nix
+    ./games.nix
     ./programs/syncthing.nix
     ./programs/vscode.nix
     ./programs/firefox.nix

@@ -12,7 +12,8 @@
     ../modules/extra/programs.nix
 
     # Users
-    ../users.nix
+    ../users/oskar.nix
+    ../users/caroline.nix
 
     # Desktop environment
     ../modules/extra/awesome.nix

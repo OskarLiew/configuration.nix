@@ -17,11 +17,21 @@
       allowedUDPPorts = [ 5353 ]; # For device discovery
       allowedUDPPortRanges = [
         {
+          from = 27031;
+          to = 27036;
+        }
+        {
           from = 32768;
           to = 61000;
         }
       ]; # For Streaming
       allowedTCPPorts = [ 8010 ]; # For gnomecast server
+      allowedTCPPortRanges = [
+        {
+          from = 27036;
+          to = 27037;
+        }
+      ];
     };
 
     # Configure network proxy if necessary
