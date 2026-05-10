@@ -5,6 +5,8 @@ return {
 	ft = { "cs" },
 
 	config = function()
-		require("easy-dotnet").setup()
+		require("easy-dotnet").setup({ lsp = {
+			set_fold_expr = false,
+		} })
 	end,
 }
