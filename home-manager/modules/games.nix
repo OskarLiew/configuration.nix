@@ -2,16 +2,7 @@
 {
   home.packages = with pkgs; [
     bolt-launcher # osrs
-    (pkgs.osu-lazer-bin.overrideAttrs (oa: rec {
-      # pname = "osu";
-      version = "2026.406.0";
-      src = (
-        fetchurl {
-          url = "https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage";
-          hash = "sha256-RKKhf193BYF7dYL1x4gF2+Kl2xHuWZ/WMYBk4M/x8S0=";
-        }
-      );
-    }))
+    custom.osu
     custom.awakened-poe-trade
     rusty-path-of-building
     (retroarch.withCores (
