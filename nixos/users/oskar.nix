@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   user = "oskar";
-  name = "Caroline Liew";
+  name = "Oskar Liew";
 in
 {
   imports = [ ../modules/extra/awesome.nix ];
