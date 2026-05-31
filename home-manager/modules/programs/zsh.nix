@@ -5,7 +5,7 @@ let
     name = "docker-completions";
     src = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker";
-      sha256 = "sha256-hShu64TMksm8qyzNkFkSZ74X4GdTcKepbZ5JtD04/IA=";
+      sha256 = "sha256-Op0devsGwaWKs6K1eijdvFbenODu1QTHXdDVdyzhaOs=";
     };
 
     phases = [ "installPhase" ];
@@ -14,6 +14,15 @@ let
       cp $src $out/_docker
     '';
   };
+  zsh-fast-syntax-highlighting = pkgs.zsh-fast-syntax-highlighting.overrideAttrs (_old: {
+    version = "1.55"; # 1.56 is very slow for `make`
+    src = pkgs.fetchFromGitHub {
+      owner = "zdharma-continuum";
+      repo = "fast-syntax-highlighting";
+      rev = "v1.55";
+      hash = "sha256-DWVFBoICroKaKgByLmDEo4O+xo6eA8YO792g8t8R7kA=";
+    };
+  });
 in
 {
   programs = {
@@ -42,7 +51,7 @@ in
         }
         {
           name = "fast-syntax-highlighting";
-          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting";
+          src = "${zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting";
         }
         {
           name = "nix-zsh-completions";
