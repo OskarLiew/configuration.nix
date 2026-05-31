@@ -101,10 +101,23 @@ local function toggle_client_titlebar(c)
 	end
 end
 
+local function manage_client_titlebar(c)
+	local layout_name = nil
+	if c.first_tag then
+		layout_name = c.first_tag.layout.name
+	end
+
+	if (c.floating or layout_name == "floating") and c.titlebar then
+		awful.titlebar.show(c)
+	else
+		awful.titlebar.hide(c)
+	end
+end
+
 -- Titlebars only for floating windows
 client.connect_signal("property::floating", toggle_client_titlebar)
 
-client.connect_signal("manage", toggle_client_titlebar)
+client.connect_signal("manage", manage_client_titlebar)
 
 tag.connect_signal("property::layout", function(t)
 	local clients = t:clients()
