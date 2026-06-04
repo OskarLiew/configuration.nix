@@ -46,6 +46,7 @@ in
         "sv-SE"
       ];
       inherit profiles;
+      configPath = ".mozilla/firefox";
     };
   };
 

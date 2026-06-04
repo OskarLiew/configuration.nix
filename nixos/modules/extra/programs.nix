@@ -17,6 +17,7 @@
     kitty # Terminal
     papers # PDF viewer
     qbittorrent
+    solaar # Logitech wireless software
   ];
 
   xdg.mime = {

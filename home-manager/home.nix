@@ -30,11 +30,12 @@
     userDirs = with config.home; {
       enable = true;
       extraConfig = {
-        XDG_DEV_DIR = "${homeDirectory}/Develop";
+        DEV = "${homeDirectory}/Develop";
       };
       createDirectories = true;
       desktop = null;
       publicShare = null;
+      setSessionVariables = true;
     };
     configFile = {
       "aliases".source = ./config/aliases;

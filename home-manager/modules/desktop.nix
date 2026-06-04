@@ -24,7 +24,7 @@
     # Productivity
     bruno
     zotero
-    bitwarden-desktop
+    # bitwarden-desktop  # Deprecated electron version
     bitwarden-cli
 
     # Work
