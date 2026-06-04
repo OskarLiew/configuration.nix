@@ -8,9 +8,8 @@
 
   home.packages = with upkgs; [
     # - Python
-    mypy
-    uv
-    pyright
+    upkgs.uv
+    upkgs.ty
     # - js
     nodejs_22
     prettier

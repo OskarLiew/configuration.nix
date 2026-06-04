@@ -2,7 +2,7 @@
 local lsps = {
 	"lua_ls",
 	"stylua",
-	"pyright",
+	"ty",
 	"ruff",
 	"rust_analyzer",
 	"html",

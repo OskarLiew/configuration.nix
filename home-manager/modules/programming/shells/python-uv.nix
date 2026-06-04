@@ -7,7 +7,7 @@ pkgs.mkShell {
     uv
     mypy
     ruff
-    pyright
+    ty
   ];
   LD_LIBRARY_PATH =
     with pkgs;

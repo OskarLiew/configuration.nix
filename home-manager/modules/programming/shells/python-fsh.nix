@@ -11,7 +11,7 @@
       python313Packages.virtualenv
       mypy
       ruff
-      pyright
+      ty
       # cudaPackages.cudatoolkit
     ]);
   runScript = "bash --init-file /etc/profile";
