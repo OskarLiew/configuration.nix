@@ -11,6 +11,11 @@ let
   settings = {
     extensions.autoDisableScopes = 0;
     browser.tabs.inTitlebar = 0;
+
+    # Never save passwords
+    signon.rememberSignons = false;
+    signon.autofillForms = false;
+    signon.generation.enabled = false;
   };
   profiles = {
     home = {
